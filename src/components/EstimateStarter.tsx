@@ -74,12 +74,11 @@ export function EstimateStarter() {
     ? `${formatGBP(price.final_low)} - ${formatGBP(price.final_high)}`
     : "Select a room size";
 
-  function selectOption(sectionId: string, optionId: string) {
+  function selectOption(sectionId: string, optionId: string, shouldExpand = false) {
     setSelected((current) => ({ ...current, [sectionId]: optionId }));
-  }
-
-  function expandCalculator() {
-    setIsExpanded(true);
+    if (shouldExpand) {
+      setIsExpanded(true);
+    }
   }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -150,7 +149,7 @@ export function EstimateStarter() {
                   className={selected.room_size === option.id ? "choice-card active" : "choice-card"}
                   key={option.id}
                   type="button"
-                  onClick={() => selectOption(roomSection.id, option.id)}
+                  onClick={() => selectOption(roomSection.id, option.id, true)}
                 >
                   <span>{option.label}</span>
                   {option.desc ? <small>{option.desc}</small> : null}
@@ -171,7 +170,7 @@ export function EstimateStarter() {
                   }
                   key={option.id}
                   type="button"
-                  onClick={() => selectOption(finishSection.id, option.id)}
+                  onClick={() => selectOption(finishSection.id, option.id, true)}
                 >
                   <span>{option.label}</span>
                   {option.desc ? <small>{option.desc}</small> : null}
@@ -187,12 +186,7 @@ export function EstimateStarter() {
           <small>Includes labour, materials, sanitaryware, fixtures, fittings and waste removal.</small>
         </div>
 
-        <form
-          className="lead-form"
-          onFocus={expandCalculator}
-          onInput={expandCalculator}
-          onSubmit={handleSubmit}
-        >
+        <form className="lead-form" onSubmit={handleSubmit}>
           <label>
             Full name*
             <input name="name" autoComplete="name" required />
@@ -286,11 +280,7 @@ export function EstimateStarter() {
               </section>
             ))}
           </div>
-        ) : (
-          <button className="open-full-calculator" type="button" onClick={expandCalculator}>
-            Open full calculator selections
-          </button>
-        )}
+        ) : null}
       </div>
     </section>
   );

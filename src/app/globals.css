@@ -450,22 +450,6 @@ h3 {
   color: #84341e;
 }
 
-.open-full-calculator {
-  width: 100%;
-  margin-top: 14px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: #f7f3e9;
-  color: var(--olive-deep);
-  cursor: pointer;
-  padding: 12px 14px;
-  font-weight: 900;
-}
-
-.open-full-calculator:hover {
-  border-color: var(--olive);
-}
-
 .full-calculator {
   margin-top: 18px;
   border-top: 1px solid var(--line);
