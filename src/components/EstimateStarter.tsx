@@ -237,9 +237,10 @@ export function EstimateStarter() {
               <button
                 className="primary-button"
                 type="button"
-                onClick={() => setShowLeadForm(true)}
+                aria-expanded={showLeadForm}
+                onClick={() => setShowLeadForm((current) => !current)}
               >
-                Get full breakdown
+                {showLeadForm ? "Hide details form" : "Get full breakdown"}
               </button>
             </div>
           </div>
