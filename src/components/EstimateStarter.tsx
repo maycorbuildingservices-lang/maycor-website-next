@@ -129,13 +129,17 @@ export function EstimateStarter() {
   }
 
   return (
-    <section className="estimate-panel" id="estimate" aria-labelledby="estimate-heading">
+    <section
+      className={isExpanded ? "estimate-panel calculator-expanded" : "estimate-panel"}
+      id="estimate"
+      aria-labelledby="estimate-heading"
+    >
       <div className="estimate-copy">
         <p className="eyebrow">Bathroom estimate starter</p>
         <h2 id="estimate-heading">See the range before you book the survey.</h2>
         <p>
-          Start compact. Once you begin entering your details, the full calculator opens
-          so every selection can refine the range.
+          Start compact. Click any room or finish card and the full calculator opens
+          so you can refine the range in more detail.
         </p>
       </div>
 
@@ -185,6 +189,46 @@ export function EstimateStarter() {
           <strong>{rangeText}</strong>
           <small>Includes labour, materials, sanitaryware, fixtures, fittings and waste removal.</small>
         </div>
+
+        {isExpanded ? (
+          <div className="full-calculator" aria-label="Full bathroom calculator">
+            <div className="full-calculator-header">
+              <p className="eyebrow">Full calculator opened</p>
+              <h3>Find out your renovation range in under 3 minutes.</h3>
+              <p>
+                Answer the key questions and watch your estimate update as the room
+                becomes clearer.
+              </p>
+            </div>
+
+            {detailedSections.map((section) => (
+              <section className="detail-section" key={section.id}>
+                <div className="detail-heading">
+                  <h4>{section.title}</h4>
+                  {section.helper ? <p>{section.helper}</p> : null}
+                </div>
+                <div className={`detail-options ${section.layout === "row" ? "row" : "tile"}`}>
+                  {section.options.map((option) => (
+                    <button
+                      className={
+                        selected[section.id] === option.id ? "detail-card active" : "detail-card"
+                      }
+                      key={option.id}
+                      type="button"
+                      onClick={() => selectOption(section.id, option.id)}
+                    >
+                      <span className="detail-card-top">
+                        <strong>{option.label}</strong>
+                        {markerLabel(option.marker) ? <em>{markerLabel(option.marker)}</em> : null}
+                      </span>
+                      {option.desc ? <small>{option.desc}</small> : null}
+                    </button>
+                  ))}
+                </div>
+              </section>
+            ))}
+          </div>
+        ) : null}
 
         <form className="lead-form" onSubmit={handleSubmit}>
           <label>
@@ -241,46 +285,6 @@ export function EstimateStarter() {
           </button>
           {message ? <p className={`form-message ${status}`}>{message}</p> : null}
         </form>
-
-        {isExpanded ? (
-          <div className="full-calculator" aria-label="Full bathroom calculator">
-            <div className="full-calculator-header">
-              <p className="eyebrow">Full calculator opened</p>
-              <h3>Find out your renovation range in under 3 minutes.</h3>
-              <p>
-                Answer the key questions and watch your estimate update as the room
-                becomes clearer.
-              </p>
-            </div>
-
-            {detailedSections.map((section) => (
-              <section className="detail-section" key={section.id}>
-                <div className="detail-heading">
-                  <h4>{section.title}</h4>
-                  {section.helper ? <p>{section.helper}</p> : null}
-                </div>
-                <div className={`detail-options ${section.layout === "row" ? "row" : "tile"}`}>
-                  {section.options.map((option) => (
-                    <button
-                      className={
-                        selected[section.id] === option.id ? "detail-card active" : "detail-card"
-                      }
-                      key={option.id}
-                      type="button"
-                      onClick={() => selectOption(section.id, option.id)}
-                    >
-                      <span className="detail-card-top">
-                        <strong>{option.label}</strong>
-                        {markerLabel(option.marker) ? <em>{markerLabel(option.marker)}</em> : null}
-                      </span>
-                      {option.desc ? <small>{option.desc}</small> : null}
-                    </button>
-                  ))}
-                </div>
-              </section>
-            ))}
-          </div>
-        ) : null}
       </div>
     </section>
   );
