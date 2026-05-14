@@ -130,21 +130,22 @@ export function EstimateStarter() {
   }
 
   return (
-    <section
-      className={isExpanded ? "estimate-panel calculator-expanded" : "estimate-panel"}
-      id="estimate"
-      aria-labelledby="estimate-heading"
-    >
-      <div className="estimate-copy">
-        <p className="eyebrow">Bathroom estimate starter</p>
-        <h2 id="estimate-heading">See the range before you book the survey.</h2>
-        <p>
-          Start compact. Click any room or finish card and the full calculator opens
-          so you can refine the range in more detail.
-        </p>
-      </div>
+    <>
+      <section
+        className={isExpanded ? "estimate-panel calculator-expanded" : "estimate-panel"}
+        id="estimate"
+        aria-labelledby="estimate-heading"
+      >
+        <div className="estimate-copy">
+          <p className="eyebrow">Bathroom estimate starter</p>
+          <h2 id="estimate-heading">See the range before you book the survey.</h2>
+          <p>
+            Start compact. Click any room or finish card and the full calculator opens
+            so you can refine the range in more detail.
+          </p>
+        </div>
 
-      <div className="estimate-builder">
+        <div className="estimate-builder">
         {roomSection ? (
           <div className="choice-group" aria-label="Choose room size">
             <span className="choice-title">Room size</span>
@@ -303,7 +304,17 @@ export function EstimateStarter() {
             {message ? <p className={`form-message ${status}`}>{message}</p> : null}
           </form>
         ) : null}
+        </div>
+      </section>
+
+      <div className="sticky-estimate-bar" aria-live="polite">
+        <div>
+          <span>Estimated range</span>
+          <strong>{rangeText}</strong>
+          <small>Includes labour, materials, sanitaryware, fixtures, fittings and waste removal.</small>
+        </div>
+        <a href="#estimate">Adjust selections</a>
       </div>
-    </section>
+    </>
   );
 }
