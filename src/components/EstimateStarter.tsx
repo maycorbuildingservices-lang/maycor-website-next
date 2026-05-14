@@ -62,6 +62,7 @@ function selectedLabel(section: CalculatorSection, selected: Record<string, stri
 export function EstimateStarter() {
   const [selected, setSelected] = useState<Record<string, string>>(createInitialSelections);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [showLeadForm, setShowLeadForm] = useState(false);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
 
@@ -227,64 +228,80 @@ export function EstimateStarter() {
                 </div>
               </section>
             ))}
+
+            <div className="breakdown-gate">
+              <div>
+                <span>Ready for the full breakdown?</span>
+                <p>Next step: enter your details and Maycor can send the estimate breakdown.</p>
+              </div>
+              <button
+                className="primary-button"
+                type="button"
+                onClick={() => setShowLeadForm(true)}
+              >
+                Get full breakdown
+              </button>
+            </div>
           </div>
         ) : null}
 
-        <form className="lead-form" onSubmit={handleSubmit}>
-          <label>
-            Full name*
-            <input name="name" autoComplete="name" required />
-          </label>
-          <label>
-            Phone*
-            <input name="phone" autoComplete="tel" required />
-          </label>
-          <label>
-            Email*
-            <input name="email" type="email" autoComplete="email" required />
-          </label>
-          <label>
-            Postcode*
-            <input name="postcode" autoComplete="postal-code" required />
-          </label>
-          <label>
-            Preferred start*
-            <select name="start" required defaultValue="">
-              <option value="" disabled>
-                Select
-              </option>
-              <option>ASAP</option>
-              <option>1-2 months</option>
-              <option>3+ months</option>
-              <option>Just planning</option>
-            </select>
-          </label>
-          <label>
-            Budget comfort*
-            <select name="budget" required defaultValue="">
-              <option value="" disabled>
-                Select
-              </option>
-              <option>Under £8k</option>
-              <option>£8-12k</option>
-              <option>£12-18k</option>
-              <option>£18-25k</option>
-              <option>£25k+</option>
-            </select>
-          </label>
-          <label className="wide">
-            Notes
-            <textarea name="message" rows={3} placeholder="Tell us what you want to change." />
-          </label>
-          <label className="wide consent-row">
-            <input name="consent" type="checkbox" required /> I agree to be contacted about my
-            bathroom estimate.
-          </label>
-          <button className="primary-button wide" type="submit" disabled={!price || status === "loading"}>
-            {status === "loading" ? "Sending..." : "Get full breakdown"}
-          </button>
-          {message ? <p className={`form-message ${status}`}>{message}</p> : null}
-        </form>
+        {showLeadForm ? (
+          <form className="lead-form" onSubmit={handleSubmit}>
+            <label>
+              Full name*
+              <input name="name" autoComplete="name" required />
+            </label>
+            <label>
+              Phone*
+              <input name="phone" autoComplete="tel" required />
+            </label>
+            <label>
+              Email*
+              <input name="email" type="email" autoComplete="email" required />
+            </label>
+            <label>
+              Postcode*
+              <input name="postcode" autoComplete="postal-code" required />
+            </label>
+            <label>
+              Preferred start*
+              <select name="start" required defaultValue="">
+                <option value="" disabled>
+                  Select
+                </option>
+                <option>ASAP</option>
+                <option>1-2 months</option>
+                <option>3+ months</option>
+                <option>Just planning</option>
+              </select>
+            </label>
+            <label>
+              Budget comfort*
+              <select name="budget" required defaultValue="">
+                <option value="" disabled>
+                  Select
+                </option>
+                <option>Under £8k</option>
+                <option>£8-12k</option>
+                <option>£12-18k</option>
+                <option>£18-25k</option>
+                <option>£25k+</option>
+              </select>
+            </label>
+            <label className="wide">
+              Notes
+              <textarea name="message" rows={3} placeholder="Tell us what you want to change." />
+            </label>
+            <label className="wide consent-row">
+              <input name="consent" type="checkbox" required /> I agree to be contacted about my
+              bathroom estimate.
+            </label>
+            <button className="primary-button wide" type="submit" disabled={!price || status === "loading"}>
+              {status === "loading" ? "Sending..." : "Email me the full breakdown"}
+            </button>
+            {message ? <p className={`form-message ${status}`}>{message}</p> : null}
+          </form>
+        ) : null}
       </div>
     </section>
   );
