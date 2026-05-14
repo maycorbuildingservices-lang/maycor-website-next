@@ -1,79 +1,86 @@
 "use client";
 
 import { FormEvent, useMemo, useState } from "react";
+import calculatorConfig from "@/lib/calculator/config.json";
+import { calculatePriceRange, formatGBP } from "@/lib/calculator/engine";
 
-type RoomKey = "wc" | "verySmall" | "small" | "medium" | "large";
-type FinishKey = "standard" | "mid" | "premium";
-
-type Range = {
-  low: number;
-  high: number;
+type CalculatorOption = {
+  id: string;
+  label: string;
+  desc?: string;
+  marker?: string;
 };
 
-const roomOptions: Array<{ key: RoomKey; label: string; hint: string }> = [
-  { key: "wc", label: "WC / Cloakroom", hint: "Toilet and basin only" },
-  { key: "verySmall", label: "Very small", hint: "Compact 2-3 sqm bathroom" },
-  { key: "small", label: "Small", hint: "Typical 3-5 sqm bathroom" },
-  { key: "medium", label: "Medium", hint: "Family bathroom scale" },
-  { key: "large", label: "Large", hint: "Large or high-detail room" },
-];
-
-const finishOptions: Array<{ key: FinishKey; label: string; hint: string }> = [
-  { key: "standard", label: "Standard", hint: "Practical, clean finish" },
-  { key: "mid", label: "Mid-range", hint: "Better brands and details" },
-  { key: "premium", label: "Premium", hint: "Higher specification" },
-];
-
-const ranges: Record<RoomKey, Record<FinishKey, Range>> = {
-  wc: {
-    standard: { low: 3950, high: 6150 },
-    mid: { low: 4250, high: 6450 },
-    premium: { low: 4550, high: 6750 },
-  },
-  verySmall: {
-    standard: { low: 5450, high: 8450 },
-    mid: { low: 6100, high: 9100 },
-    premium: { low: 6650, high: 9650 },
-  },
-  small: {
-    standard: { low: 5950, high: 9550 },
-    mid: { low: 6800, high: 10600 },
-    premium: { low: 7300, high: 11100 },
-  },
-  medium: {
-    standard: { low: 7550, high: 12250 },
-    mid: { low: 8700, high: 13500 },
-    premium: { low: 9450, high: 14250 },
-  },
-  large: {
-    standard: { low: 9750, high: 15750 },
-    mid: { low: 11300, high: 17300 },
-    premium: { low: 12300, high: 18300 },
-  },
+type CalculatorSection = {
+  id: string;
+  title: string;
+  mainSection?: string;
+  layout?: "tile" | "row";
+  helper?: string;
+  defaultOptionId?: string | null;
+  options: CalculatorOption[];
 };
 
-function formatGBP(value: number) {
-  return value.toLocaleString("en-GB", {
-    style: "currency",
-    currency: "GBP",
-    maximumFractionDigits: 0,
-  });
+type CalculatorConfig = {
+  sections: CalculatorSection[];
+};
+
+const config = calculatorConfig as unknown as CalculatorConfig;
+const roomSection = config.sections.find((section) => section.id === "room_size");
+const finishSection = config.sections.find((section) => section.id === "finish_level");
+const smallRoomId =
+  roomSection?.options.find((option) => option.id.includes("small_3_5"))?.id ||
+  roomSection?.options[0]?.id ||
+  "";
+
+function createInitialSelections() {
+  const selections: Record<string, string> = {};
+
+  for (const section of config.sections) {
+    if (section.defaultOptionId) {
+      selections[section.id] = section.defaultOptionId;
+    }
+  }
+
+  if (smallRoomId) {
+    selections.room_size = smallRoomId;
+  }
+
+  return selections;
+}
+
+function markerLabel(marker?: string) {
+  if (!marker || marker === "None") return "";
+  return marker;
+}
+
+function selectedLabel(section: CalculatorSection, selected: Record<string, string>) {
+  const option = section.options.find((item) => item.id === selected[section.id]);
+  return option?.label || "";
 }
 
 export function EstimateStarter() {
-  const [room, setRoom] = useState<RoomKey>("small");
-  const [finish, setFinish] = useState<FinishKey>("standard");
+  const [selected, setSelected] = useState<Record<string, string>>(createInitialSelections);
+  const [isExpanded, setIsExpanded] = useState(false);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
 
-  const selectedRange = ranges[room][finish];
-  const roomLabel = roomOptions.find((option) => option.key === room)?.label || "";
-  const finishLabel = finishOptions.find((option) => option.key === finish)?.label || "";
-
-  const rangeText = useMemo(
-    () => `${formatGBP(selectedRange.low)} - ${formatGBP(selectedRange.high)}`,
-    [selectedRange.high, selectedRange.low]
+  const price = useMemo(() => calculatePriceRange(config, selected), [selected]);
+  const detailedSections = config.sections.filter(
+    (section) => section.id !== "room_size" && section.id !== "finish_level"
   );
+
+  const rangeText = price
+    ? `${formatGBP(price.final_low)} - ${formatGBP(price.final_high)}`
+    : "Select a room size";
+
+  function selectOption(sectionId: string, optionId: string) {
+    setSelected((current) => ({ ...current, [sectionId]: optionId }));
+  }
+
+  function expandCalculator() {
+    setIsExpanded(true);
+  }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -81,6 +88,10 @@ export function EstimateStarter() {
     setMessage("");
 
     const form = new FormData(event.currentTarget);
+    const selections = Object.fromEntries(
+      config.sections.map((section) => [section.title, selectedLabel(section, selected)])
+    );
+
     const payload = {
       lead: {
         name: String(form.get("name") || "").trim(),
@@ -94,13 +105,9 @@ export function EstimateStarter() {
       },
       selections: {
         Source: "Next.js bathroom renovations landing page",
-        "Room size": roomLabel,
-        "Finish level": finishLabel,
+        ...selections,
       },
-      pricing: {
-        final_low: selectedRange.low,
-        final_high: selectedRange.high,
-      },
+      pricing: price,
     };
 
     try {
@@ -128,45 +135,51 @@ export function EstimateStarter() {
         <p className="eyebrow">Bathroom estimate starter</p>
         <h2 id="estimate-heading">See the range before you book the survey.</h2>
         <p>
-          Start with the two choices that shape the budget fastest. Then send your details
-          for a fuller breakdown and a sensible next step.
+          Start compact. Once you begin entering your details, the full calculator opens
+          so every selection can refine the range.
         </p>
       </div>
 
       <div className="estimate-builder">
-        <div className="choice-group" aria-label="Choose room size">
-          <span className="choice-title">Room size</span>
-          <div className="choice-grid room-grid">
-            {roomOptions.map((option) => (
-              <button
-                className={option.key === room ? "choice-card active" : "choice-card"}
-                key={option.key}
-                type="button"
-                onClick={() => setRoom(option.key)}
-              >
-                <span>{option.label}</span>
-                <small>{option.hint}</small>
-              </button>
-            ))}
+        {roomSection ? (
+          <div className="choice-group" aria-label="Choose room size">
+            <span className="choice-title">Room size</span>
+            <div className="choice-grid room-grid">
+              {roomSection.options.map((option) => (
+                <button
+                  className={selected.room_size === option.id ? "choice-card active" : "choice-card"}
+                  key={option.id}
+                  type="button"
+                  onClick={() => selectOption(roomSection.id, option.id)}
+                >
+                  <span>{option.label}</span>
+                  {option.desc ? <small>{option.desc}</small> : null}
+                </button>
+              ))}
+            </div>
           </div>
-        </div>
+        ) : null}
 
-        <div className="choice-group" aria-label="Choose finish level">
-          <span className="choice-title">Finish level</span>
-          <div className="choice-grid finish-grid">
-            {finishOptions.map((option) => (
-              <button
-                className={option.key === finish ? "choice-card active" : "choice-card"}
-                key={option.key}
-                type="button"
-                onClick={() => setFinish(option.key)}
-              >
-                <span>{option.label}</span>
-                <small>{option.hint}</small>
-              </button>
-            ))}
+        {finishSection ? (
+          <div className="choice-group" aria-label="Choose finish level">
+            <span className="choice-title">Finish level</span>
+            <div className="choice-grid finish-grid">
+              {finishSection.options.map((option) => (
+                <button
+                  className={
+                    selected.finish_level === option.id ? "choice-card active" : "choice-card"
+                  }
+                  key={option.id}
+                  type="button"
+                  onClick={() => selectOption(finishSection.id, option.id)}
+                >
+                  <span>{option.label}</span>
+                  {option.desc ? <small>{option.desc}</small> : null}
+                </button>
+              ))}
+            </div>
           </div>
-        </div>
+        ) : null}
 
         <div className="range-strip">
           <span>Estimated range</span>
@@ -174,7 +187,12 @@ export function EstimateStarter() {
           <small>Includes labour, materials, sanitaryware, fixtures, fittings and waste removal.</small>
         </div>
 
-        <form className="lead-form" onSubmit={handleSubmit}>
+        <form
+          className="lead-form"
+          onFocus={expandCalculator}
+          onInput={expandCalculator}
+          onSubmit={handleSubmit}
+        >
           <label>
             Full name*
             <input name="name" autoComplete="name" required />
@@ -224,11 +242,55 @@ export function EstimateStarter() {
             <input name="consent" type="checkbox" required /> I agree to be contacted about my
             bathroom estimate.
           </label>
-          <button className="primary-button wide" type="submit" disabled={status === "loading"}>
+          <button className="primary-button wide" type="submit" disabled={!price || status === "loading"}>
             {status === "loading" ? "Sending..." : "Get full breakdown"}
           </button>
           {message ? <p className={`form-message ${status}`}>{message}</p> : null}
         </form>
+
+        {isExpanded ? (
+          <div className="full-calculator" aria-label="Full bathroom calculator">
+            <div className="full-calculator-header">
+              <p className="eyebrow">Full calculator opened</p>
+              <h3>Refine every part of the renovation.</h3>
+              <p>
+                These selections use the same pricing logic as the calculator and update
+                the range above instantly.
+              </p>
+            </div>
+
+            {detailedSections.map((section) => (
+              <section className="detail-section" key={section.id}>
+                <div className="detail-heading">
+                  <h4>{section.title}</h4>
+                  {section.helper ? <p>{section.helper}</p> : null}
+                </div>
+                <div className={`detail-options ${section.layout === "row" ? "row" : "tile"}`}>
+                  {section.options.map((option) => (
+                    <button
+                      className={
+                        selected[section.id] === option.id ? "detail-card active" : "detail-card"
+                      }
+                      key={option.id}
+                      type="button"
+                      onClick={() => selectOption(section.id, option.id)}
+                    >
+                      <span className="detail-card-top">
+                        <strong>{option.label}</strong>
+                        {markerLabel(option.marker) ? <em>{markerLabel(option.marker)}</em> : null}
+                      </span>
+                      {option.desc ? <small>{option.desc}</small> : null}
+                    </button>
+                  ))}
+                </div>
+              </section>
+            ))}
+          </div>
+        ) : (
+          <button className="open-full-calculator" type="button" onClick={expandCalculator}>
+            Open full calculator selections
+          </button>
+        )}
       </div>
     </section>
   );

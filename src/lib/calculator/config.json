@@ -1,0 +1,1434 @@
+{
+  "meta": {
+    "name": "Maycor Bathroom Calculator",
+    "version": "0.1.0",
+    "admin_email": "admin@maycor.co.uk",
+    "reply_to": "contact@maycor.co.uk",
+    "sending_domain": "maycor.co.uk"
+  },
+  "base_bands": {
+    "wc": {
+      "low": 3900,
+      "high": 5900
+    },
+    "very_small": {
+      "low": 5400,
+      "high": 8200
+    },
+    "small": {
+      "low": 5800,
+      "high": 9100
+    },
+    "medium": {
+      "low": 7400,
+      "high": 11800
+    },
+    "large": {
+      "low": 9600,
+      "high": 15500
+    }
+  },
+  "finish_multipliers": {
+    "standard": 1.0,
+    "mid": 1.25,
+    "premium": 1.4
+  },
+  "finish_points_thresholds": {
+    "mid": 6,
+    "premium": 10
+  },
+  "risk_section_cap": 6,
+  "gap_cfg": {
+    "wc": {
+      "fixed": 1600,
+      "dynPct": 0.25,
+      "cap": 2200
+    },
+    "very_small": {
+      "fixed": 2100,
+      "dynPct": 0.28,
+      "cap": 3000
+    },
+    "small": {
+      "fixed": 2300,
+      "dynPct": 0.30,
+      "cap": 3800
+    },
+    "medium": {
+      "fixed": 2800,
+      "dynPct": 0.32,
+      "cap": 4800
+    },
+    "large": {
+      "fixed": 3300,
+      "dynPct": 0.34,
+      "cap": 6000
+    }
+  },
+  "sections": [
+    {
+      "id": "property_type",
+      "title": "Property type",
+      "mainSection": "Location and room size",
+      "sectionKey": "location",
+      "layout": "tile",
+      "helper": "Helps price logistics and working conditions.",
+      "options": [
+        {
+          "id": "property_type__flat_apartment_maisonette",
+          "label": "Flat / Apartment / Maisonette",
+          "desc": "",
+          "marker": "££",
+          "risk_points": 0,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": 150,
+          "adder_high": 450
+        },
+        {
+          "id": "property_type__house_terraced_semi_detached",
+          "label": "House (terraced / semi / detached)",
+          "desc": "",
+          "marker": "£",
+          "risk_points": 0,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": 0,
+          "adder_high": 0
+        },
+        {
+          "id": "property_type__large_house_townhouse_mansion",
+          "label": "Large house / townhouse / mansion",
+          "desc": "",
+          "marker": "£",
+          "risk_points": 0,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": 0,
+          "adder_high": 0
+        },
+        {
+          "id": "property_type__cottage_mews_conversion_coach_house_stable_annex",
+          "label": "Cottage / mews / conversion (coach house / stable / annex)",
+          "desc": "",
+          "marker": "£",
+          "risk_points": 0,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": 0,
+          "adder_high": 0
+        }
+      ],
+      "defaultOptionId": "property_type__flat_apartment_maisonette"
+    },
+    {
+      "id": "access_difficulty",
+      "title": "Access difficulty",
+      "mainSection": "Location and room size",
+      "sectionKey": "location",
+      "layout": "tile",
+      "helper": "Access affects labour time for materials and waste.",
+      "options": [
+        {
+          "id": "access_difficulty__easy_access",
+          "label": "Easy access",
+          "desc": "Close parking / short carry / simple routes.",
+          "marker": "£",
+          "risk_points": 0,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": -150,
+          "adder_high": -350
+        },
+        {
+          "id": "access_difficulty__moderate_access",
+          "label": "Moderate access",
+          "desc": "Some stairs/distance / standard restrictions.",
+          "marker": "££",
+          "risk_points": 1,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": 0,
+          "adder_high": 0
+        },
+        {
+          "id": "access_difficulty__difficult_access",
+          "label": "Difficult access",
+          "desc": "Many stairs / long carry / tight corridors / limited parking / restrictions.",
+          "marker": "££",
+          "risk_points": 2,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": 350,
+          "adder_high": 1000
+        },
+        {
+          "id": "access_difficulty__very_difficult",
+          "label": "Very difficult",
+          "desc": "Basements / lofts / no lift / narrow stairwells / restricted hours / permits.",
+          "marker": "£££",
+          "risk_points": 3,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": 800,
+          "adder_high": 2200
+        }
+      ],
+      "defaultOptionId": "access_difficulty__moderate_access"
+    },
+    {
+      "id": "room_size",
+      "title": "Room size",
+      "mainSection": "Location and room size",
+      "sectionKey": "location",
+      "layout": "tile",
+      "helper": "Sets the base range before upgrades.",
+      "options": [
+        {
+          "id": "room_size__wc_cloakroom",
+          "label": "WC / Cloakroom",
+          "desc": "Toilet and basin only / compact cloakroom scope.",
+          "marker": "£",
+          "risk_points": 0,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": 0,
+          "adder_high": 0
+        },
+        {
+          "id": "room_size__very_small_2_3_sqm",
+          "label": "Very small bathroom (2–3 sqm)",
+          "desc": "Compact bathroom with shower/bath potential.",
+          "marker": "£",
+          "risk_points": 0,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": 0,
+          "adder_high": 0
+        },
+        {
+          "id": "room_size__small_3_5_sqm",
+          "label": "Small (3–5 sqm)",
+          "desc": "More surface area / more fitting time.",
+          "marker": "£",
+          "risk_points": 1,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": 0,
+          "adder_high": 0
+        },
+        {
+          "id": "room_size__medium_5_8_sqm",
+          "label": "Medium (5–8 sqm)",
+          "desc": "More prep / tiling / waterproofing / fit-out.",
+          "marker": "££",
+          "risk_points": 2,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": 0,
+          "adder_high": 0
+        },
+        {
+          "id": "room_size__large_8_sqm",
+          "label": "Large (8+ sqm)",
+          "desc": "High area / more detailing across all trades.",
+          "marker": "£££",
+          "risk_points": 3,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": 0,
+          "adder_high": 0
+        }
+      ],
+      "defaultOptionId": null
+    },
+    {
+      "id": "layout_change_level",
+      "title": "Layout change level",
+      "mainSection": "How much are you changing the layout?",
+      "sectionKey": "layout",
+      "layout": "row",
+      "helper": "Moving services increases labour and risk.",
+      "options": [
+        {
+          "id": "layout_change_level__no_layout_change",
+          "label": "No layout change",
+          "desc": "Like-for-like swap / same positions.",
+          "marker": "£",
+          "risk_points": 0,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": 0,
+          "adder_high": 0
+        },
+        {
+          "id": "layout_change_level__light_changes",
+          "label": "Light changes",
+          "desc": "Small shift (one item) / minor pipe/electrical changes.",
+          "marker": "£",
+          "risk_points": 1,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": 500,
+          "adder_high": 1200
+        },
+        {
+          "id": "layout_change_level__moderate_changes",
+          "label": "Moderate changes",
+          "desc": "Several items moved / rerouting + making-good.",
+          "marker": "££",
+          "risk_points": 2,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": 1200,
+          "adder_high": 2700
+        },
+        {
+          "id": "layout_change_level__full_reconfiguration",
+          "label": "Full reconfiguration",
+          "desc": "New layout / major plumbing-waste-electrics reruns.",
+          "marker": "£££",
+          "risk_points": 3,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": 2500,
+          "adder_high": 4800
+        }
+      ],
+      "defaultOptionId": "layout_change_level__no_layout_change"
+    },
+    {
+      "id": "structural_changes",
+      "title": "Structural changes",
+      "mainSection": "How much are you changing the layout?",
+      "sectionKey": "layout",
+      "layout": "row",
+      "helper": "Only select if walls/floors need altering or strengthening.",
+      "options": [
+        {
+          "id": "structural_changes__none",
+          "label": "No structural changes",
+          "desc": "No floor works / no walls altered / no strengthening.",
+          "marker": "£",
+          "risk_points": 0,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": 0,
+          "adder_high": 0
+        },
+        {
+          "id": "structural_changes__minor_structural",
+          "label": "Minor structural",
+          "desc": "Small local works / patch opening / minor carpentry support.",
+          "marker": "£",
+          "risk_points": 1,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": 400,
+          "adder_high": 1200
+        },
+        {
+          "id": "structural_changes__medium_structural",
+          "label": "Medium structural",
+          "desc": "New stud/partition wall (non-loadbearing) / new floor base / plasterboard walls.",
+          "marker": "££",
+          "risk_points": 2,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": 1200,
+          "adder_high": 2800
+        },
+        {
+          "id": "structural_changes__significant_structural",
+          "label": "Significant structural",
+          "desc": "Remove/relocate walls / larger openings / loadbearing works (as required) / steels/engineering likely / higher compliance + rebuild.",
+          "marker": "£££",
+          "risk_points": 3,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": 2800,
+          "adder_high": 6500
+        }
+      ],
+      "defaultOptionId": "structural_changes__none"
+    },
+    {
+      "id": "finish_level",
+      "title": "Finish level",
+      "mainSection": "Finish level",
+      "sectionKey": "finish",
+      "layout": "tile",
+      "helper": "Used as a multiplier (Standard / Mid / Premium).",
+      "options": [
+        {
+          "id": "finish_level__standard",
+          "label": "Standard",
+          "desc": "Good quality / practical choices / standard tiles & taps / straightforward fit-out / clean, tidy finish.",
+          "marker": "£",
+          "risk_points": 0,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": 0,
+          "adder_high": 0
+        },
+        {
+          "id": "finish_level__mid_range",
+          "label": "Mid-range",
+          "desc": "Better brands / nicer details / larger tiles / upgraded suite / more setting-out + finishing work.",
+          "marker": "££",
+          "risk_points": 0,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": 0,
+          "adder_high": 0
+        },
+        {
+          "id": "finish_level__premium",
+          "label": "Premium",
+          "desc": "High-end spec / designer suite / feature tiling / hidden systems / precision detailing + higher labour time.",
+          "marker": "£££",
+          "risk_points": 0,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": 0,
+          "adder_high": 0
+        }
+      ],
+      "defaultOptionId": "finish_level__standard"
+    },
+    {
+      "id": "existing_suite",
+      "title": "Existing suite",
+      "mainSection": "Preparation work",
+      "sectionKey": "prep",
+      "layout": "tile",
+      "helper": "What needs removing/handling before works start.",
+      "options": [
+        {
+          "id": "existing_suite__nothing_to_remove",
+          "label": "Nothing to remove",
+          "desc": "Work around existing items / protect + isolate.",
+          "marker": "£",
+          "risk_points": 0,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": -350,
+          "adder_high": -900
+        },
+        {
+          "id": "existing_suite__partial_removal",
+          "label": "Partial removal",
+          "desc": "Remove selected items (e.g., radiator/vanity only) / local making-good.",
+          "marker": "£",
+          "risk_points": 1,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": -150,
+          "adder_high": -450
+        },
+        {
+          "id": "existing_suite__remove_store_refit",
+          "label": "Remove, store & refit",
+          "desc": "Remove existing items / store / refit later.",
+          "marker": "££",
+          "risk_points": 2,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": 350,
+          "adder_high": 1000
+        },
+        {
+          "id": "existing_suite__remove_dispose_entire_suite",
+          "label": "Remove & dispose entire suite",
+          "desc": "Full strip-out / load-out / disposal logistics.",
+          "marker": "£££",
+          "risk_points": 3,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": 0,
+          "adder_high": 0
+        }
+      ],
+      "defaultOptionId": "existing_suite__remove_dispose_entire_suite"
+    },
+    {
+      "id": "walls",
+      "title": "Walls",
+      "mainSection": "Preparation work",
+      "sectionKey": "prep",
+      "layout": "row",
+      "helper": "Prep level for tiling/painting and hidden issues.",
+      "options": [
+        {
+          "id": "walls__no_work_needed",
+          "label": "No work needed",
+          "desc": "Walls sound / minor prep only.",
+          "marker": "£",
+          "risk_points": 0,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": -250,
+          "adder_high": -650
+        },
+        {
+          "id": "walls__make_good_where_removals_were_done",
+          "label": "Make good where removals were done",
+          "desc": "Patch/level chases / repair damaged areas.",
+          "marker": "£",
+          "risk_points": 1,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": 0,
+          "adder_high": 0
+        },
+        {
+          "id": "walls__walls_to_be_skimmed_plastered",
+          "label": "Walls to be skimmed / plastered",
+          "desc": "Skim to flatten / ready for tiling/painting.",
+          "marker": "££",
+          "risk_points": 2,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": 450,
+          "adder_high": 1100
+        },
+        {
+          "id": "walls__strip_back_to_brick_and_re_plaster",
+          "label": "Strip back to brick and re-plaster",
+          "desc": "Strip to brick / repair / insulated plasterboard/render/plaster skim.",
+          "marker": "£££",
+          "risk_points": 3,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": 1400,
+          "adder_high": 3600
+        }
+      ],
+      "defaultOptionId": "walls__make_good_where_removals_were_done"
+    },
+    {
+      "id": "ceiling",
+      "title": "Ceiling",
+      "mainSection": "Preparation work",
+      "sectionKey": "prep",
+      "layout": "row",
+      "helper": "Making good or replacement if needed.",
+      "options": [
+        {
+          "id": "ceiling__no_work_needed",
+          "label": "No work needed",
+          "desc": "Protect / minor prep only.",
+          "marker": "£",
+          "risk_points": 0,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": -150,
+          "adder_high": -350
+        },
+        {
+          "id": "ceiling__make_good_where_fittings_were_moved",
+          "label": "Make good where fittings were moved",
+          "desc": "Patch/skim local areas / tidy cut-outs.",
+          "marker": "£",
+          "risk_points": 1,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": 0,
+          "adder_high": 0
+        },
+        {
+          "id": "ceiling__skim_plaster_or_fit_new_soffits",
+          "label": "Skim / plaster or fit new soffits",
+          "desc": "Skim/plaster / soffits/boxing.",
+          "marker": "££",
+          "risk_points": 2,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": 350,
+          "adder_high": 900
+        },
+        {
+          "id": "ceiling__replace_ceiling_new_boards_suspended",
+          "label": "Replace ceiling (new boards / suspended)",
+          "desc": "Remove existing completely / re-install / plasterboard / metal-framed suspended / new joists (if needed) / insulation/levels.",
+          "marker": "£££",
+          "risk_points": 3,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": 900,
+          "adder_high": 2400
+        }
+      ],
+      "defaultOptionId": "ceiling__make_good_where_fittings_were_moved"
+    },
+    {
+      "id": "sub_flooring",
+      "title": "Sub-flooring",
+      "mainSection": "Preparation work",
+      "sectionKey": "prep",
+      "layout": "row",
+      "helper": "Floor condition affects prep and tiling.",
+      "options": [
+        {
+          "id": "sub_flooring__no_work_needed",
+          "label": "No work needed",
+          "desc": "Solid/level",
+          "marker": "£",
+          "risk_points": 0,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": -200,
+          "adder_high": -450
+        },
+        {
+          "id": "sub_flooring__minor_make_good_works",
+          "label": "Minor make-good works",
+          "desc": "Local repairs",
+          "marker": "£",
+          "risk_points": 1,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": 0,
+          "adder_high": 0
+        },
+        {
+          "id": "sub_flooring__sub_floor_repairs_levelling_required",
+          "label": "Sub-floor repairs / levelling required",
+          "desc": "Repair/strengthen joists / level concrete / prep for tiling.",
+          "marker": "££",
+          "risk_points": 2,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": 450,
+          "adder_high": 1400
+        },
+        {
+          "id": "sub_flooring__full_sub_base_replacement",
+          "label": "Full sub-base replacement",
+          "desc": "Strip to joists/concrete / repair/replace joists (if needed) / new plywood/cement board.",
+          "marker": "£££",
+          "risk_points": 3,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": 1400,
+          "adder_high": 3800
+        }
+      ],
+      "defaultOptionId": "sub_flooring__minor_make_good_works"
+    },
+    {
+      "id": "floor_tile_format_layout_pattern",
+      "title": "Floor tile format / layout / pattern",
+      "mainSection": "Floor tile format / layout / pattern",
+      "sectionKey": "tiling",
+      "layout": "tile",
+      "helper": "Tile size/pattern drives setting-out and cutting time.",
+      "options": [
+        {
+          "id": "floor_tile_format_layout_pattern__standard_format_straight_lay",
+          "label": "Standard format / straight lay",
+          "desc": "Simple set-out / fewer cuts (baseline).",
+          "marker": "£",
+          "risk_points": 0,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": 0,
+          "adder_high": 0
+        },
+        {
+          "id": "floor_tile_format_layout_pattern__large_format_tiles",
+          "label": "Large format tiles",
+          "desc": "Heavier handling / tighter flatness tolerances.",
+          "marker": "££",
+          "risk_points": 1,
+          "finish_points": 1,
+          "is_premium_anchor": false,
+          "adder_low": 200,
+          "adder_high": 700
+        },
+        {
+          "id": "floor_tile_format_layout_pattern__herringbone_chevron_feature_pattern",
+          "label": "Herringbone / chevron / feature pattern",
+          "desc": "Extra set-out / symmetry / more cuts / borders + trims / higher wastage.",
+          "marker": "£££",
+          "risk_points": 2,
+          "finish_points": 2,
+          "is_premium_anchor": false,
+          "adder_low": 700,
+          "adder_high": 1800
+        },
+        {
+          "id": "floor_tile_format_layout_pattern__small_format_mosaic_handmade_very_small_tiles_featured",
+          "label": "Small format (mosaic / handmade / very small tiles) / featured",
+          "desc": "Very slow lay / lots of joints / more cuts / longer grout + detailing time.",
+          "marker": "£££",
+          "risk_points": 3,
+          "finish_points": 3,
+          "is_premium_anchor": true,
+          "adder_low": 800,
+          "adder_high": 2000
+        }
+      ],
+      "defaultOptionId": "floor_tile_format_layout_pattern__standard_format_straight_lay"
+    },
+    {
+      "id": "bath",
+      "title": "Bath",
+      "mainSection": "The Suite",
+      "sectionKey": "suite",
+      "layout": "tile",
+      "helper": "Bath type affects install complexity and finishes.",
+      "options": [
+        {
+          "id": "bath__no_bath",
+          "label": "No bath",
+          "desc": "Shower-only / no bath install.",
+          "marker": "£",
+          "risk_points": 0,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": -400,
+          "adder_high": -1100
+        },
+        {
+          "id": "bath__built_in_bath_standard_panel",
+          "label": "Built-in bath + standard panel",
+          "desc": "Fit bath / standard acrylic panel / connect waste + taps / seal.",
+          "marker": "£",
+          "risk_points": 1,
+          "finish_points": 1,
+          "is_premium_anchor": false,
+          "adder_low": 0,
+          "adder_high": 0
+        },
+        {
+          "id": "bath__built_in_bath_tiled_custom_panel",
+          "label": "Built-in bath + tiled/custom panel",
+          "desc": "Fit bath / tile/custom panel / access hatch / extra detailing.",
+          "marker": "££",
+          "risk_points": 2,
+          "finish_points": 2,
+          "is_premium_anchor": false,
+          "adder_low": 350,
+          "adder_high": 1100
+        },
+        {
+          "id": "bath__freestanding_bath_jacuzzi",
+          "label": "Freestanding bath / jacuzzi",
+          "desc": "Floor-fed pipework / reinforced base (if needed) / complex connections + testing / higher finishing time.",
+          "marker": "£££",
+          "risk_points": 3,
+          "finish_points": 3,
+          "is_premium_anchor": true,
+          "adder_low": 1100,
+          "adder_high": 3000
+        }
+      ],
+      "defaultOptionId": "bath__built_in_bath_standard_panel"
+    },
+    {
+      "id": "shower",
+      "title": "Shower",
+      "mainSection": "The Suite",
+      "sectionKey": "suite",
+      "layout": "tile",
+      "helper": "Wet rooms and concealed systems add significant labour.",
+      "options": [
+        {
+          "id": "shower__no_shower",
+          "label": "No shower",
+          "desc": "No shower install / bath-only or no suite.",
+          "marker": "£",
+          "risk_points": 0,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": -600,
+          "adder_high": -1500
+        },
+        {
+          "id": "shower__exposed_mixer_tray_enclosure_over_bath_shower",
+          "label": "Exposed mixer + tray/enclosure / over-bath shower",
+          "desc": "Exposed valve / riser rail / tray + enclosure (if used) / standard connections + sealing.",
+          "marker": "£",
+          "risk_points": 1,
+          "finish_points": 1,
+          "is_premium_anchor": false,
+          "adder_low": 0,
+          "adder_high": 0
+        },
+        {
+          "id": "shower__concealed_mixer_in_wall_overhead_tray_enclosure",
+          "label": "Concealed mixer (in-wall) + overhead + tray/enclosure",
+          "desc": "Chase/box-in valve / accurate set-out / extra waterproofing + making-good / overhead fed.",
+          "marker": "££",
+          "risk_points": 2,
+          "finish_points": 2,
+          "is_premium_anchor": false,
+          "adder_low": 450,
+          "adder_high": 1300
+        },
+        {
+          "id": "shower__walk_in_shower_wet_room_pump_if_needed",
+          "label": "Walk-in shower / wet room + pump (if needed)",
+          "desc": "Walk-in glass or wet-room former / full tanking / falls + linear drain / pump upgrade (if required) / high-precision install.",
+          "marker": "£££",
+          "risk_points": 3,
+          "finish_points": 3,
+          "is_premium_anchor": true,
+          "adder_low": 1800,
+          "adder_high": 4800
+        }
+      ],
+      "defaultOptionId": "shower__exposed_mixer_tray_enclosure_over_bath_shower"
+    },
+    {
+      "id": "toilet",
+      "title": "Toilet",
+      "mainSection": "The Suite",
+      "sectionKey": "suite",
+      "layout": "tile",
+      "helper": "Frames/macerators increase complexity.",
+      "options": [
+        {
+          "id": "toilet__close_coupled_wc",
+          "label": "Close-coupled WC",
+          "desc": "Straight swap / standard install.",
+          "marker": "£",
+          "risk_points": 0,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": 0,
+          "adder_high": 0
+        },
+        {
+          "id": "toilet__back_to_wall_wc",
+          "label": "Back-to-wall WC",
+          "desc": "Pan + boxing alignment / tiling/paint finish.",
+          "marker": "£",
+          "risk_points": 1,
+          "finish_points": 1,
+          "is_premium_anchor": false,
+          "adder_low": 150,
+          "adder_high": 600
+        },
+        {
+          "id": "toilet__wall_hung_wc",
+          "label": "Wall-hung WC",
+          "desc": "Frame system / accurate set-out / boxing + tiling detail.",
+          "marker": "££",
+          "risk_points": 2,
+          "finish_points": 2,
+          "is_premium_anchor": false,
+          "adder_low": 450,
+          "adder_high": 1500
+        },
+        {
+          "id": "toilet__saniflo_macerator",
+          "label": "Saniflo / macerator",
+          "desc": "Power + pipe routing / servicing access requirements.",
+          "marker": "£££",
+          "risk_points": 3,
+          "finish_points": 3,
+          "is_premium_anchor": true,
+          "adder_low": 1400,
+          "adder_high": 3800
+        }
+      ],
+      "defaultOptionId": "toilet__close_coupled_wc"
+    },
+    {
+      "id": "basin_vanity",
+      "title": "Basin / Vanity",
+      "mainSection": "The Suite",
+      "sectionKey": "suite",
+      "layout": "tile",
+      "helper": "Wall-hung/double units need stronger fixing and more pipework.",
+      "options": [
+        {
+          "id": "basin_vanity__pedestal_basin",
+          "label": "Pedestal basin",
+          "desc": "Standard fixings + pipework.",
+          "marker": "£",
+          "risk_points": 0,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": -200,
+          "adder_high": -600
+        },
+        {
+          "id": "basin_vanity__freestanding_vanity",
+          "label": "Freestanding vanity",
+          "desc": "Alignment/levelling / waste & supply connections / silicone sealing.",
+          "marker": "£",
+          "risk_points": 1,
+          "finish_points": 1,
+          "is_premium_anchor": false,
+          "adder_low": 0,
+          "adder_high": 0
+        },
+        {
+          "id": "basin_vanity__wall_hung_vanity",
+          "label": "Wall-hung vanity",
+          "desc": "Strong fixings / accurate levels / hidden waste/supply.",
+          "marker": "££",
+          "risk_points": 2,
+          "finish_points": 2,
+          "is_premium_anchor": false,
+          "adder_low": 250,
+          "adder_high": 850
+        },
+        {
+          "id": "basin_vanity__double_vanity",
+          "label": "Double vanity",
+          "desc": "Twin waste & supplies / more pipework / wider set-out / fitting & alignment complexity.",
+          "marker": "£££",
+          "risk_points": 3,
+          "finish_points": 3,
+          "is_premium_anchor": false,
+          "adder_low": 1000,
+          "adder_high": 2700
+        }
+      ],
+      "defaultOptionId": "basin_vanity__freestanding_vanity"
+    },
+    {
+      "id": "taps",
+      "title": "Taps",
+      "mainSection": "The Suite",
+      "sectionKey": "suite",
+      "layout": "tile",
+      "helper": "Wall-mounted/premium sets need more set-out and making good.",
+      "options": [
+        {
+          "id": "taps__standard_deck_mounted",
+          "label": "Standard deck-mounted",
+          "desc": "Straightforward fit.",
+          "marker": "£",
+          "risk_points": 0,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": 0,
+          "adder_high": 0
+        },
+        {
+          "id": "taps__thermostatic_shower_set",
+          "label": "Thermostatic shower set",
+          "desc": "More components / accurate connections.",
+          "marker": "£",
+          "risk_points": 1,
+          "finish_points": 1,
+          "is_premium_anchor": false,
+          "adder_low": 150,
+          "adder_high": 550
+        },
+        {
+          "id": "taps__wall_mounted",
+          "label": "Wall-mounted",
+          "desc": "Chasing/boxing / making-good / exact set-out.",
+          "marker": "££",
+          "risk_points": 2,
+          "finish_points": 2,
+          "is_premium_anchor": false,
+          "adder_low": 300,
+          "adder_high": 1000
+        },
+        {
+          "id": "taps__premium_concealed_sets",
+          "label": "Premium / concealed sets",
+          "desc": "Hidden valves/plates / tight tolerances / higher finishing time.",
+          "marker": "£££",
+          "risk_points": 3,
+          "finish_points": 3,
+          "is_premium_anchor": false,
+          "adder_low": 700,
+          "adder_high": 2200
+        }
+      ],
+      "defaultOptionId": "taps__standard_deck_mounted"
+    },
+    {
+      "id": "heating",
+      "title": "Heating",
+      "mainSection": "The Suite",
+      "sectionKey": "suite",
+      "layout": "tile",
+      "helper": "UFH/designer heating adds labour and materials.",
+      "options": [
+        {
+          "id": "heating__keep_existing",
+          "label": "Keep existing",
+          "desc": "Reconnect only (if compatible).",
+          "marker": "£",
+          "risk_points": 0,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": -150,
+          "adder_high": -450
+        },
+        {
+          "id": "heating__new_towel_radiator_wet",
+          "label": "New towel radiator (wet)",
+          "desc": "New pipe runs / valves / balancing.",
+          "marker": "£",
+          "risk_points": 1,
+          "finish_points": 1,
+          "is_premium_anchor": false,
+          "adder_low": 0,
+          "adder_high": 0
+        },
+        {
+          "id": "heating__electric_towel_rail",
+          "label": "Electric towel rail",
+          "desc": "Electrical feed / zones / testing.",
+          "marker": "££",
+          "risk_points": 2,
+          "finish_points": 2,
+          "is_premium_anchor": false,
+          "adder_low": 250,
+          "adder_high": 850
+        },
+        {
+          "id": "heating__underfloor_heating",
+          "label": "Underfloor heating",
+          "desc": "Build-up layers / controls / floor prep / commissioning.",
+          "marker": "£££",
+          "risk_points": 3,
+          "finish_points": 3,
+          "is_premium_anchor": true,
+          "adder_low": 1000,
+          "adder_high": 2700
+        },
+        {
+          "id": "heating__designer_floor_standing_radiator",
+          "label": "Designer floor-standing radiator",
+          "desc": "Larger/heavier unit / upgraded brackets & pipework set-out / precise positioning + premium finish.",
+          "marker": "£££",
+          "risk_points": 3,
+          "finish_points": 3,
+          "is_premium_anchor": false,
+          "adder_low": 700,
+          "adder_high": 2000
+        }
+      ],
+      "defaultOptionId": "heating__new_towel_radiator_wet"
+    },
+    {
+      "id": "electrics",
+      "title": "Electrics",
+      "mainSection": "Electrics",
+      "sectionKey": "electrics",
+      "layout": "row",
+      "helper": "From minimal changes to full feature electrics.",
+      "options": [
+        {
+          "id": "electrics__minimal_electrics",
+          "label": "Minimal electrics",
+          "desc": "Like-for-like swap (one light/extractor as existing).",
+          "marker": "£",
+          "risk_points": 0,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": -200,
+          "adder_high": -600
+        },
+        {
+          "id": "electrics__standard_upgrade",
+          "label": "Standard upgrade",
+          "desc": "Spots / mirror light / shaver point / extractor upgrade.",
+          "marker": "££",
+          "risk_points": 1,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": 0,
+          "adder_high": 0
+        },
+        {
+          "id": "electrics__full_electrics_features_led_sensors_etc",
+          "label": "Full electrics (features/LED/sensors etc.)",
+          "desc": "LED niches / feature lighting / sensors / extra circuits + more testing.",
+          "marker": "£££",
+          "risk_points": 3,
+          "finish_points": 0,
+          "is_premium_anchor": true,
+          "adder_low": 1000,
+          "adder_high": 2900
+        }
+      ],
+      "defaultOptionId": "electrics__standard_upgrade"
+    },
+    {
+      "id": "tiling_coverage",
+      "title": "Tiling coverage",
+      "mainSection": "Decorating and finishing",
+      "sectionKey": "decor",
+      "layout": "tile",
+      "helper": "How much wall area is tiled (up to ceiling in wet zones).",
+      "options": [
+        {
+          "id": "tiling_coverage__floor_only",
+          "label": "Floor only",
+          "desc": "Floor prep + tile + grout / walls mostly painted.",
+          "marker": "£",
+          "risk_points": 1,
+          "finish_points": 1,
+          "is_premium_anchor": false,
+          "adder_low": -900,
+          "adder_high": -2200
+        },
+        {
+          "id": "tiling_coverage__half_height_walls",
+          "label": "Half-height walls",
+          "desc": "Half-wall height / vanity height / splashbacks.",
+          "marker": "££",
+          "risk_points": 2,
+          "finish_points": 2,
+          "is_premium_anchor": false,
+          "adder_low": -450,
+          "adder_high": -1100
+        },
+        {
+          "id": "tiling_coverage__full_height_wet_areas",
+          "label": "Full-height wet areas",
+          "desc": "Wet areas tiled up to ceiling (shower/bath zone).",
+          "marker": "££",
+          "risk_points": 2,
+          "finish_points": 2,
+          "is_premium_anchor": false,
+          "adder_low": 0,
+          "adder_high": 0
+        },
+        {
+          "id": "tiling_coverage__full_room_tiled",
+          "label": "Full room tiled",
+          "desc": "All walls tiled up to ceiling / maximum area / cuts + trims.",
+          "marker": "£££",
+          "risk_points": 3,
+          "finish_points": 3,
+          "is_premium_anchor": false,
+          "adder_low": 1000,
+          "adder_high": 3200
+        }
+      ],
+      "defaultOptionId": "tiling_coverage__full_height_wet_areas"
+    },
+    {
+      "id": "room_ceiling_shape",
+      "title": "Room & ceiling shape",
+      "mainSection": "Decorating and finishing",
+      "sectionKey": "decor",
+      "layout": "tile",
+      "helper": "More corners/angles = more cuts and slower work.",
+      "options": [
+        {
+          "id": "room_ceiling_shape__simple_rectangular_room",
+          "label": "Simple rectangular room",
+          "desc": "Straight runs / clean set-out / standard falls / fewer cuts + trims.",
+          "marker": "£",
+          "risk_points": 1,
+          "finish_points": 1,
+          "is_premium_anchor": false,
+          "adder_low": 0,
+          "adder_high": 0
+        },
+        {
+          "id": "room_ceiling_shape__extra_corners_partitions_recesses",
+          "label": "Extra corners / partitions / recesses",
+          "desc": "More set-out lines / more mitres + trims / tighter tolerances / slower waterproofing + tiling.",
+          "marker": "££",
+          "risk_points": 2,
+          "finish_points": 2,
+          "is_premium_anchor": false,
+          "adder_low": 300,
+          "adder_high": 1000
+        },
+        {
+          "id": "room_ceiling_shape__unusual_shape_vaulted_sloped_ceiling",
+          "label": "Unusual shape + vaulted/sloped ceiling",
+          "desc": "Multiple angles/returns / complex set-out + datum lines / wet-zone geometry & falls / high-precision cutting + finishing.",
+          "marker": "£££",
+          "risk_points": 3,
+          "finish_points": 3,
+          "is_premium_anchor": false,
+          "adder_low": 800,
+          "adder_high": 2400
+        }
+      ],
+      "defaultOptionId": "room_ceiling_shape__simple_rectangular_room"
+    },
+    {
+  "id": "wall_tile_size_covering_pattern",
+  "title": "Wall tile size & covering pattern",
+  "mainSection": "Decorating and finishing",
+  "sectionKey": "decor",
+  "layout": "tile",
+  "helper": "Patterns/mosaics add time and detailing.",
+  "options": [
+    {
+      "id": "wall_tile_size_covering_pattern__standard_tile_straight_lay",
+      "label": "Standard tile / straight lay",
+      "desc": "Simple set-out (baseline).",
+      "marker": "£",
+      "risk_points": 0,
+      "finish_points": 0,
+      "is_premium_anchor": false,
+      "adder_low": 0,
+      "adder_high": 0
+    },
+    {
+      "id": "wall_tile_size_covering_pattern__wall_panels_panelling_pvc_composite_wet_wall_panels",
+      "label": "Wall panels / panelling (PVC/composite/wet-wall panels)",
+      "desc": "Full-height alignment / trims + corners / precise cutting around fixtures / premium finish look.",
+      "marker": "£",
+      "risk_points": 1,
+      "finish_points": 1,
+      "is_premium_anchor": false,
+      "adder_low": 50,
+      "adder_high": 250
+    },
+    {
+      "id": "wall_tile_size_covering_pattern__large_format",
+      "label": "Large format",
+      "desc": "Flatter walls required / slower handling.",
+      "marker": "££",
+      "risk_points": 1,
+      "finish_points": 1,
+      "is_premium_anchor": false,
+      "adder_low": 150,
+      "adder_high": 550
+    },
+    {
+      "id": "wall_tile_size_covering_pattern__feature_wall_pattern",
+      "label": "Feature wall / pattern",
+      "desc": "Extra setting-out / symmetry / trim work.",
+      "marker": "£££",
+      "risk_points": 2,
+      "finish_points": 2,
+      "is_premium_anchor": false,
+      "adder_low": 350,
+      "adder_high": 1200
+    },
+    {
+      "id": "wall_tile_size_covering_pattern__mosaic_details_small_tiles_handmade_featured",
+      "label": "Mosaic details / small tiles (handmade) / featured",
+      "desc": "High-detail work / slow install.",
+      "marker": "£££",
+      "risk_points": 3,
+      "finish_points": 3,
+      "is_premium_anchor": true,
+      "adder_low": 900,
+      "adder_high": 2800
+    }
+  ],
+  "defaultOptionId": "wall_tile_size_covering_pattern__standard_tile_straight_lay"
+},
+    {
+      "id": "painting_decorating",
+      "title": "Painting & decorating",
+      "mainSection": "Decorating and finishing",
+      "sectionKey": "decor",
+      "layout": "row",
+      "helper": "Paint scope where surfaces are not tiled.",
+      "options": [
+        {
+          "id": "painting_decorating__none_fully_tiled",
+          "label": "None (fully tiled)",
+          "desc": "No painting needed / silicone touch-ups only.",
+          "marker": "£",
+          "risk_points": 0,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": -200,
+          "adder_high": -600
+        },
+        {
+          "id": "painting_decorating__ceiling_only",
+          "label": "Ceiling only",
+          "desc": "Ceiling paint only / moisture-resistant finish.",
+          "marker": "£",
+          "risk_points": 1,
+          "finish_points": 1,
+          "is_premium_anchor": false,
+          "adder_low": 0,
+          "adder_high": 0
+        },
+        {
+          "id": "painting_decorating__ceiling_1_3_walls",
+          "label": "Ceiling + 1–3 walls",
+          "desc": "Ceiling + 1–3 exposed walls / patch + paint.",
+          "marker": "££",
+          "risk_points": 2,
+          "finish_points": 2,
+          "is_premium_anchor": false,
+          "adder_low": 250,
+          "adder_high": 850
+        },
+        {
+          "id": "painting_decorating__ceiling_half_height_walls",
+          "label": "Ceiling + half-height walls",
+          "desc": "Ceiling + exposed wall areas above half-tiling/splashback / cut-ins + moisture paint.",
+          "marker": "££",
+          "risk_points": 2,
+          "finish_points": 2,
+          "is_premium_anchor": false,
+          "adder_low": 200,
+          "adder_high": 700
+        },
+        {
+          "id": "painting_decorating__full_room_paint_incl_woodwork",
+          "label": "Full room paint (incl. woodwork)",
+          "desc": "Ceiling + all exposed walls / door + frame / skirting + architraves.",
+          "marker": "£££",
+          "risk_points": 3,
+          "finish_points": 3,
+          "is_premium_anchor": false,
+          "adder_low": 500,
+          "adder_high": 1600
+        }
+      ],
+      "defaultOptionId": "painting_decorating__ceiling_only"
+    },
+    {
+      "id": "furniture_accessories",
+      "title": "Furniture & accessories",
+      "mainSection": "Furniture & accessories",
+      "sectionKey": "accessories",
+      "layout": "row",
+      "helper": "Accessories pack level.",
+      "options": [
+        {
+          "id": "furniture_accessories__basic_accessories",
+          "label": "Basic accessories",
+          "desc": "Few items / standard fit.",
+          "marker": "£",
+          "risk_points": 0,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": 0,
+          "adder_high": 0
+        },
+        {
+          "id": "furniture_accessories__upgraded_accessories",
+          "label": "Upgraded accessories",
+          "desc": "More items / better alignment + finishing.",
+          "marker": "££",
+          "risk_points": 1,
+          "finish_points": 1,
+          "is_premium_anchor": false,
+          "adder_low": 100,
+          "adder_high": 400
+        },
+        {
+          "id": "furniture_accessories__premium_set_lots_of_items",
+          "label": "Premium set / lots of items",
+          "desc": "Multiple fixtures / precise set-out + sealing.",
+          "marker": "£££",
+          "risk_points": 2,
+          "finish_points": 2,
+          "is_premium_anchor": false,
+          "adder_low": 250,
+          "adder_high": 800
+        }
+      ],
+      "defaultOptionId": "furniture_accessories__basic_accessories"
+    },
+    {
+      "id": "recessed_niches_built_in_shelving",
+      "title": "Recessed niches & built-in shelving",
+      "mainSection": "Furniture & accessories",
+      "sectionKey": "accessories",
+      "layout": "row",
+      "helper": "Niches need forming, tanking and precise tiling.",
+      "options": [
+        {
+          "id": "recessed_niches_built_in_shelving__none",
+          "label": "£",
+          "desc": "No niche/shelves.",
+          "marker": "£",
+          "risk_points": 0,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": 0,
+          "adder_high": 0
+        },
+        {
+          "id": "recessed_niches_built_in_shelving__one_niche_small_shelf",
+          "label": "One niche / small shelf",
+          "desc": "Frame + tank / precise tiling returns.",
+          "marker": "££",
+          "risk_points": 2,
+          "finish_points": 2,
+          "is_premium_anchor": false,
+          "adder_low": 350,
+          "adder_high": 1100
+        },
+        {
+          "id": "recessed_niches_built_in_shelving__multiple_niches_built_in_shelving",
+          "label": "Multiple niches / built-in shelving",
+          "desc": "High-detail build-out / waterproofing / extra tiling time.",
+          "marker": "£££",
+          "risk_points": 3,
+          "finish_points": 3,
+          "is_premium_anchor": false,
+          "adder_low": 700,
+          "adder_high": 2200
+        }
+      ],
+      "defaultOptionId": "recessed_niches_built_in_shelving__none"
+    },
+    {
+      "id": "waste_removal",
+      "title": "Waste removal",
+      "mainSection": "Waste removal",
+      "sectionKey": "waste",
+      "layout": "row",
+      "helper": "Skip size / disposal logistics.",
+      "options": [
+        {
+          "id": "waste_removal__light_waste",
+          "label": "Light waste",
+          "desc": "Packaging / small offcuts only.",
+          "marker": "£",
+          "risk_points": 0,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": -200,
+          "adder_high": -600
+        },
+        {
+          "id": "waste_removal__small_skip_hire",
+          "label": "Small skip hire",
+          "desc": "Minimal rip-out / light waste (e.g., a few bags + minor strip-out) / typically 2–4 yd.",
+          "marker": "££",
+          "risk_points": 1,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": -100,
+          "adder_high": -350
+        },
+        {
+          "id": "waste_removal__medium_skip_hire",
+          "label": "Medium skip hire",
+          "desc": "Old suite removal + standard refurb waste / mixed materials / typically 6 yd.",
+          "marker": "££",
+          "risk_points": 2,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": 0,
+          "adder_high": 0
+        },
+        {
+          "id": "waste_removal__large_skip_hire",
+          "label": "Large skip hire",
+          "desc": "Full suite strip-out + tiles/rubble + building waste / high volume / typically 8–12 yd.",
+          "marker": "£££",
+          "risk_points": 3,
+          "finish_points": 0,
+          "is_premium_anchor": false,
+          "adder_low": 250,
+          "adder_high": 900
+        }
+      ],
+      "defaultOptionId": "waste_removal__medium_skip_hire"
+    }
+  ]
+}
