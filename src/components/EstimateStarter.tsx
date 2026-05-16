@@ -271,7 +271,7 @@ export function EstimateStarter() {
     setShowLeadForm(false);
     setBlockedCardKey(null);
     window.requestAnimationFrame(() => {
-      document.getElementById("top")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      document.getElementById("estimate")?.scrollIntoView({ behavior: "smooth", block: "start" });
     });
   }
 
