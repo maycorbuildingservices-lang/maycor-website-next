@@ -459,18 +459,13 @@ h3 {
 }
 
 .range-strip {
-  display: flex;
-  gap: 14px;
-  align-items: center;
-  justify-content: space-between;
+  position: relative;
+  display: grid;
+  gap: 4px;
   border-radius: 8px;
   background: var(--olive);
   color: var(--white);
   padding: 16px;
-}
-
-.range-strip-copy {
-  min-width: 0;
 }
 
 .range-strip span {
@@ -490,14 +485,16 @@ h3 {
 }
 
 .range-expand-button {
-  flex: 0 0 auto;
+  position: absolute;
+  top: 12px;
+  right: 12px;
   border: 1px solid rgba(255, 255, 255, 0.26);
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.08);
   color: var(--white);
   cursor: pointer;
-  padding: 10px 13px;
-  font-size: 13px;
+  padding: 8px 11px;
+  font-size: 12px;
   font-weight: 900;
   white-space: nowrap;
 }
@@ -1138,15 +1135,6 @@ h3 {
     width: 100%;
   }
 
-  .range-strip {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .range-expand-button {
-    width: 100%;
-  }
-
   .hero-proof {
     width: min(1180px, calc(100% - 36px));
     margin-top: 18px;
@@ -1335,16 +1323,6 @@ h3 {
   .sticky-estimate-bar a {
     padding: 9px 10px;
     white-space: nowrap;
-  }
-
-  .sticky-actions {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .sticky-estimate-bar button,
-  .sticky-estimate-bar a {
-    width: 100%;
   }
 
   .calculator-prompt {

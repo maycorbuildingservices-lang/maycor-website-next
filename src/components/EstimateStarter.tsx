@@ -422,14 +422,12 @@ export function EstimateStarter() {
 
         {!isExpanded ? (
           <div className="range-strip">
-            <div className="range-strip-copy">
-              <span>Estimated range</span>
-              <strong>{rangeText}</strong>
-              <small>Includes labour, materials, sanitaryware, fixtures, fittings and waste removal.</small>
-            </div>
             <button className="range-expand-button" type="button" onClick={expandCalculator}>
               Expand calculator
             </button>
+            <span>Estimated range</span>
+            <strong>{rangeText}</strong>
+            <small>Includes labour, materials, sanitaryware, fixtures, fittings and waste removal.</small>
           </div>
         ) : null}
 
