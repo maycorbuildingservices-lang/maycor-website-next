@@ -1074,6 +1074,31 @@ h3 {
   margin: 12px 0 0;
 }
 
+.page-top-link {
+  width: min(1180px, calc(100% - 36px));
+  margin: -36px auto 22px;
+  text-align: right;
+}
+
+.page-top-link a {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  color: var(--olive-deep);
+  padding: 9px 12px;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.page-top-link a:hover,
+.page-top-link a:focus-visible {
+  border-color: rgba(99, 100, 74, 0.52);
+  background: #f5f1e5;
+  outline: none;
+}
+
 .site-footer {
   display: flex;
   width: min(1180px, calc(100% - 36px));
@@ -1302,6 +1327,12 @@ h3 {
   .site-footer {
     display: grid;
     gap: 8px;
+  }
+
+  .page-top-link {
+    width: min(100% - 28px, 1180px);
+    margin-top: -24px;
+    text-align: left;
   }
 
   .sticky-estimate-bar {

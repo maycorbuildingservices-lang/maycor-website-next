@@ -266,11 +266,11 @@ export function BathroomLandingPage() {
           </a>
         </section>
 
-          <section className="faq-section" id="faq">
-            <div className="section-heading">
-              <p className="eyebrow">Questions before you start</p>
-              <h2>Quick answers for London bathroom projects.</h2>
-            </div>
+        <section className="faq-section" id="faq">
+          <div className="section-heading">
+            <p className="eyebrow">Questions before you start</p>
+            <h2>Quick answers for London bathroom projects.</h2>
+          </div>
             <div className="faq-list">
               {faqs.map(([question, answer], index) => {
                 const isOpen = openFaq === index;
@@ -293,6 +293,10 @@ export function BathroomLandingPage() {
               })}
             </div>
           </section>
+
+          <div className="page-top-link">
+            <a href="#top">Back to top</a>
+          </div>
       </main>
 
       <footer className="site-footer">
