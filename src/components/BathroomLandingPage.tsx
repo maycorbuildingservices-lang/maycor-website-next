@@ -127,15 +127,16 @@ export function BathroomLandingPage() {
               </a>
             </div>
           </div>
-          <div className="hero-proof" aria-label="Maycor renovation proof points">
-            {proofPoints.map(([title, text]) => (
-              <div key={title}>
-                <strong>{title}</strong>
-                <span>{text}</span>
-              </div>
-            ))}
-          </div>
         </section>
+
+        <div className="hero-proof" aria-label="Maycor renovation proof points">
+          {proofPoints.map(([title, text]) => (
+            <div key={title}>
+              <strong>{title}</strong>
+              <span>{text}</span>
+            </div>
+          ))}
+        </div>
 
         <EstimateStarter />
 
