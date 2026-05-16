@@ -557,7 +557,7 @@ export function EstimateStarter() {
           <a href="#estimate">Adjust My Estimate</a>
           {isExpanded ? (
             <button type="button" onClick={collapseCalculator}>
-              Back to compact
+              Compact calculator
             </button>
           ) : null}
         </div>
