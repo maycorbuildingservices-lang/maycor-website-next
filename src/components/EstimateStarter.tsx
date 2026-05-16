@@ -258,7 +258,7 @@ export function EstimateStarter() {
         <div className="estimate-builder">
         {isExpanded ? (
           <div className="calculator-prompt">
-            <h3>Find out your renovation range in under 3 minutes.</h3>
+            <h3>Find out your bathroom renovation cost in under 3 minutes.</h3>
             <p>
               Answer the key questions and watch your estimate update as the room
               becomes clearer.
