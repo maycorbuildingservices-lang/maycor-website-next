@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Image from "next/image";
 import { EstimateStarter } from "./EstimateStarter";
 
@@ -80,8 +81,10 @@ const jsonLd = {
 };
 
 export function BathroomLandingPage() {
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+
   return (
-    <>
+      <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -261,20 +264,33 @@ export function BathroomLandingPage() {
           </a>
         </section>
 
-        <section className="faq-section" id="faq">
-          <div className="section-heading">
-            <p className="eyebrow">Questions before you start</p>
-            <h2>Quick answers for London bathroom projects.</h2>
-          </div>
-          <div className="faq-list">
-            {faqs.map(([question, answer]) => (
-              <details key={question}>
-                <summary>{question}</summary>
-                <p>{answer}</p>
-              </details>
-            ))}
-          </div>
-        </section>
+          <section className="faq-section" id="faq">
+            <div className="section-heading">
+              <p className="eyebrow">Questions before you start</p>
+              <h2>Quick answers for London bathroom projects.</h2>
+            </div>
+            <div className="faq-list">
+              {faqs.map(([question, answer], index) => {
+                const isOpen = openFaq === index;
+
+                return (
+                  <button
+                    key={question}
+                    className="faq-card"
+                    type="button"
+                    aria-expanded={isOpen}
+                    onClick={() => setOpenFaq(isOpen ? null : index)}
+                  >
+                    <span className="faq-header">
+                      <span className="faq-question">{question}</span>
+                      <span className="faq-toggle">{isOpen ? "Close" : "Open"}</span>
+                    </span>
+                    {isOpen ? <p>{answer}</p> : null}
+                  </button>
+                );
+              })}
+            </div>
+          </section>
       </main>
 
       <footer className="site-footer">
