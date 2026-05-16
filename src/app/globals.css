@@ -48,20 +48,22 @@ img {
 .site-header {
   position: fixed;
   top: 14px;
-  left: 50%;
+  right: max(14px, calc((100vw - 1180px) / 2));
+  left: max(14px, calc((100vw - 1180px) / 2));
   z-index: 30;
   display: grid;
-  width: min(1180px, calc(100% - 28px));
+  width: auto;
   grid-template-columns: 190px 1fr auto;
   align-items: center;
   gap: 18px;
-  transform: translateX(-50%);
   border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: 8px;
-  background: rgba(36, 44, 41, 0.84);
+  background: rgba(36, 44, 41, 0.9);
   color: var(--white);
   padding: 8px 12px;
   backdrop-filter: blur(14px);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
 }
 
 .brand {
@@ -84,9 +86,11 @@ img {
 .header-call {
   border-radius: 8px;
   padding: 9px 10px;
-  color: rgba(255, 255, 255, 0.86);
+  color: rgba(255, 255, 255, 0.95);
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 800;
+  line-height: 1;
+  text-shadow: none;
 }
 
 .site-nav a:hover,
@@ -1035,7 +1039,9 @@ h3 {
 
   .site-header {
     top: 10px;
-    width: calc(100% - 20px);
+    right: 10px;
+    left: 10px;
+    width: auto;
     gap: 10px;
   }
 
