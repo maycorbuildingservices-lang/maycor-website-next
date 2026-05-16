@@ -113,18 +113,29 @@ img {
   color: var(--white);
 }
 
+.hero-section::before {
+  position: absolute;
+  inset: -24px;
+  background-image: url("/images/hero-bathroom-vanity-mirror.jpg");
+  background-position: 50% 60%;
+  background-size: cover;
+  content: "";
+  filter: blur(18px) saturate(1.18) sepia(0.14) brightness(0.74);
+  transform: scale(1.04);
+}
+
 .hero-image {
   filter: saturate(1.2) sepia(0.14) brightness(1.05) contrast(0.97);
-  object-fit: cover;
-  object-position: 50% 60%;
+  object-fit: contain;
+  object-position: right center;
 }
 
 .hero-shade {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(55, 42, 25, 0.58), rgba(122, 92, 50, 0.3) 52%, rgba(47, 43, 31, 0.12)),
-    linear-gradient(0deg, rgba(92, 66, 36, 0.28), rgba(166, 125, 68, 0.18));
+    linear-gradient(90deg, rgba(44, 36, 25, 0.86), rgba(76, 56, 32, 0.62) 36%, rgba(111, 84, 48, 0.24) 64%, rgba(44, 39, 29, 0.08)),
+    linear-gradient(0deg, rgba(83, 62, 37, 0.28), rgba(166, 125, 68, 0.12));
 }
 
 .hero-content {
@@ -961,7 +972,8 @@ h3 {
   }
 
   .hero-image {
-    object-position: 66% 58%;
+    object-fit: cover;
+    object-position: 68% 58%;
   }
 
   .hero-content {
@@ -1070,6 +1082,7 @@ h3 {
   }
 
   .hero-image {
+    object-fit: cover;
     object-position: 68% 58%;
   }
 
