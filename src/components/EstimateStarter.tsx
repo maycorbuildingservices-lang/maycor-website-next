@@ -259,6 +259,12 @@ export function EstimateStarter() {
     }
   }
 
+  function collapseCalculator() {
+    setIsExpanded(false);
+    setShowLeadForm(false);
+    setBlockedCardKey(null);
+  }
+
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setStatus("loading");
@@ -321,11 +327,16 @@ export function EstimateStarter() {
         <div className="estimate-builder">
         {isExpanded ? (
           <div className="calculator-prompt">
-            <h3>Find out your bathroom renovation cost in under 3 minutes.</h3>
-            <p>
-              Answer the key questions and watch your estimate update as the room
-              becomes clearer.
-            </p>
+            <div className="calculator-prompt-copy">
+              <h3>Find out your bathroom renovation cost in under 3 minutes.</h3>
+              <p>
+                Answer the key questions and watch your estimate update as the room
+                becomes clearer.
+              </p>
+            </div>
+            <button className="collapse-button" type="button" onClick={collapseCalculator}>
+              Collapse calculator
+            </button>
           </div>
         ) : null}
 
