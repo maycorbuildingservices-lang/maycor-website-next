@@ -79,7 +79,7 @@ export function BathroomLandingPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <header className="site-header" aria-label="Maycor site header">
-        <a className="brand" href="https://maycor.co.uk/" aria-label="Maycor home">
+        <a className="brand" href="#top" aria-label="Maycor bathroom renovations page top">
           <Image
             src={images.logo}
             alt="Maycor Building Contractors"
@@ -89,16 +89,14 @@ export function BathroomLandingPage() {
           />
         </a>
         <nav className="site-nav" aria-label="Page sections">
-          <a href="https://maycor.co.uk/">Home</a>
-          <a href="https://maycor.co.uk/residential/">Residential</a>
-          <a href="https://maycor.co.uk/commercial/">Commercial</a>
-          <a href="https://maycor.co.uk/industrial/">Industrial</a>
-          <a href="https://maycor.co.uk/hmo/">HMO</a>
-          <a href="https://maycor.co.uk/projects/">Projects</a>
-          <a href="https://maycor.co.uk/contact/">Contact</a>
+          <a href="#estimate">Estimate</a>
+          <a href="#work">Work</a>
+          <a href="#included">Included</a>
+          <a href="#process">Process</a>
+          <a href="#faq">FAQ</a>
         </nav>
         <a className="header-call" href="#estimate">
-          Get estimate
+          Continue estimate
         </a>
       </header>
 
@@ -214,7 +212,7 @@ export function BathroomLandingPage() {
           </div>
         </section>
 
-        <section className="included-section">
+        <section className="included-section" id="included">
           <div className="section-heading">
             <p className="eyebrow">What is included</p>
             <h2>Everything that usually gets split between trades.</h2>

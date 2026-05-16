@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useMemo, useState } from "react";
+import { FormEvent, useEffect, useMemo, useState } from "react";
 import calculatorConfig from "@/lib/calculator/config.json";
 import { calculatePriceRange, formatGBP } from "@/lib/calculator/engine";
 
@@ -31,6 +31,7 @@ type CalculatorConfig = {
 };
 
 const config = calculatorConfig as unknown as CalculatorConfig;
+const storageKey = "maycor-bathroom-estimate-state";
 const roomSection = config.sections.find((section) => section.id === "room_size");
 const finishSection = config.sections.find((section) => section.id === "finish_level");
 const wcRoomId =
@@ -90,9 +91,61 @@ function selectedLabel(section: CalculatorSection, selected: Record<string, stri
   return option?.label || "";
 }
 
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+function restoreValidSelections(saved: unknown) {
+  const selections = createInitialSelections();
+  if (!isRecord(saved)) return selections;
+
+  for (const section of config.sections) {
+    const savedOptionId = saved[section.id];
+    if (
+      typeof savedOptionId === "string" &&
+      section.options.some((option) => option.id === savedOptionId)
+    ) {
+      selections[section.id] = savedOptionId;
+    }
+  }
+
+  return selections;
+}
+
+function createSavedInitialState() {
+  const fallback = {
+    selected: createInitialSelections(),
+    isExpanded: false,
+  };
+
+  if (typeof window === "undefined") return fallback;
+
+  try {
+    const saved = window.localStorage.getItem(storageKey);
+    if (!saved) return fallback;
+
+    const parsed: unknown = JSON.parse(saved);
+    if (!isRecord(parsed)) return fallback;
+
+    return {
+      selected: restoreValidSelections(parsed.selected),
+      isExpanded: typeof parsed.isExpanded === "boolean" ? parsed.isExpanded : false,
+    };
+  } catch {
+    try {
+      window.localStorage.removeItem(storageKey);
+    } catch {
+      // Ignore storage cleanup failures in restricted browser modes.
+    }
+
+    return fallback;
+  }
+}
+
 export function EstimateStarter() {
-  const [selected, setSelected] = useState<Record<string, string>>(createInitialSelections);
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [initialEstimateState] = useState(createSavedInitialState);
+  const [selected, setSelected] = useState<Record<string, string>>(initialEstimateState.selected);
+  const [isExpanded, setIsExpanded] = useState(initialEstimateState.isExpanded);
   const [showLeadForm, setShowLeadForm] = useState(false);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
@@ -105,6 +158,21 @@ export function EstimateStarter() {
   const rangeText = price
     ? `${formatGBP(price.final_low)} - ${formatGBP(price.final_high)}`
     : "Estimate ready";
+
+  useEffect(() => {
+    try {
+      window.localStorage.setItem(
+        storageKey,
+        JSON.stringify({
+          selected,
+          isExpanded,
+          updatedAt: new Date().toISOString(),
+        })
+      );
+    } catch {
+      // Browsers can block local storage in private or restricted modes.
+    }
+  }, [isExpanded, selected]);
 
   function selectOption(sectionId: string, optionId: string, shouldExpand = false) {
     setSelected((current) => ({ ...current, [sectionId]: optionId }));
