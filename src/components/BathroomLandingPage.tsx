@@ -7,7 +7,7 @@ import { EstimateStarter } from "./EstimateStarter";
 const images = {
   logo: "https://maycor.co.uk/wp-content/uploads/2025/03/main-logo-all-04-300x93.png",
   hero: "/images/hero-bathroom-vanity-mirror.jpg",
-  shower: "https://maycor.co.uk/wp-content/uploads/2026/01/IMG_1766-scaled.jpg",
+  story: "/images/story-jay-bathroom.jpg",
   wc: "https://maycor.co.uk/wp-content/uploads/2025/12/IMG_1756-scaled.jpg",
   niche: "https://maycor.co.uk/wp-content/uploads/2026/01/IMG_1774-scaled.jpg",
   vanity: "https://maycor.co.uk/wp-content/uploads/2025/05/maycor-gallery-7.jpg",
@@ -156,10 +156,10 @@ export function BathroomLandingPage() {
         <section className="story-section">
           <div className="story-media">
             <Image
-              src={images.shower}
-              alt="Walk-in shower and fitted vanity in a completed bathroom"
-              width={980}
-              height={1220}
+              src={images.story}
+              alt="Modern bathroom with shower enclosure, illuminated mirror and fitted vanity"
+              width={1200}
+              height={1600}
               sizes="(max-width: 900px) 100vw, 42vw"
             />
           </div>
