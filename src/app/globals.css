@@ -109,12 +109,12 @@ img {
   position: relative;
   min-height: clamp(650px, 86svh, 820px);
   overflow: hidden;
-  background: #4b4635;
+  background: #594933;
   color: var(--white);
 }
 
 .hero-image {
-  filter: saturate(1.12) sepia(0.08) brightness(1.04) contrast(0.98);
+  filter: saturate(1.2) sepia(0.14) brightness(1.05) contrast(0.97);
   object-fit: cover;
   object-position: 52% 50%;
 }
@@ -123,8 +123,8 @@ img {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(43, 36, 25, 0.58), rgba(83, 75, 51, 0.28) 52%, rgba(35, 39, 31, 0.16)),
-    linear-gradient(0deg, rgba(63, 54, 35, 0.3), rgba(138, 111, 70, 0.12));
+    linear-gradient(90deg, rgba(55, 42, 25, 0.58), rgba(122, 92, 50, 0.3) 52%, rgba(47, 43, 31, 0.12)),
+    linear-gradient(0deg, rgba(92, 66, 36, 0.28), rgba(166, 125, 68, 0.18));
 }
 
 .hero-content {
@@ -244,7 +244,7 @@ h3 {
 .hero-proof div {
   min-height: 118px;
   padding: 18px;
-  background: rgba(43, 39, 29, 0.64);
+  background: rgba(55, 43, 28, 0.64);
 }
 
 .hero-proof strong,
