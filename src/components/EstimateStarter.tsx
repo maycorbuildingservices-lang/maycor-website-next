@@ -334,9 +334,6 @@ export function EstimateStarter() {
                 becomes clearer.
               </p>
             </div>
-            <button className="collapse-button" type="button" onClick={collapseCalculator}>
-              Collapse calculator
-            </button>
           </div>
         ) : null}
 
@@ -539,7 +536,14 @@ export function EstimateStarter() {
           <strong>{rangeText}</strong>
           <small>Includes labour, materials, sanitaryware, fixtures, fittings and waste removal.</small>
         </div>
-        <a href="#estimate">Adjust My Estimate</a>
+        <div className="sticky-actions">
+          <a href="#estimate">Adjust My Estimate</a>
+          {isExpanded ? (
+            <button type="button" onClick={collapseCalculator}>
+              Back to compact
+            </button>
+          ) : null}
+        </div>
       </div>
     </>
   );
