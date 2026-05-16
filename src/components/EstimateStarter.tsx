@@ -116,20 +116,15 @@ function restoreValidSelections(saved: unknown) {
   return selections;
 }
 
-function createSavedInitialState() {
-  const fallback = {
-    selected: createInitialSelections(),
-    isExpanded: false,
-  };
-
-  if (typeof window === "undefined") return fallback;
+function readSavedEstimateState() {
+  if (typeof window === "undefined") return null;
 
   try {
     const saved = window.localStorage.getItem(storageKey);
-    if (!saved) return fallback;
+    if (!saved) return null;
 
     const parsed: unknown = JSON.parse(saved);
-    if (!isRecord(parsed)) return fallback;
+    if (!isRecord(parsed)) return null;
 
     return {
       selected: restoreValidSelections(parsed.selected),
@@ -142,17 +137,17 @@ function createSavedInitialState() {
       // Ignore storage cleanup failures in restricted browser modes.
     }
 
-    return fallback;
+    return null;
   }
 }
 
 export function EstimateStarter() {
-  const [initialEstimateState] = useState(createSavedInitialState);
-  const [selected, setSelected] = useState<Record<string, string>>(initialEstimateState.selected);
-  const [isExpanded, setIsExpanded] = useState(initialEstimateState.isExpanded);
+  const [selected, setSelected] = useState<Record<string, string>>(createInitialSelections);
+  const [isExpanded, setIsExpanded] = useState(false);
   const [showLeadForm, setShowLeadForm] = useState(false);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
+  const [hasRestoredSavedState, setHasRestoredSavedState] = useState(false);
 
   const price = useMemo(() => calculatePriceRange(config, selected), [selected]);
   const detailedSections = config.sections.filter(
@@ -164,6 +159,22 @@ export function EstimateStarter() {
     : "Estimate ready";
 
   useEffect(() => {
+    const restoreTimer = window.setTimeout(() => {
+      const saved = readSavedEstimateState();
+      if (saved) {
+        setSelected(saved.selected);
+        setIsExpanded(saved.isExpanded);
+      }
+
+      setHasRestoredSavedState(true);
+    }, 0);
+
+    return () => window.clearTimeout(restoreTimer);
+  }, []);
+
+  useEffect(() => {
+    if (!hasRestoredSavedState) return;
+
     try {
       window.localStorage.setItem(
         storageKey,
@@ -176,7 +187,7 @@ export function EstimateStarter() {
     } catch {
       // Browsers can block local storage in private or restricted modes.
     }
-  }, [isExpanded, selected]);
+  }, [hasRestoredSavedState, isExpanded, selected]);
 
   function selectOption(sectionId: string, optionId: string, shouldExpand = false) {
     setSelected((current) => ({ ...current, [sectionId]: optionId }));
