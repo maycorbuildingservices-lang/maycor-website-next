@@ -278,7 +278,7 @@ h3 {
   transition: width 0.32s ease, gap 0.32s ease, grid-template-columns 0.32s ease;
 }
 
-.estimate-panel:not(.calculator-expanded) {
+.estimate-panel.calculator-compact {
   width: min(1120px, calc(100% - 36px));
   grid-template-columns: minmax(240px, 0.75fr) minmax(0, 1.25fr);
 }
@@ -402,27 +402,28 @@ h3 {
   min-height: 88px;
 }
 
-.estimate-panel:not(.calculator-expanded) .choice-grid {
+.calculator-compact .choice-grid {
   gap: 10px;
 }
 
-.estimate-panel:not(.calculator-expanded) .room-grid {
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+.calculator-compact .room-choice-stack {
+  display: grid;
+  gap: 10px;
 }
 
-.estimate-panel:not(.calculator-expanded) .room-grid .choice-card {
-  grid-column: span 2;
-}
-
-.estimate-panel:not(.calculator-expanded) .room-grid .choice-card:nth-child(n + 4) {
-  grid-column: span 3;
-}
-
-.estimate-panel:not(.calculator-expanded) .finish-grid {
+.calculator-compact .room-grid-top {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-.estimate-panel:not(.calculator-expanded) .choice-card {
+.calculator-compact .room-grid-bottom {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.calculator-compact .finish-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.calculator-compact .choice-card {
   display: flex;
   min-height: 112px;
   flex-direction: column;
@@ -431,12 +432,12 @@ h3 {
   text-align: center;
 }
 
-.estimate-panel:not(.calculator-expanded) .choice-card span {
+.calculator-compact .choice-card span {
   font-size: 14px;
   line-height: 1.16;
 }
 
-.estimate-panel:not(.calculator-expanded) .choice-card small {
+.calculator-compact .choice-card small {
   display: -webkit-box;
   overflow: hidden;
   margin-top: 6px;
@@ -963,7 +964,7 @@ h3 {
     grid-template-columns: 1fr;
   }
 
-  .estimate-panel:not(.calculator-expanded) {
+  .estimate-panel.calculator-compact {
     width: min(1040px, calc(100% - 36px));
     grid-template-columns: 1fr;
   }
@@ -995,15 +996,19 @@ h3 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .estimate-panel:not(.calculator-expanded) .choice-grid {
+  .calculator-compact .choice-grid {
     gap: 10px;
   }
 
-  .estimate-panel:not(.calculator-expanded) .room-grid {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
+  .calculator-compact .room-grid-top {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  .estimate-panel:not(.calculator-expanded) .finish-grid {
+  .calculator-compact .room-grid-bottom {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .calculator-compact .finish-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
@@ -1101,21 +1106,17 @@ h3 {
     grid-template-columns: 1fr;
   }
 
-  .estimate-panel:not(.calculator-expanded) .choice-grid {
+  .calculator-compact .choice-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .estimate-panel:not(.calculator-expanded) .room-grid,
-  .estimate-panel:not(.calculator-expanded) .finish-grid {
+  .calculator-compact .room-grid,
+  .calculator-compact .finish-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .estimate-panel:not(.calculator-expanded) .room-grid .choice-card,
-  .estimate-panel:not(.calculator-expanded) .room-grid .choice-card:nth-child(n + 4) {
-    grid-column: auto;
-  }
-
-  .estimate-panel:not(.calculator-expanded) .room-grid .choice-card:last-child {
+  .calculator-compact .room-grid-bottom .choice-card:last-child,
+  .calculator-compact .finish-grid .choice-card:last-child {
     grid-column: 1 / -1;
   }
 

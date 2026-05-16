@@ -91,6 +91,10 @@ function selectedLabel(section: CalculatorSection, selected: Record<string, stri
   return option?.label || "";
 }
 
+function choiceCardClass(isActive: boolean) {
+  return isActive ? "choice-card active" : "choice-card";
+}
+
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
 }
@@ -231,7 +235,7 @@ export function EstimateStarter() {
   return (
     <>
       <section
-        className={isExpanded ? "estimate-panel calculator-expanded" : "estimate-panel"}
+        className={isExpanded ? "estimate-panel calculator-expanded" : "estimate-panel calculator-compact"}
         id="estimate"
         aria-labelledby="estimate-heading"
       >
@@ -254,19 +258,50 @@ export function EstimateStarter() {
         {roomSection ? (
           <div className="choice-group" aria-label="Choose room size">
             <span className="choice-title">Room size</span>
-            <div className="choice-grid room-grid">
-              {roomSection.options.map((option) => (
-                <button
-                  className={selected.room_size === option.id ? "choice-card active" : "choice-card"}
-                  key={option.id}
-                  type="button"
-                  onClick={() => selectOption(roomSection.id, option.id, true)}
-                >
-                  <span>{option.label}</span>
-                  {option.desc ? <small>{option.desc}</small> : null}
-                </button>
-              ))}
-            </div>
+            {isExpanded ? (
+              <div className="choice-grid room-grid">
+                {roomSection.options.map((option) => (
+                  <button
+                    className={choiceCardClass(selected.room_size === option.id)}
+                    key={option.id}
+                    type="button"
+                    onClick={() => selectOption(roomSection.id, option.id, true)}
+                  >
+                    <span>{option.label}</span>
+                    {option.desc ? <small>{option.desc}</small> : null}
+                  </button>
+                ))}
+              </div>
+            ) : (
+              <div className="room-choice-stack">
+                <div className="choice-grid room-grid room-grid-top">
+                  {roomSection.options.slice(0, 3).map((option) => (
+                    <button
+                      className={choiceCardClass(selected.room_size === option.id)}
+                      key={option.id}
+                      type="button"
+                      onClick={() => selectOption(roomSection.id, option.id, true)}
+                    >
+                      <span>{option.label}</span>
+                      {option.desc ? <small>{option.desc}</small> : null}
+                    </button>
+                  ))}
+                </div>
+                <div className="choice-grid room-grid room-grid-bottom">
+                  {roomSection.options.slice(3).map((option) => (
+                    <button
+                      className={choiceCardClass(selected.room_size === option.id)}
+                      key={option.id}
+                      type="button"
+                      onClick={() => selectOption(roomSection.id, option.id, true)}
+                    >
+                      <span>{option.label}</span>
+                      {option.desc ? <small>{option.desc}</small> : null}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         ) : null}
 
@@ -276,9 +311,7 @@ export function EstimateStarter() {
             <div className="choice-grid finish-grid">
               {finishSection.options.map((option) => (
                 <button
-                  className={
-                    selected.finish_level === option.id ? "choice-card active" : "choice-card"
-                  }
+                  className={choiceCardClass(selected.finish_level === option.id)}
                   key={option.id}
                   type="button"
                   onClick={() => selectOption(finishSection.id, option.id, true)}
