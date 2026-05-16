@@ -9,6 +9,11 @@ type CalculatorOption = {
   label: string;
   desc?: string;
   marker?: string;
+  risk_points?: number;
+  finish_points?: number;
+  is_premium_anchor?: boolean;
+  adder_low?: number;
+  adder_high?: number;
 };
 
 type CalculatorSection = {
@@ -28,22 +33,48 @@ type CalculatorConfig = {
 const config = calculatorConfig as unknown as CalculatorConfig;
 const roomSection = config.sections.find((section) => section.id === "room_size");
 const finishSection = config.sections.find((section) => section.id === "finish_level");
-const smallRoomId =
-  roomSection?.options.find((option) => option.id.includes("small_3_5"))?.id ||
+const wcRoomId =
+  roomSection?.options.find((option) => option.id.includes("wc_cloakroom"))?.id ||
   roomSection?.options[0]?.id ||
   "";
+const standardFinishId =
+  finishSection?.options.find((option) => option.id.includes("__standard"))?.id ||
+  finishSection?.options[0]?.id ||
+  "";
+
+function optionMinimalScore(option: CalculatorOption) {
+  return (
+    Number(option.adder_low ?? 0) +
+    Number(option.adder_high ?? 0) +
+    Number(option.risk_points ?? 0) * 250 +
+    Number(option.finish_points ?? 0) * 150 +
+    (option.is_premium_anchor ? 500 : 0)
+  );
+}
+
+function minimalOption(section: CalculatorSection) {
+  return section.options.reduce<CalculatorOption | null>((best, option) => {
+    if (!best) return option;
+    return optionMinimalScore(option) < optionMinimalScore(best) ? option : best;
+  }, null);
+}
 
 function createInitialSelections() {
   const selections: Record<string, string> = {};
 
   for (const section of config.sections) {
-    if (section.defaultOptionId) {
-      selections[section.id] = section.defaultOptionId;
+    const option = minimalOption(section);
+    if (option) {
+      selections[section.id] = option.id;
     }
   }
 
-  if (smallRoomId) {
-    selections.room_size = smallRoomId;
+  if (wcRoomId) {
+    selections.room_size = wcRoomId;
+  }
+
+  if (standardFinishId) {
+    selections.finish_level = standardFinishId;
   }
 
   return selections;
@@ -73,7 +104,7 @@ export function EstimateStarter() {
 
   const rangeText = price
     ? `${formatGBP(price.final_low)} - ${formatGBP(price.final_high)}`
-    : "Select a room size";
+    : "Estimate ready";
 
   function selectOption(sectionId: string, optionId: string, shouldExpand = false) {
     setSelected((current) => ({ ...current, [sectionId]: optionId }));
@@ -140,8 +171,8 @@ export function EstimateStarter() {
           <p className="eyebrow">Bathroom estimate starter</p>
           <h2 id="estimate-heading">See the range before you book the survey.</h2>
           <p>
-            Start compact. Click any room or finish card and the full calculator opens
-            so you can refine the range in more detail.
+            We start with a WC and minimal work selected, so you see the lowest
+            sensible range first. Click any card to refine it.
           </p>
         </div>
 
