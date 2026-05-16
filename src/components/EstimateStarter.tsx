@@ -416,35 +416,29 @@ export function EstimateStarter() {
                 </div>
                 <div className={`detail-options ${section.layout === "row" ? "row" : "tile"}`}>
                   {section.options.map((option) => {
-                    const isWcLayout = selected.room_size === wcRoomId;
-                    const wcRestricted = isWcLayout && isWcRestrictedOption(section.id, option.id);
                     const wcFlash = blockedCardKey === `${section.id}:${option.id}`;
 
                     return (
-                    <button
-                      className={
-                        [
-                          selected[section.id] === option.id ? "detail-card active" : "detail-card",
-                          wcRestricted ? "wc-locked" : "",
-                          wcFlash ? "wc-locked--flash" : "",
-                        ]
-                          .filter(Boolean)
-                          .join(" ")
-                      }
-                      key={option.id}
-                      type="button"
-                      aria-disabled={wcRestricted}
-                      onClick={() => selectOption(section.id, option.id)}
-                    >
-                      <span className="detail-card-top">
-                        <strong>{option.label}</strong>
-                        {markerLabel(option.marker) ? <em>{markerLabel(option.marker)}</em> : null}
-                      </span>
-                      {option.desc ? <small>{option.desc}</small> : null}
-                      {wcRestricted ? (
-                        <span className="wc-lock-overlay">{wcRestrictedNotice}</span>
-                      ) : null}
-                    </button>
+                      <button
+                        className={
+                          [
+                            selected[section.id] === option.id ? "detail-card active" : "detail-card",
+                            wcFlash ? "wc-locked--flash" : "",
+                          ]
+                            .filter(Boolean)
+                            .join(" ")
+                        }
+                        key={option.id}
+                        type="button"
+                        onClick={() => selectOption(section.id, option.id)}
+                      >
+                        <span className="detail-card-top">
+                          <strong>{option.label}</strong>
+                          {markerLabel(option.marker) ? <em>{markerLabel(option.marker)}</em> : null}
+                        </span>
+                        {option.desc ? <small>{option.desc}</small> : null}
+                        {wcFlash ? <span className="wc-lock-overlay">{wcRestrictedNotice}</span> : null}
+                      </button>
                     );
                   })}
                 </div>
