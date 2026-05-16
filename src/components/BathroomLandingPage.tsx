@@ -96,7 +96,7 @@ export function BathroomLandingPage() {
           <a href="#faq">FAQ</a>
         </nav>
         <a className="header-call" href="#estimate">
-          Continue estimate
+          Continue Estimate
         </a>
       </header>
 
@@ -120,7 +120,7 @@ export function BathroomLandingPage() {
             </p>
             <div className="hero-actions">
               <a className="primary-button" href="#estimate">
-                Get your bathroom estimate
+                See My Bathroom Cost
               </a>
               <a className="secondary-button" href="#work">
                 See the kind of finish
@@ -249,7 +249,7 @@ export function BathroomLandingPage() {
             <h2>Start with the estimate, then Maycor can shape the real scope around your home.</h2>
           </div>
           <a className="primary-button" href="#estimate">
-            Start your estimate
+            Start My 3-Minute Estimate
           </a>
         </section>
 

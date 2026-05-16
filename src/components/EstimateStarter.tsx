@@ -381,7 +381,7 @@ export function EstimateStarter() {
                 aria-expanded={showLeadForm}
                 onClick={() => setShowLeadForm((current) => !current)}
               >
-                {showLeadForm ? "Hide details form" : "Get full breakdown"}
+                {showLeadForm ? "Hide Details Form" : "Get Full Breakdown"}
               </button>
             </div>
           </div>
@@ -453,7 +453,7 @@ export function EstimateStarter() {
           <strong>{rangeText}</strong>
           <small>Includes labour, materials, sanitaryware, fixtures, fittings and waste removal.</small>
         </div>
-        <a href="#estimate">Adjust selections</a>
+        <a href="#estimate">Adjust My Estimate</a>
       </div>
     </>
   );
