@@ -182,6 +182,23 @@ function readSavedEstimateState() {
   }
 }
 
+function persistEstimateState(selected: Record<string, string>, isExpanded: boolean) {
+  if (typeof window === "undefined") return;
+
+  try {
+    window.localStorage.setItem(
+      storageKey,
+      JSON.stringify({
+        selected,
+        isExpanded,
+        updatedAt: new Date().toISOString(),
+      })
+    );
+  } catch {
+    // Browsers can block local storage in private or restricted modes.
+  }
+}
+
 export function EstimateStarter() {
   const [selected, setSelected] = useState<Record<string, string>>(createInitialSelections);
   const [isExpanded, setIsExpanded] = useState(false);
@@ -224,18 +241,7 @@ export function EstimateStarter() {
   useEffect(() => {
     if (!hasRestoredSavedState) return;
 
-    try {
-      window.localStorage.setItem(
-        storageKey,
-        JSON.stringify({
-          selected,
-          isExpanded,
-          updatedAt: new Date().toISOString(),
-        })
-      );
-    } catch {
-      // Browsers can block local storage in private or restricted modes.
-    }
+    persistEstimateState(selected, isExpanded);
   }, [hasRestoredSavedState, isExpanded, selected]);
 
   function selectOption(sectionId: string, optionId: string, shouldExpand = false) {
@@ -260,6 +266,7 @@ export function EstimateStarter() {
   }
 
   function collapseCalculator() {
+    persistEstimateState(selected, false);
     setIsExpanded(false);
     setShowLeadForm(false);
     setBlockedCardKey(null);
