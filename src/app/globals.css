@@ -403,9 +403,17 @@ h3 {
 }
 
 .estimate-panel:not(.calculator-expanded) .choice-grid {
-  grid-template-columns: repeat(auto-fit, minmax(118px, 124px));
-  justify-content: start;
+  --compact-card-size: clamp(106px, 10vw, 124px);
   gap: 10px;
+  justify-content: center;
+}
+
+.estimate-panel:not(.calculator-expanded) .room-grid {
+  grid-template-columns: repeat(5, minmax(0, var(--compact-card-size)));
+}
+
+.estimate-panel:not(.calculator-expanded) .finish-grid {
+  grid-template-columns: repeat(3, minmax(0, var(--compact-card-size)));
 }
 
 .estimate-panel:not(.calculator-expanded) .choice-card {
@@ -983,7 +991,15 @@ h3 {
   }
 
   .estimate-panel:not(.calculator-expanded) .choice-grid {
-    grid-template-columns: repeat(auto-fit, minmax(116px, 124px));
+    --compact-card-size: clamp(104px, 18vw, 124px);
+  }
+
+  .estimate-panel:not(.calculator-expanded) .room-grid {
+    grid-template-columns: repeat(5, minmax(0, var(--compact-card-size)));
+  }
+
+  .estimate-panel:not(.calculator-expanded) .finish-grid {
+    grid-template-columns: repeat(3, minmax(0, var(--compact-card-size)));
   }
 
   .included-grid,
@@ -1081,6 +1097,11 @@ h3 {
   }
 
   .estimate-panel:not(.calculator-expanded) .choice-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .estimate-panel:not(.calculator-expanded) .room-grid,
+  .estimate-panel:not(.calculator-expanded) .finish-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
