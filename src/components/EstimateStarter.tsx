@@ -335,11 +335,13 @@ export function EstimateStarter() {
           </div>
         ) : null}
 
-        <div className="range-strip">
-          <span>Estimated range</span>
-          <strong>{rangeText}</strong>
-          <small>Includes labour, materials, sanitaryware, fixtures, fittings and waste removal.</small>
-        </div>
+        {!isExpanded ? (
+          <div className="range-strip">
+            <span>Estimated range</span>
+            <strong>{rangeText}</strong>
+            <small>Includes labour, materials, sanitaryware, fixtures, fittings and waste removal.</small>
+          </div>
+        ) : null}
 
         {isExpanded ? (
           <div className="full-calculator" aria-label="Full bathroom calculator">
