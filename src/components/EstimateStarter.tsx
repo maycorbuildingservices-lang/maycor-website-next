@@ -42,6 +42,17 @@ const standardFinishId =
   finishSection?.options.find((option) => option.id.includes("__standard"))?.id ||
   finishSection?.options[0]?.id ||
   "";
+const bathSection = config.sections.find((section) => section.id === "bath");
+const showerSection = config.sections.find((section) => section.id === "shower");
+const safeBathId =
+  bathSection?.options.find((option) => option.id.includes("no_bath"))?.id ||
+  bathSection?.defaultOptionId ||
+  "";
+const safeShowerId =
+  showerSection?.options.find((option) => option.id.includes("no_shower"))?.id ||
+  showerSection?.defaultOptionId ||
+  "";
+const wcRestrictedNotice = "Not usually selected in a WC layout.";
 
 function optionMinimalScore(option: CalculatorOption) {
   return (
@@ -95,6 +106,36 @@ function choiceCardClass(isActive: boolean) {
   return isActive ? "choice-card active" : "choice-card";
 }
 
+function isWcRestrictedOption(sectionId: string, optionId: string) {
+  if (sectionId === "bath") {
+    return optionId !== safeBathId;
+  }
+
+  if (sectionId === "shower") {
+    return optionId !== safeShowerId;
+  }
+
+  return false;
+}
+
+function sanitizeWcSelections(selections: Record<string, string>) {
+  if (selections.room_size !== wcRoomId) {
+    return selections;
+  }
+
+  const next = { ...selections };
+
+  if (safeBathId) {
+    next.bath = safeBathId;
+  }
+
+  if (safeShowerId) {
+    next.shower = safeShowerId;
+  }
+
+  return next;
+}
+
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
 }
@@ -113,7 +154,7 @@ function restoreValidSelections(saved: unknown) {
     }
   }
 
-  return selections;
+  return sanitizeWcSelections(selections);
 }
 
 function readSavedEstimateState() {
@@ -145,6 +186,7 @@ export function EstimateStarter() {
   const [selected, setSelected] = useState<Record<string, string>>(createInitialSelections);
   const [isExpanded, setIsExpanded] = useState(false);
   const [showLeadForm, setShowLeadForm] = useState(false);
+  const [blockedCardKey, setBlockedCardKey] = useState<string | null>(null);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
   const [hasRestoredSavedState, setHasRestoredSavedState] = useState(false);
@@ -173,6 +215,13 @@ export function EstimateStarter() {
   }, []);
 
   useEffect(() => {
+    if (!blockedCardKey) return;
+
+    const clearTimer = window.setTimeout(() => setBlockedCardKey(null), 1400);
+    return () => window.clearTimeout(clearTimer);
+  }, [blockedCardKey]);
+
+  useEffect(() => {
     if (!hasRestoredSavedState) return;
 
     try {
@@ -190,7 +239,21 @@ export function EstimateStarter() {
   }, [hasRestoredSavedState, isExpanded, selected]);
 
   function selectOption(sectionId: string, optionId: string, shouldExpand = false) {
-    setSelected((current) => ({ ...current, [sectionId]: optionId }));
+    const isWcLayout = selected.room_size === wcRoomId;
+    if (isWcLayout && isWcRestrictedOption(sectionId, optionId)) {
+      setBlockedCardKey(`${sectionId}:${optionId}`);
+      return;
+    }
+
+    setSelected((current) => {
+      const next = { ...current, [sectionId]: optionId };
+
+      if (sectionId === "room_size" && optionId === wcRoomId) {
+        return sanitizeWcSelections(next);
+      }
+
+      return next;
+    });
     if (shouldExpand) {
       setIsExpanded(true);
     }
@@ -352,13 +415,25 @@ export function EstimateStarter() {
                   {section.helper ? <p>{section.helper}</p> : null}
                 </div>
                 <div className={`detail-options ${section.layout === "row" ? "row" : "tile"}`}>
-                  {section.options.map((option) => (
+                  {section.options.map((option) => {
+                    const isWcLayout = selected.room_size === wcRoomId;
+                    const wcRestricted = isWcLayout && isWcRestrictedOption(section.id, option.id);
+                    const wcFlash = blockedCardKey === `${section.id}:${option.id}`;
+
+                    return (
                     <button
                       className={
-                        selected[section.id] === option.id ? "detail-card active" : "detail-card"
+                        [
+                          selected[section.id] === option.id ? "detail-card active" : "detail-card",
+                          wcRestricted ? "wc-locked" : "",
+                          wcFlash ? "wc-locked--flash" : "",
+                        ]
+                          .filter(Boolean)
+                          .join(" ")
                       }
                       key={option.id}
                       type="button"
+                      aria-disabled={wcRestricted}
                       onClick={() => selectOption(section.id, option.id)}
                     >
                       <span className="detail-card-top">
@@ -366,8 +441,12 @@ export function EstimateStarter() {
                         {markerLabel(option.marker) ? <em>{markerLabel(option.marker)}</em> : null}
                       </span>
                       {option.desc ? <small>{option.desc}</small> : null}
+                      {wcRestricted ? (
+                        <span className="wc-lock-overlay">{wcRestrictedNotice}</span>
+                      ) : null}
                     </button>
-                  ))}
+                    );
+                  })}
                 </div>
               </section>
             ))}

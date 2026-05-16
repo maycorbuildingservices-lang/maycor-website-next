@@ -132,6 +132,39 @@ function hasSelectedId(selectedOptions, ids) {
   return selectedOptions.some((opt) => ids.includes(opt.id));
 }
 
+function applyRoomSelectionGuard(config, band, selectedBySectionId) {
+  if (band !== "wc") {
+    return { selections: selectedBySectionId, flags: [] };
+  }
+
+  const selections = { ...selectedBySectionId };
+  const flags = [];
+
+  const bathSection = config.sections.find((section) => section.id === "bath");
+  const showerSection = config.sections.find((section) => section.id === "shower");
+
+  const safeBathId =
+    bathSection?.options.find((option) => String(option.id).includes("no_bath"))?.id ||
+    bathSection?.defaultOptionId ||
+    null;
+  const safeShowerId =
+    showerSection?.options.find((option) => String(option.id).includes("no_shower"))?.id ||
+    showerSection?.defaultOptionId ||
+    null;
+
+  if (safeBathId && selections.bath && selections.bath !== safeBathId) {
+    selections.bath = safeBathId;
+    flags.push("WC layout limited bath selection to no bath");
+  }
+
+  if (safeShowerId && selections.shower && selections.shower !== safeShowerId) {
+    selections.shower = safeShowerId;
+    flags.push("WC layout limited shower selection to no shower");
+  }
+
+  return { selections, flags };
+}
+
 function applyCoherenceAdjustments({ band, selectedOptions, pricedLow, pricedHigh, finishMult }) {
   const flags = [];
   const factorsById = new Map();
@@ -307,10 +340,14 @@ export function calculatePriceRange(config, selectedBySectionId) {
   const baseLow = Number(config.base_bands?.[band]?.low ?? 0);
   const baseHigh = Number(config.base_bands?.[band]?.high ?? 0);
 
+  const roomGuard = applyRoomSelectionGuard(config, band, selectedBySectionId);
+  const selectedSelections = roomGuard.selections;
+  const guardFlags = roomGuard.flags;
+
   // Flatten selected options
   const selectedOptions = [];
   for (const sec of config.sections) {
-    const optId = selectedBySectionId[sec.id];
+    const optId = selectedSelections[sec.id];
     if (!optId) continue;
     const opt = sec.options.find((o) => o.id === optId);
     if (opt) selectedOptions.push({ ...opt, sectionKey: sec.sectionKey, sectionTitle: sec.title });
@@ -326,7 +363,7 @@ export function calculatePriceRange(config, selectedBySectionId) {
 
   // B) Finish = PURE percentage multiplier from the finish buttons (no overrides)
   const finishSection = config.sections.find((s) => s.title === "Finish level");
-  const finishOptId = finishSection ? selectedBySectionId[finishSection.id] : null;
+  const finishOptId = finishSection ? selectedSelections[finishSection.id] : null;
 
   // Detect finish by option id (bulletproof)
   let chosenFinish = "standard";
@@ -414,7 +451,7 @@ export function calculatePriceRange(config, selectedBySectionId) {
     risk_score_capped: riskScoreCapped,
     spread_pct: spreadPct,
     premium_count: coherence.premium_count,
-    flags: coherence.flags,
+    flags: Array.from(new Set([...guardFlags, ...coherence.flags])),
     final_low: roundToNearest(lowFinal, 50),
     final_high: roundToNearest(highFinal, 50),
     note_finish_bumped: false

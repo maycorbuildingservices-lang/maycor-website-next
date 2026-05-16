@@ -695,6 +695,8 @@ h3 {
 }
 
 .detail-card {
+  position: relative;
+  overflow: hidden;
   min-height: 88px;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -713,6 +715,51 @@ h3 {
   border-color: var(--olive);
   background: var(--sage);
   box-shadow: 0 0 0 2px rgba(99, 100, 74, 0.16);
+}
+
+.detail-card.wc-locked {
+  cursor: not-allowed;
+}
+
+.detail-card.wc-locked .wc-lock-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px;
+  background: rgba(51, 61, 57, 0.88);
+  color: var(--white);
+  text-align: center;
+  font-size: 13px;
+  font-weight: 900;
+  line-height: 1.4;
+  opacity: 0;
+  transition: opacity 0.18s ease;
+  pointer-events: none;
+}
+
+.detail-card.wc-locked:hover .wc-lock-overlay,
+.detail-card.wc-locked:focus-visible .wc-lock-overlay,
+.detail-card.wc-locked--flash .wc-lock-overlay {
+  opacity: 1;
+}
+
+.detail-card.wc-locked:hover .detail-card-top,
+.detail-card.wc-locked:hover small,
+.detail-card.wc-locked:focus-visible .detail-card-top,
+.detail-card.wc-locked:focus-visible small,
+.detail-card.wc-locked--flash .detail-card-top,
+.detail-card.wc-locked--flash small {
+  opacity: 0.18;
+  filter: blur(0.3px);
+}
+
+.detail-card.wc-locked:hover,
+.detail-card.wc-locked:focus-visible,
+.detail-card.wc-locked--flash {
+  border-color: rgba(51, 61, 57, 0.52);
+  box-shadow: 0 0 0 2px rgba(51, 61, 57, 0.12);
 }
 
 .detail-card-top {
