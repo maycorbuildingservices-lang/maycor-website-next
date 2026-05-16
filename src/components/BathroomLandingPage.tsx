@@ -5,10 +5,10 @@ const images = {
   logo: "https://maycor.co.uk/wp-content/uploads/2025/03/main-logo-all-04-300x93.png",
   hero: "https://maycor.co.uk/wp-content/uploads/2026/01/IMG_1765-scaled.jpg",
   shower: "https://maycor.co.uk/wp-content/uploads/2026/01/IMG_1766-scaled.jpg",
-  wc: "https://maycor.co.uk/wp-content/uploads/2026/01/IMG_1756-scaled.jpg",
-  niche: "https://maycor.co.uk/wp-content/uploads/2026/01/IMG_1745-scaled.jpg",
-  vanity: "https://maycor.co.uk/wp-content/uploads/2026/01/IMG_1730-scaled.jpg",
-  bath: "https://maycor.co.uk/wp-content/uploads/2026/01/IMG_8479-scaled.jpg",
+  wc: "https://maycor.co.uk/wp-content/uploads/2025/12/IMG_1756-scaled.jpg",
+  niche: "https://maycor.co.uk/wp-content/uploads/2026/01/IMG_1774-scaled.jpg",
+  vanity: "https://maycor.co.uk/wp-content/uploads/2025/05/maycor-gallery-7.jpg",
+  bath: "https://maycor.co.uk/wp-content/uploads/2025/05/maycor-gallery-9.jpg",
 };
 
 const proofPoints = [
