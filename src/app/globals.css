@@ -109,11 +109,12 @@ img {
   position: relative;
   min-height: clamp(650px, 86svh, 820px);
   overflow: hidden;
-  background: var(--olive-deep);
+  background: #4b4635;
   color: var(--white);
 }
 
 .hero-image {
+  filter: saturate(1.12) sepia(0.08) brightness(1.04) contrast(0.98);
   object-fit: cover;
   object-position: 52% 50%;
 }
@@ -121,7 +122,9 @@ img {
 .hero-shade {
   position: absolute;
   inset: 0;
-  background: rgba(24, 31, 29, 0.5);
+  background:
+    linear-gradient(90deg, rgba(43, 36, 25, 0.58), rgba(83, 75, 51, 0.28) 52%, rgba(35, 39, 31, 0.16)),
+    linear-gradient(0deg, rgba(63, 54, 35, 0.3), rgba(138, 111, 70, 0.12));
 }
 
 .hero-content {
@@ -241,7 +244,7 @@ h3 {
 .hero-proof div {
   min-height: 118px;
   padding: 18px;
-  background: rgba(24, 31, 29, 0.58);
+  background: rgba(43, 39, 29, 0.64);
 }
 
 .hero-proof strong,
