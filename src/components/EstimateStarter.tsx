@@ -146,6 +146,16 @@ export function EstimateStarter() {
         </div>
 
         <div className="estimate-builder">
+        {isExpanded ? (
+          <div className="calculator-prompt">
+            <h3>Find out your renovation range in under 3 minutes.</h3>
+            <p>
+              Answer the key questions and watch your estimate update as the room
+              becomes clearer.
+            </p>
+          </div>
+        ) : null}
+
         {roomSection ? (
           <div className="choice-group" aria-label="Choose room size">
             <span className="choice-title">Room size</span>
@@ -194,15 +204,6 @@ export function EstimateStarter() {
 
         {isExpanded ? (
           <div className="full-calculator" aria-label="Full bathroom calculator">
-            <div className="full-calculator-header">
-              <p className="eyebrow">Full calculator opened</p>
-              <h3>Find out your renovation range in under 3 minutes.</h3>
-              <p>
-                Answer the key questions and watch your estimate update as the room
-                becomes clearer.
-              </p>
-            </div>
-
             {detailedSections.map((section) => (
               <section className="detail-section" key={section.id}>
                 <div className="detail-heading">
