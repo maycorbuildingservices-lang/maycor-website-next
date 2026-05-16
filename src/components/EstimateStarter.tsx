@@ -263,6 +263,9 @@ export function EstimateStarter() {
     setIsExpanded(false);
     setShowLeadForm(false);
     setBlockedCardKey(null);
+    window.requestAnimationFrame(() => {
+      document.getElementById("top")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
   }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
