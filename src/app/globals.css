@@ -83,14 +83,16 @@ img {
 .site-nav a,
 .header-call {
   border-radius: 8px;
-  padding: 9px 10px;
+  padding: 9px 12px;
   color: #ffffff;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 14px;
-  font-weight: 700;
+  font-size: 15px;
+  font-weight: 800;
   letter-spacing: 0;
-  line-height: 1;
+  line-height: 1.1;
   text-shadow: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .site-nav a:hover,
@@ -100,8 +102,8 @@ img {
 }
 
 .header-call {
-  border: 1px solid rgba(255, 255, 255, 0.34);
-  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.48);
+  background: #36413b;
   white-space: nowrap;
 }
 
@@ -1108,8 +1110,8 @@ h3 {
   }
 
   .header-call {
-    padding: 8px 9px;
-    font-size: 12px;
+    padding: 8px 10px;
+    font-size: 13px;
   }
 
   .hero-section {
