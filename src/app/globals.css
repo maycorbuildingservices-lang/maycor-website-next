@@ -116,7 +116,7 @@ img {
 .hero-image {
   filter: saturate(1.2) sepia(0.14) brightness(1.05) contrast(0.97);
   object-fit: cover;
-  object-position: 52% 50%;
+  object-position: 68% 46%;
 }
 
 .hero-shade {
@@ -960,6 +960,10 @@ h3 {
     min-height: 88svh;
   }
 
+  .hero-image {
+    object-position: 72% 48%;
+  }
+
   .hero-content {
     padding-top: 118px;
   }
@@ -1063,6 +1067,10 @@ h3 {
 
   .hero-section {
     min-height: 90svh;
+  }
+
+  .hero-image {
+    object-position: 70% 48%;
   }
 
   .hero-content,
