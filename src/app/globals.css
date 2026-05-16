@@ -1332,7 +1332,7 @@ h3 {
   .page-top-link {
     width: min(100% - 28px, 1180px);
     margin-top: -24px;
-    text-align: left;
+    text-align: right;
   }
 
   .sticky-estimate-bar {
