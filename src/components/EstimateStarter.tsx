@@ -275,6 +275,10 @@ export function EstimateStarter() {
     });
   }
 
+  function expandCalculator() {
+    setIsExpanded(true);
+  }
+
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setStatus("loading");
@@ -352,13 +356,13 @@ export function EstimateStarter() {
             <span className="choice-title">Room size</span>
             {isExpanded ? (
               <div className="choice-grid room-grid">
-                {roomSection.options.map((option) => (
-                  <button
-                    className={choiceCardClass(selected.room_size === option.id)}
-                    key={option.id}
-                    type="button"
-                    onClick={() => selectOption(roomSection.id, option.id, true)}
-                  >
+                  {roomSection.options.map((option) => (
+                    <button
+                      className={choiceCardClass(selected.room_size === option.id)}
+                      key={option.id}
+                      type="button"
+                      onClick={() => selectOption(roomSection.id, option.id)}
+                    >
                     <span>{option.label}</span>
                     {option.desc ? <small>{option.desc}</small> : null}
                   </button>
@@ -372,7 +376,7 @@ export function EstimateStarter() {
                       className={choiceCardClass(selected.room_size === option.id)}
                       key={option.id}
                       type="button"
-                      onClick={() => selectOption(roomSection.id, option.id, true)}
+                      onClick={() => selectOption(roomSection.id, option.id)}
                     >
                       <span>{option.label}</span>
                       {option.desc ? <small>{option.desc}</small> : null}
@@ -385,7 +389,7 @@ export function EstimateStarter() {
                       className={choiceCardClass(selected.room_size === option.id)}
                       key={option.id}
                       type="button"
-                      onClick={() => selectOption(roomSection.id, option.id, true)}
+                      onClick={() => selectOption(roomSection.id, option.id)}
                     >
                       <span>{option.label}</span>
                       {option.desc ? <small>{option.desc}</small> : null}
@@ -406,7 +410,7 @@ export function EstimateStarter() {
                   className={choiceCardClass(selected.finish_level === option.id)}
                   key={option.id}
                   type="button"
-                  onClick={() => selectOption(finishSection.id, option.id, true)}
+                  onClick={() => selectOption(finishSection.id, option.id)}
                 >
                   <span>{option.label}</span>
                   {option.desc ? <small>{option.desc}</small> : null}
@@ -418,9 +422,14 @@ export function EstimateStarter() {
 
         {!isExpanded ? (
           <div className="range-strip">
-            <span>Estimated range</span>
-            <strong>{rangeText}</strong>
-            <small>Includes labour, materials, sanitaryware, fixtures, fittings and waste removal.</small>
+            <div className="range-strip-copy">
+              <span>Estimated range</span>
+              <strong>{rangeText}</strong>
+              <small>Includes labour, materials, sanitaryware, fixtures, fittings and waste removal.</small>
+            </div>
+            <button className="range-expand-button" type="button" onClick={expandCalculator}>
+              Expand calculator
+            </button>
           </div>
         ) : null}
 

@@ -459,12 +459,18 @@ h3 {
 }
 
 .range-strip {
-  display: grid;
-  gap: 4px;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  justify-content: space-between;
   border-radius: 8px;
   background: var(--olive);
   color: var(--white);
   padding: 16px;
+}
+
+.range-strip-copy {
+  min-width: 0;
 }
 
 .range-strip span {
@@ -481,6 +487,26 @@ h3 {
 .range-strip small {
   color: rgba(255, 255, 255, 0.82);
   line-height: 1.35;
+}
+
+.range-expand-button {
+  flex: 0 0 auto;
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--white);
+  cursor: pointer;
+  padding: 10px 13px;
+  font-size: 13px;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.range-expand-button:hover,
+.range-expand-button:focus-visible {
+  border-color: rgba(255, 255, 255, 0.42);
+  background: rgba(255, 255, 255, 0.14);
+  outline: none;
 }
 
 .sticky-estimate-bar {
@@ -1109,6 +1135,15 @@ h3 {
   }
 
   .collapse-button {
+    width: 100%;
+  }
+
+  .range-strip {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .range-expand-button {
     width: 100%;
   }
 
