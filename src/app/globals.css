@@ -301,6 +301,12 @@ h3 {
   top: 100px;
 }
 
+.estimate-copy h2 {
+  max-width: 12ch;
+  font-size: clamp(30px, 4vw, 54px);
+  line-height: 0.98;
+}
+
 .estimate-copy p,
 .story-copy p,
 .london-section p,
@@ -1266,6 +1272,12 @@ h3 {
 
   .hero-proof {
     width: calc(100% - 28px);
+  }
+
+  .estimate-copy h2 {
+    max-width: 10.5ch;
+    font-size: clamp(25px, 7vw, 34px);
+    line-height: 1;
   }
 
   .hero-proof,
