@@ -170,10 +170,6 @@ export function EstimateStarter() {
         <div className="estimate-copy">
           <p className="eyebrow">Bathroom estimate starter</p>
           <h2 id="estimate-heading">See the range before you book the survey.</h2>
-          <p>
-            We start with a WC and minimal work selected, so you see the lowest
-            sensible range first. Click any card to refine it.
-          </p>
         </div>
 
         <div className="estimate-builder">
