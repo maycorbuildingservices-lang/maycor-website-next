@@ -335,7 +335,7 @@ export function EstimateStarter() {
       >
         <div className="estimate-copy">
           <p className="eyebrow">Bathroom estimate starter</p>
-          <h2 id="estimate-heading">See the range before you book the survey.</h2>
+          <h2 id="estimate-heading">See your bathroom cost in under 3 minutes before you book the survey.</h2>
         </div>
 
         <div className="estimate-builder">
