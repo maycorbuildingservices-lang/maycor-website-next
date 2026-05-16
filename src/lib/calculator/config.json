@@ -1341,8 +1341,8 @@
       "options": [
         {
           "id": "recessed_niches_built_in_shelving__none",
-          "label": "£",
-          "desc": "No niche/shelves.",
+          "label": "No niche/shelves",
+          "desc": "Keep the wall flat with no recessed storage.",
           "marker": "£",
           "risk_points": 0,
           "finish_points": 0,
