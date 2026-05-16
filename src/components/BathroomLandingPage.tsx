@@ -35,15 +35,23 @@ const process = [
   ["Build", "One team coordinates the messy middle and keeps the finish under control."],
 ];
 
-const faqs = [
-  [
-    "Can you handle the whole bathroom renovation?",
-    "Yes. Maycor can coordinate strip-out, plumbing, electrics, waterproofing, tiling, decorating, fittings and waste removal.",
-  ],
-  [
-    "Do you work with small London bathrooms?",
-    "Yes. Compact rooms are often where planning matters most: storage, ventilation, access, pipe routes and tile layout all affect the result.",
-  ],
+  const faqs = [
+    [
+      "Can you handle the whole bathroom renovation?",
+      "Yes. Maycor can coordinate strip-out, plumbing, electrics, waterproofing, tiling, decorating, fittings and waste removal.",
+    ],
+    [
+      "Are you insured?",
+      "Yes. Maycor carries the relevant insurance for renovation work, and details can be confirmed on request.",
+    ],
+    [
+      "Do you offer a warranty?",
+      "Yes. The work is covered by a 1-year warranty for added peace of mind.",
+    ],
+    [
+      "Do you work with small London bathrooms?",
+      "Yes. Compact rooms are often where planning matters most: storage, ventilation, access, pipe routes and tile layout all affect the result.",
+    ],
   [
     "Is the calculator range the final quote?",
     "The range is there to keep the first conversation realistic. A final scope is confirmed after the room and site conditions are checked.",
