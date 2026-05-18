@@ -413,45 +413,6 @@ export function EstimateStarter() {
                 </div>
               </div>
             )}
-            <div className="room-choice-mobile">
-              <div className="room-choice-row">
-                {roomSection.options.slice(0, 2).map((option) => (
-                  <button
-                    className={choiceCardClass(selected.room_size === option.id)}
-                    key={option.id}
-                    type="button"
-                    {...tapBridge(() => selectOption(roomSection.id, option.id))}
-                  >
-                    <span>{option.label}</span>
-                    {option.desc ? <small>{option.desc}</small> : null}
-                  </button>
-                ))}
-              </div>
-              <div className="room-choice-row">
-                {roomSection.options.slice(2, 4).map((option) => (
-                  <button
-                    className={choiceCardClass(selected.room_size === option.id)}
-                    key={option.id}
-                    type="button"
-                    {...tapBridge(() => selectOption(roomSection.id, option.id))}
-                  >
-                    <span>{option.label}</span>
-                    {option.desc ? <small>{option.desc}</small> : null}
-                  </button>
-                ))}
-              </div>
-              {roomSection.options.slice(4, 5).map((option) => (
-                <button
-                  className={[choiceCardClass(selected.room_size === option.id), "room-large"].join(" ")}
-                  key={option.id}
-                  type="button"
-                  {...tapBridge(() => selectOption(roomSection.id, option.id))}
-                >
-                  <span>{option.label}</span>
-                  {option.desc ? <small>{option.desc}</small> : null}
-                </button>
-              ))}
-            </div>
           </div>
         ) : null}
 
