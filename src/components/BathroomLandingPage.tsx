@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { PointerEvent, useRef, useState } from "react";
 import Image from "next/image";
 import { EstimateStarter } from "./EstimateStarter";
 
@@ -8,8 +8,8 @@ const images = {
   logo: "https://maycor.co.uk/wp-content/uploads/2025/03/main-logo-all-04-300x93.png",
   hero: "/images/hero-bathroom-vanity-mirror.jpg",
   story: "/images/story-jay-bathroom.jpg",
-  wc: "https://maycor.co.uk/wp-content/uploads/2025/12/IMG_1756-scaled.jpg",
-  niche: "https://maycor.co.uk/wp-content/uploads/2026/01/IMG_1774-scaled.jpg",
+  wc: "/images/gallery-loo.jpg",
+  niche: "/images/gallery-shower.jpg",
   vanity: "https://maycor.co.uk/wp-content/uploads/2025/05/maycor-gallery-7.jpg",
   bath: "https://maycor.co.uk/wp-content/uploads/2025/05/maycor-gallery-9.jpg",
 };
@@ -84,6 +84,21 @@ const jsonLd = {
 
 export function BathroomLandingPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const lastTouchActivation = useRef(0);
+
+  function tapBridge(action: () => void) {
+    return {
+      onPointerUp(event: PointerEvent<HTMLButtonElement>) {
+        if (event.pointerType !== "touch") return;
+        lastTouchActivation.current = Date.now();
+        action();
+      },
+      onClick() {
+        if (Date.now() - lastTouchActivation.current < 700) return;
+        action();
+      },
+    };
+  }
 
   return (
       <>
@@ -266,11 +281,10 @@ export function BathroomLandingPage() {
           </a>
         </section>
 
-        <section className="faq-section" id="faq">
-          <div className="section-heading">
-            <p className="eyebrow">Questions before you start</p>
-            <h2>Quick answers for London bathroom projects.</h2>
-          </div>
+      <section className="faq-section" id="faq">
+        <div className="section-heading">
+          <h2>Quick answers for London bathroom projects.</h2>
+        </div>
             <div className="faq-list">
               {faqs.map(([question, answer], index) => {
                 const isOpen = openFaq === index;
@@ -281,7 +295,7 @@ export function BathroomLandingPage() {
                     className="faq-card"
                     type="button"
                     aria-expanded={isOpen}
-                    onClick={() => setOpenFaq(isOpen ? null : index)}
+                    {...tapBridge(() => setOpenFaq(isOpen ? null : index))}
                   >
                     <span className="faq-header">
                       <span className="faq-question">{question}</span>
@@ -301,7 +315,9 @@ export function BathroomLandingPage() {
 
       <footer className="site-footer">
         <span>Maycor Building Contractors</span>
-        <a href="https://maycor.co.uk">maycor.co.uk</a>
+        <a href="https://maycor.co.uk" target="_blank" rel="noreferrer">
+          maycor.co.uk
+        </a>
       </footer>
     </>
   );

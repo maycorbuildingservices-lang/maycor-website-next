@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useEffect, useMemo, useState } from "react";
+import { FormEvent, PointerEvent, useEffect, useMemo, useRef, useState } from "react";
 import calculatorConfig from "@/lib/calculator/config.json";
 import { calculatePriceRange, formatGBP } from "@/lib/calculator/engine";
 
@@ -207,6 +207,7 @@ export function EstimateStarter() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
   const [hasRestoredSavedState, setHasRestoredSavedState] = useState(false);
+  const lastTouchActivation = useRef(0);
 
   const price = useMemo(() => calculatePriceRange(config, selected), [selected]);
   const detailedSections = config.sections.filter(
@@ -279,6 +280,20 @@ export function EstimateStarter() {
     setIsExpanded(true);
   }
 
+  function tapBridge(action: () => void) {
+    return {
+      onPointerUp(event: PointerEvent<HTMLButtonElement | HTMLAnchorElement>) {
+        if (event.pointerType !== "touch") return;
+        lastTouchActivation.current = Date.now();
+        action();
+      },
+      onClick() {
+        if (Date.now() - lastTouchActivation.current < 700) return;
+        action();
+      },
+    };
+  }
+
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setStatus("loading");
@@ -335,7 +350,7 @@ export function EstimateStarter() {
       >
         <div className="estimate-copy">
           <p className="eyebrow">Bathroom estimate starter</p>
-          <h2 id="estimate-heading">See your bathroom cost in under 3 minutes before you book the survey.</h2>
+          <h2 id="estimate-heading">Get your bathroom cost in under 3 minutes.</h2>
         </div>
 
         <div className="estimate-builder">
@@ -361,7 +376,7 @@ export function EstimateStarter() {
                       className={choiceCardClass(selected.room_size === option.id)}
                       key={option.id}
                       type="button"
-                      onClick={() => selectOption(roomSection.id, option.id)}
+                      {...tapBridge(() => selectOption(roomSection.id, option.id))}
                     >
                     <span>{option.label}</span>
                     {option.desc ? <small>{option.desc}</small> : null}
@@ -376,7 +391,7 @@ export function EstimateStarter() {
                       className={choiceCardClass(selected.room_size === option.id)}
                       key={option.id}
                       type="button"
-                      onClick={() => selectOption(roomSection.id, option.id)}
+                      {...tapBridge(() => selectOption(roomSection.id, option.id))}
                     >
                       <span>{option.label}</span>
                       {option.desc ? <small>{option.desc}</small> : null}
@@ -389,7 +404,7 @@ export function EstimateStarter() {
                       className={choiceCardClass(selected.room_size === option.id)}
                       key={option.id}
                       type="button"
-                      onClick={() => selectOption(roomSection.id, option.id)}
+                      {...tapBridge(() => selectOption(roomSection.id, option.id))}
                     >
                       <span>{option.label}</span>
                       {option.desc ? <small>{option.desc}</small> : null}
@@ -410,7 +425,7 @@ export function EstimateStarter() {
                   className={choiceCardClass(selected.finish_level === option.id)}
                   key={option.id}
                   type="button"
-                  onClick={() => selectOption(finishSection.id, option.id)}
+                  {...tapBridge(() => selectOption(finishSection.id, option.id))}
                 >
                   <span>{option.label}</span>
                   {option.desc ? <small>{option.desc}</small> : null}
@@ -422,7 +437,7 @@ export function EstimateStarter() {
 
         {!isExpanded ? (
           <div className="range-strip">
-            <button className="range-expand-button" type="button" onClick={expandCalculator}>
+            <button className="range-expand-button" type="button" {...tapBridge(expandCalculator)}>
               Expand calculator
             </button>
             <span>Estimated range</span>
@@ -455,7 +470,7 @@ export function EstimateStarter() {
                         }
                         key={option.id}
                         type="button"
-                        onClick={() => selectOption(section.id, option.id)}
+                        {...tapBridge(() => selectOption(section.id, option.id))}
                       >
                         <span className="detail-card-top">
                           <strong>{option.label}</strong>
@@ -479,7 +494,7 @@ export function EstimateStarter() {
                 className="primary-button"
                 type="button"
                 aria-expanded={showLeadForm}
-                onClick={() => setShowLeadForm((current) => !current)}
+                {...tapBridge(() => setShowLeadForm((current) => !current))}
               >
                 {showLeadForm ? "Hide Details Form" : "Get Full Breakdown"}
               </button>
@@ -556,7 +571,7 @@ export function EstimateStarter() {
         <div className="sticky-actions">
           <a href="#estimate">Adjust My Estimate</a>
           {isExpanded ? (
-            <button type="button" onClick={collapseCalculator}>
+            <button type="button" {...tapBridge(collapseCalculator)}>
               Compact calculator
             </button>
           ) : null}
