@@ -1192,11 +1192,15 @@ h3 {
   }
 
   .calculator-compact .room-grid-top {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .calculator-compact .room-grid-middle {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .calculator-compact .room-grid-bottom {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 1fr;
   }
 
   .calculator-compact .finish-grid {
@@ -1316,6 +1320,14 @@ h3 {
   .calculator-compact .room-grid,
   .calculator-compact .finish-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .calculator-compact .room-grid-middle {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .calculator-compact .room-grid-bottom {
+    grid-template-columns: 1fr;
   }
 
   .calculator-compact .room-grid-bottom .choice-card:last-child,

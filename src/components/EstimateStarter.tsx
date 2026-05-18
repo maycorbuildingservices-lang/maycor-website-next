@@ -386,7 +386,20 @@ export function EstimateStarter() {
             ) : (
               <div className="room-choice-stack">
                 <div className="choice-grid room-grid room-grid-top">
-                  {roomSection.options.slice(0, 3).map((option) => (
+                  {roomSection.options.slice(0, 2).map((option) => (
+                    <button
+                      className={choiceCardClass(selected.room_size === option.id)}
+                      key={option.id}
+                      type="button"
+                      {...tapBridge(() => selectOption(roomSection.id, option.id))}
+                    >
+                      <span>{option.label}</span>
+                      {option.desc ? <small>{option.desc}</small> : null}
+                    </button>
+                  ))}
+                </div>
+                <div className="choice-grid room-grid room-grid-middle">
+                  {roomSection.options.slice(2, 4).map((option) => (
                     <button
                       className={choiceCardClass(selected.room_size === option.id)}
                       key={option.id}
@@ -399,7 +412,7 @@ export function EstimateStarter() {
                   ))}
                 </div>
                 <div className="choice-grid room-grid room-grid-bottom">
-                  {roomSection.options.slice(3).map((option) => (
+                  {roomSection.options.slice(4).map((option) => (
                     <button
                       className={choiceCardClass(selected.room_size === option.id)}
                       key={option.id}
