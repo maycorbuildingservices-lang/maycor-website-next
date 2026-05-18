@@ -1318,8 +1318,18 @@ h3 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .calculator-compact .room-grid-bottom .choice-card:last-child,
-  .calculator-compact .finish-grid .choice-card:last-child {
+  .calculator-compact .room-choice-stack {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .calculator-compact .room-grid-top,
+  .calculator-compact .room-grid-bottom {
+    display: contents;
+  }
+
+  .calculator-compact .room-grid-bottom .choice-card:last-child {
     grid-column: 1 / -1;
   }
 
