@@ -1326,6 +1326,10 @@ h3 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .calculator-compact .finish-grid .choice-card:last-child {
+    grid-column: 1 / -1;
+  }
+
   .calculator-compact .room-choice-stack {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
