@@ -1187,6 +1187,10 @@ h3 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .room-grid .choice-card:nth-child(5) {
+    grid-column: 1 / -1;
+  }
+
   .calculator-compact .choice-grid {
     gap: 10px;
   }
@@ -1306,7 +1310,11 @@ h3 {
   }
 
   .room-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .room-grid .choice-card:nth-child(5) {
+    grid-column: 1 / -1;
   }
 
   .calculator-compact .choice-grid {
