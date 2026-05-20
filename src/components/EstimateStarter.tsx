@@ -199,6 +199,24 @@ function persistEstimateState(selected: Record<string, string>, isExpanded: bool
   }
 }
 
+type SectionRenderItem =
+  | { kind: "header"; title: string }
+  | { kind: "section"; data: CalculatorSection };
+
+const sectionRenderItems = ((): SectionRenderItem[] => {
+  const items: SectionRenderItem[] = [];
+  let lastMainSection = "";
+  for (const section of config.sections) {
+    if (section.id === "room_size" || section.id === "finish_level") continue;
+    if (section.mainSection && section.mainSection !== lastMainSection) {
+      items.push({ kind: "header", title: section.mainSection });
+      lastMainSection = section.mainSection;
+    }
+    items.push({ kind: "section", data: section as CalculatorSection });
+  }
+  return items;
+})();
+
 export function EstimateStarter() {
   const [selected, setSelected] = useState<Record<string, string>>(createInitialSelections);
   const [isExpanded, setIsExpanded] = useState(false);
@@ -210,9 +228,6 @@ export function EstimateStarter() {
   const lastTouchActivation = useRef(0);
 
   const price = useMemo(() => calculatePriceRange(config, selected), [selected]);
-  const detailedSections = config.sections.filter(
-    (section) => section.id !== "room_size" && section.id !== "finish_level"
-  );
 
   const rangeText = price
     ? `${formatGBP(price.final_low)} - ${formatGBP(price.final_high)}`
@@ -448,42 +463,48 @@ export function EstimateStarter() {
 
         {isExpanded ? (
           <div className="full-calculator" aria-label="Full bathroom calculator">
-            {detailedSections.map((section) => (
-              <section className="detail-section" key={section.id}>
-                <div className="detail-heading">
-                  <h4>{section.title}</h4>
-                  {section.helper ? <p>{section.helper}</p> : null}
+            {sectionRenderItems.map((item) =>
+              item.kind === "header" ? (
+                <div className="section-group-header" key={`header-${item.title}`}>
+                  <span>{item.title}</span>
                 </div>
-                <div className={`detail-options ${section.layout === "row" ? "row" : "tile"}`}>
-                  {section.options.map((option) => {
-                    const wcFlash = blockedCardKey === `${section.id}:${option.id}`;
+              ) : (
+                <section className="detail-section" key={item.data.id} data-section-id={item.data.id}>
+                  <div className="detail-heading">
+                    <h4>{item.data.title}</h4>
+                    {item.data.helper ? <p>{item.data.helper}</p> : null}
+                  </div>
+                  <div className={`detail-options ${item.data.layout === "row" ? "row" : "tile"}`}>
+                    {item.data.options.map((option) => {
+                      const wcFlash = blockedCardKey === `${item.data.id}:${option.id}`;
 
-                    return (
-                      <button
-                        className={
-                          [
-                            selected[section.id] === option.id ? "detail-card active" : "detail-card",
-                            wcFlash ? "wc-locked--flash" : "",
-                          ]
-                            .filter(Boolean)
-                            .join(" ")
-                        }
-                        key={option.id}
-                        type="button"
-                        {...tapBridge(() => selectOption(section.id, option.id))}
-                      >
-                        <span className="detail-card-top">
-                          <strong>{option.label}</strong>
-                          {markerLabel(option.marker) ? <em>{markerLabel(option.marker)}</em> : null}
-                        </span>
-                        {option.desc ? <small>{option.desc}</small> : null}
-                        {wcFlash ? <span className="wc-lock-overlay">{wcRestrictedNotice}</span> : null}
-                      </button>
-                    );
-                  })}
-                </div>
-              </section>
-            ))}
+                      return (
+                        <button
+                          className={
+                            [
+                              selected[item.data.id] === option.id ? "detail-card active" : "detail-card",
+                              wcFlash ? "wc-locked--flash" : "",
+                            ]
+                              .filter(Boolean)
+                              .join(" ")
+                          }
+                          key={option.id}
+                          type="button"
+                          {...tapBridge(() => selectOption(item.data.id, option.id))}
+                        >
+                          <span className="detail-card-top">
+                            <strong>{option.label}</strong>
+                            {markerLabel(option.marker) ? <em>{markerLabel(option.marker)}</em> : null}
+                          </span>
+                          {option.desc ? <small>{option.desc}</small> : null}
+                          {wcFlash ? <span className="wc-lock-overlay">{wcRestrictedNotice}</span> : null}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </section>
+              )
+            )}
 
             <div className="breakdown-gate">
               <div>

@@ -720,6 +720,24 @@ h3 {
   color: var(--olive-deep);
 }
 
+.section-group-header {
+  margin: 24px 0 2px;
+  padding-bottom: 9px;
+  border-bottom: 1px solid var(--line);
+}
+
+.section-group-header span {
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--olive);
+}
+
+.full-calculator > .section-group-header:first-child {
+  margin-top: 6px;
+}
+
 .detail-section {
   margin-top: 14px;
   border: 1px solid var(--line);
@@ -1372,6 +1390,28 @@ h3 {
 
   .calculator-expanded .detail-options.tile {
     grid-template-columns: 1fr;
+  }
+
+  .calculator-expanded [data-section-id="access_difficulty"] .detail-options,
+  .calculator-expanded [data-section-id="layout_change_level"] .detail-options,
+  .calculator-expanded [data-section-id="structural_changes"] .detail-options,
+  .calculator-expanded [data-section-id="toilet"] .detail-options,
+  .calculator-expanded [data-section-id="basin_vanity"] .detail-options,
+  .calculator-expanded [data-section-id="taps"] .detail-options,
+  .calculator-expanded [data-section-id="tiling_coverage"] .detail-options,
+  .calculator-expanded [data-section-id="waste_removal"] .detail-options,
+  .calculator-expanded [data-section-id="furniture_accessories"] .detail-options,
+  .calculator-expanded [data-section-id="recessed_niches_built_in_shelving"] .detail-options,
+  .calculator-expanded [data-section-id="heating"] .detail-options,
+  .calculator-expanded [data-section-id="painting_decorating"] .detail-options {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .calculator-expanded [data-section-id="heating"] .detail-options .detail-card:last-child,
+  .calculator-expanded [data-section-id="painting_decorating"] .detail-options .detail-card:last-child,
+  .calculator-expanded [data-section-id="furniture_accessories"] .detail-options .detail-card:last-child,
+  .calculator-expanded [data-section-id="recessed_niches_built_in_shelving"] .detail-options .detail-card:last-child {
+    grid-column: 1 / -1;
   }
 
   .choice-card {
