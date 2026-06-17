@@ -365,7 +365,9 @@ export function EstimateStarter() {
       >
         <div className="estimate-copy">
           <p className="eyebrow">Bathroom estimate starter</p>
-          <h2 id="estimate-heading">Get your bathroom cost in under 3 minutes.</h2>
+          <h2 id="estimate-heading">
+            <span className="estimate-highlight">Get your bathroom cost in under 3 minutes.</span>
+          </h2>
         </div>
 
         <div className="estimate-builder">
@@ -590,6 +592,7 @@ export function EstimateStarter() {
           <small>Includes labour, materials, sanitaryware, fixtures, fittings and waste removal.</small>
         </div>
         <div className="sticky-actions">
+          <a href="https://wa.me/447843746835" target="_blank" rel="noreferrer" className="sticky-whatsapp">WhatsApp us</a>
           <a href="#estimate">Adjust My Estimate</a>
           {isExpanded ? (
             <button type="button" {...tapBridge(collapseCalculator)}>
