@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 
+const GA_ID = "G-3RWMN3PGDG";
+const AW_ID = "AW-457222828";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://maycor.co.uk"),
+  metadataBase: new URL("https://bathroom-renovations.maycor.co.uk"),
   title: {
     default: "Maycor Building Contractors",
     template: "%s | Maycor Building Contractors",
@@ -13,7 +17,7 @@ export const metadata: Metadata = {
     title: "Maycor Building Contractors",
     description:
       "Premium bathroom renovations and building work across London, delivered by one coordinated Maycor team.",
-    url: "https://maycor.co.uk",
+    url: "https://bathroom-renovations.maycor.co.uk",
     siteName: "Maycor Building Contractors",
     images: [
       {
@@ -35,6 +39,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">{`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${GA_ID}');
+          gtag('config', '${AW_ID}');
+        `}</Script>
+      </head>
       <body>{children}</body>
     </html>
   );

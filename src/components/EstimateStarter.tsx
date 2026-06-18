@@ -1,6 +1,12 @@
 "use client";
 
 import { FormEvent, PointerEvent, useEffect, useMemo, useRef, useState } from "react";
+
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+  }
+}
 import calculatorConfig from "@/lib/calculator/config.json";
 import { calculatePriceRange, formatGBP } from "@/lib/calculator/engine";
 
@@ -350,6 +356,9 @@ export function EstimateStarter() {
       setStatus("success");
       setMessage("Thank you. Your estimate request has been sent to Maycor.");
       event.currentTarget.reset();
+      if (typeof window.gtag === "function") {
+        window.gtag("event", "generate_lead", { currency: "GBP" });
+      }
     } catch (error) {
       setStatus("error");
       setMessage(error instanceof Error ? error.message : "Could not send your request.");

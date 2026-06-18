@@ -221,22 +221,22 @@ const galleryPhotos = [
 // Even short informal messages (WhatsApp, email) work — paste the actual words here.
 const testimonials = [
   {
-    initial: "S",
-    name: "Sarah T.",
-    area: "Islington, London",
-    quote: "Replace this with a real customer quote. A sentence or two from an email, text or WhatsApp message works perfectly.",
-  },
-  {
-    initial: "M",
-    name: "Mark R.",
-    area: "Clapham, London",
-    quote: "Replace this with a real customer quote. A sentence or two from an email, text or WhatsApp message works perfectly.",
+    initial: "J",
+    name: "Jefferson Hack",
+    area: "Angel, Islington",
+    quote: "Great job painting and refurbing our kitchen and bathroom.",
   },
   {
     initial: "J",
-    name: "James K.",
-    area: "Hackney, London",
-    quote: "Replace this with a real customer quote. A sentence or two from an email, text or WhatsApp message works perfectly.",
+    name: "Jonathan Jennings",
+    area: "Streatham Hill",
+    quote: "Team designed and delivered two new bathrooms, a brand new tiled entrance room and both of my bedrooms over two separate projects. I'm so happy with the work!",
+  },
+  {
+    initial: "S",
+    name: "Sophie Bower",
+    area: "Notting Hill",
+    quote: "They were very thorough, neat and precise. They completed the work in a timely manner and went above and beyond to make everything look immaculate.",
   },
 ];
 
@@ -269,10 +269,12 @@ const process = [
 // Gas Safe → Member area → Registered Business Resources
 // MyBuilder → Profile page → Trust Badge
 const accreditations = [
+  { name: "Federation of Master Builders", src: "/images/accreditations/master-builder.svg" },
   { name: "NICEIC Approved Contractor", src: "/images/accreditations/niceic.svg" },
   { name: "Gas Safe Register", src: "/images/accreditations/gas-safe.svg" },
   { name: "CHAS Accredited", src: "/images/accreditations/chas.png" },
-  { name: "MyBuilder Trusted Tradesman", src: "/images/accreditations/mybuilder.svg" },
+  { name: "MyBuilder", src: "/images/accreditations/mybuilder.png" },
+  { name: "Constructionline", src: "/images/accreditations/constructionline.png" },
 ];
 
 const brandLogos = [
@@ -322,7 +324,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "HomeAndConstructionBusiness",
   name: "Maycor Building Contractors",
-  url: "https://maycor.co.uk/bathroom-renovations-london/",
+  url: "https://bathroom-renovations.maycor.co.uk/bathroom-renovations-london/",
   areaServed: "London",
   telephone: "+442080507057",
   image: images.hero,
@@ -815,6 +817,7 @@ export function BathroomLandingPage() {
         <a href="https://maycor.co.uk" target="_blank" rel="noreferrer">
           maycor.co.uk
         </a>
+        <span>Call us: <a href="tel:+447843746835">07843 746 835</a></span>
       </footer>
 
       {lightboxIndex !== null ? (

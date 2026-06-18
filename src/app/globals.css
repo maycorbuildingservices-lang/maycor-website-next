@@ -274,13 +274,14 @@ h3 {
 }
 
 .hero-section .primary-button {
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--white);
+  border-color: var(--sage);
+  background: var(--sage);
+  color: var(--olive-deep);
 }
 
 .hero-section .primary-button:hover {
-  background: rgba(255, 255, 255, 0.18);
+  background: #b8c9a3;
+  border-color: #b8c9a3;
 }
 
 .hero-proof {
@@ -1016,12 +1017,12 @@ h3 {
   font-size: clamp(36px, 5vw, 52px);
   font-weight: 700;
   line-height: 1;
-  color: var(--olive-deep);
+  color: #ffffff;
 }
 
 .story-stats span {
   font-size: 14px;
-  color: var(--ink-soft);
+  color: #ffffff;
   letter-spacing: 0.02em;
   text-transform: uppercase;
 }
@@ -1380,19 +1381,21 @@ h3 {
 .accreditations-eyebrow {
   margin-bottom: 20px;
   color: #ffffff;
+  font-size: 15px;
 }
 
 .accreditations-row {
   display: flex;
   align-items: center;
-  gap: 32px;
+  justify-content: center;
+  gap: 40px;
   flex-wrap: wrap;
 }
 
 .accreditation-logo {
-  height: 34px;
+  height: 48px;
   width: auto;
-  max-width: 130px;
+  max-width: 160px;
   object-fit: contain;
   flex: 0 0 auto;
 }
@@ -1417,7 +1420,8 @@ h3 {
 }
 
 @media (min-width: 768px) {
-  .brands-section .eyebrow {
+  .brands-section .eyebrow,
+  .accreditations-eyebrow {
     font-size: 15px;
   }
 }
