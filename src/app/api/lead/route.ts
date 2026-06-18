@@ -80,7 +80,11 @@ export async function POST(request: Request) {
           ${selectionRows}
         </table>
         <hr style="margin:24px 0;border:none;border-top:1px solid #eee;">
-        <p style="margin:0;color:#666;font-size:14px;">Maycor Building Contractors · <a href="https://maycor.co.uk" style="color:#666;">maycor.co.uk</a> · <a href="tel:+442080507057" style="color:#666;">020 8050 7057</a></p>
+        <p style="margin:0;color:#666;font-size:14px;line-height:1.8;">
+          Maycor Building Contractors<br>
+          <a href="https://maycor.co.uk" style="color:#666;">maycor.co.uk</a><br>
+          <a href="mailto:admin@maycor.co.uk" style="color:#666;">admin@maycor.co.uk</a>
+        </p>
       </div>
     </div>
   `;
