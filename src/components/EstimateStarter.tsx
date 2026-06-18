@@ -320,7 +320,8 @@ export function EstimateStarter() {
     setStatus("loading");
     setMessage("");
 
-    const form = new FormData(event.currentTarget);
+    const formEl = event.currentTarget;
+    const form = new FormData(formEl);
     const selections = Object.fromEntries(
       config.sections.map((section) => [section.title, selectedLabel(section, selected)])
     );
@@ -355,7 +356,7 @@ export function EstimateStarter() {
 
       setStatus("success");
       setMessage("Thank you. Your estimate request has been sent to Maycor.");
-      event.currentTarget.reset();
+      formEl.reset();
       if (typeof window.gtag === "function") {
         window.gtag("event", "generate_lead", { currency: "GBP" });
       }
