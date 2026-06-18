@@ -355,7 +355,7 @@ export function EstimateStarter() {
       if (!response.ok) throw new Error(data?.error || "Could not send your request.");
 
       setStatus("success");
-      setMessage("Thank you. Your estimate request has been sent to Maycor. We will be in touch shortly.");
+      setMessage("Thank you for submitting your estimate request. We will be in touch soon.");
       formEl.reset();
       if (typeof window.gtag === "function") {
         window.gtag("event", "generate_lead", { currency: "GBP" });
