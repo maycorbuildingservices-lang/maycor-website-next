@@ -15,7 +15,7 @@ interface LeadPayload {
     consent: boolean;
   };
   selections: Record<string, string>;
-  pricing: { low: number; high: number } | null;
+  pricing: { final_low: number; final_high: number } | null;
 }
 
 export async function POST(request: Request) {
@@ -30,7 +30,7 @@ export async function POST(request: Request) {
   const { lead, selections, pricing } = payload;
 
   const priceRange = pricing
-    ? `£${pricing.low.toLocaleString()} – £${pricing.high.toLocaleString()}`
+    ? `£${pricing.final_low.toLocaleString()} – £${pricing.final_high.toLocaleString()}`
     : "Not calculated";
 
   const selectionRows = Object.entries(selections)
