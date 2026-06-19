@@ -1941,4 +1941,43 @@ h3 {
     height: 36px;
     font-size: 20px;
   }
+
+  .sticky-bar-expanded {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .sticky-bar-expanded > div:first-child {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .sticky-bar-expanded span,
+  .sticky-bar-expanded strong {
+    display: inline;
+  }
+
+  .sticky-bar-expanded small {
+    display: none;
+  }
+
+  .sticky-bar-expanded .sticky-whatsapp {
+    display: none;
+  }
+
+  .sticky-bar-expanded .sticky-actions {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .sticky-bar-expanded .sticky-actions a:not(.sticky-whatsapp),
+  .sticky-bar-expanded .sticky-actions button {
+    flex: 1;
+    text-align: center;
+  }
 }

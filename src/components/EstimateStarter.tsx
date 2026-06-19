@@ -595,7 +595,7 @@ export function EstimateStarter() {
         </div>
       </section>
 
-      <div className="sticky-estimate-bar" aria-live="polite">
+      <div className={`sticky-estimate-bar${isExpanded ? " sticky-bar-expanded" : ""}`} aria-live="polite">
         <div>
           <span>Estimated range</span>
           <strong>{rangeText}</strong>
