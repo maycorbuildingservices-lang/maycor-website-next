@@ -325,7 +325,11 @@ const jsonLd = {
   "@type": "HomeAndConstructionBusiness",
   name: "Maycor Building Contractors",
   url: "https://bathroom-renovations.maycor.co.uk/bathroom-renovations-london/",
-  areaServed: "London",
+  areaServed: [
+    "Kensington", "Chelsea", "Fulham", "Battersea", "Notting Hill",
+    "Hammersmith", "Hampstead", "St John's Wood", "Maida Vale", "Chiswick",
+    "South Kensington", "Belgravia", "Putney", "Wimbledon", "Barnes", "Angel", "London"
+  ],
   telephone: "+442080507057",
   image: images.hero,
   makesOffer: {
@@ -565,7 +569,7 @@ export function BathroomLandingPage() {
           />
           <div className="hero-shade" />
           <div className="hero-content">
-            <p className="eyebrow">Bathroom renovations in London</p>
+            <p className="eyebrow">Bathroom renovation contractors in London</p>
             <h1>From tired bathroom to calm, finished space.</h1>
             <p className="hero-copy">
               Maycor manages the full renovation: strip-out, plumbing, electrics,
@@ -590,6 +594,16 @@ export function BathroomLandingPage() {
             </div>
           ))}
         </div>
+
+        <section className="cost-intro-section">
+          <div className="section-heading">
+            <p className="eyebrow">Bathroom renovation cost in London</p>
+            <h2>How much does a bathroom renovation cost in London?</h2>
+            <p className="cost-intro-body">
+              In London, bathroom renovation costs typically range from <strong>£6,000 for a straightforward refresh</strong> to <strong>£20,000+ for a full premium renovation</strong>. The final cost depends on room size, finish level, structural changes, access conditions and sanitaryware specification. Use the estimate tool below to get an accurate range based on your specific bathroom.
+            </p>
+          </div>
+        </section>
 
         <EstimateStarter />
 
@@ -809,6 +823,22 @@ export function BathroomLandingPage() {
               />
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="areas-section" aria-label="Areas we cover">
+        <div className="section-heading">
+          <p className="eyebrow">Areas we cover</p>
+          <h2>Bathroom renovations across London&apos;s most sought-after neighbourhoods.</h2>
+          <p className="areas-body">
+            Maycor carries out bathroom renovations across premium London locations including{" "}
+            <strong>Kensington (W8)</strong>, <strong>Chelsea (SW3)</strong>, <strong>Fulham (SW6)</strong>,{" "}
+            <strong>Battersea (SW11)</strong>, <strong>Notting Hill (W11)</strong>, <strong>Hammersmith (W6)</strong>,{" "}
+            <strong>Hampstead (NW3)</strong>, <strong>St John&apos;s Wood (NW8)</strong>, <strong>Maida Vale (W9)</strong>,{" "}
+            <strong>Chiswick (W4)</strong>, <strong>South Kensington (SW7)</strong>, <strong>Belgravia (SW1X)</strong>,{" "}
+            <strong>Putney (SW15)</strong>, <strong>Wimbledon (SW19)</strong>, <strong>Barnes (SW13)</strong> and{" "}
+            <strong>Angel (N1)</strong>. If your area is not listed, get in touch — we cover most of London.
+          </p>
         </div>
       </section>
 

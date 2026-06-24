@@ -1458,6 +1458,44 @@ h3 {
   }
 }
 
+.cost-intro-section {
+  width: min(1180px, calc(100% - 36px));
+  margin: 0 auto;
+  padding: 56px 0 0;
+}
+
+.cost-intro-section .section-heading {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.cost-intro-body {
+  margin-top: 16px;
+  font-size: 17px;
+  line-height: 1.7;
+  color: #c8c2bb;
+}
+
+.areas-section {
+  width: min(1180px, calc(100% - 36px));
+  margin: 0 auto;
+  padding: 56px 0 36px;
+}
+
+.areas-section .section-heading {
+  max-width: 860px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.areas-body {
+  margin-top: 16px;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #c8c2bb;
+}
+
 .site-footer {
   display: flex;
   width: min(1180px, calc(100% - 36px));
