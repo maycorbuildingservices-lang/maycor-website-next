@@ -1493,7 +1493,7 @@ h3 {
   margin-top: 16px;
   font-size: 16px;
   line-height: 1.8;
-  color: #63644a;
+  color: var(--olive-deep);
 }
 
 @media (max-width: 767px) {
