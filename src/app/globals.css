@@ -1474,7 +1474,7 @@ h3 {
   margin-top: 16px;
   font-size: 17px;
   line-height: 1.7;
-  color: #ffffff;
+  color: #63644a;
 }
 
 .areas-section {
@@ -1493,7 +1493,25 @@ h3 {
   margin-top: 16px;
   font-size: 16px;
   line-height: 1.8;
-  color: #ffffff;
+  color: #63644a;
+}
+
+@media (max-width: 767px) {
+  .cost-intro-section {
+    padding: 40px 0 0;
+  }
+
+  .cost-intro-body {
+    font-size: 15px;
+  }
+
+  .areas-section {
+    padding: 40px 0 24px;
+  }
+
+  .areas-body {
+    font-size: 15px;
+  }
 }
 
 .site-footer {
