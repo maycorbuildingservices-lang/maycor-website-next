@@ -1,6 +1,12 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import "./globals.css";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
 
 const GA_ID = "G-3RWMN3PGDG";
 const AW_ID = "AW-457222828";

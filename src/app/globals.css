@@ -28,7 +28,7 @@ body {
   margin: 0;
   color: var(--ink);
   font-family: var(--font-inter), Arial, Helvetica, sans-serif;
-  padding-bottom: 98px;
+  padding-bottom: calc(98px + env(safe-area-inset-bottom, 0px));
 }
 
 .page-bg {
@@ -50,6 +50,7 @@ input,
 select,
 textarea {
   font: inherit;
+  -webkit-tap-highlight-color: transparent;
 }
 
 img {
@@ -614,6 +615,7 @@ h3 {
   color: var(--white);
   padding: 12px 14px;
   box-shadow: 0 18px 54px rgba(20, 25, 23, 0.38);
+  -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
   pointer-events: none;
 }
@@ -724,6 +726,7 @@ h3 {
   background: var(--white);
   color: var(--ink);
   padding: 11px;
+  font-size: 16px;
 }
 
 .lead-form textarea {
@@ -1553,7 +1556,7 @@ h3 {
 
   .site-nav a {
     flex: 1 1 auto;
-    padding: 4px 6px;
+    padding: 10px 6px;
     font-size: 12px;
     text-align: center;
     white-space: nowrap;
@@ -1670,7 +1673,7 @@ h3 {
 
 @media (max-width: 640px) {
   body {
-    padding-bottom: 126px;
+    padding-bottom: calc(126px + env(safe-area-inset-bottom, 0px));
   }
 
   .hero-copy {
@@ -1932,6 +1935,7 @@ h3 {
   position: relative;
   width: min(92vw, 1100px);
   height: min(82vh, 900px);
+  height: min(82dvh, 900px);
 }
 
 .lightbox-image img {
@@ -1984,6 +1988,7 @@ h3 {
   .lightbox-image {
     width: 100vw;
     height: 70vh;
+    height: 70dvh;
   }
 
   .lightbox-nav {
