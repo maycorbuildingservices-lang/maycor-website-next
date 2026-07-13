@@ -1968,6 +1968,7 @@ h3 {
   .site-footer {
     display: grid;
     gap: 8px;
+    color: var(--ink);
   }
 
   .sticky-estimate-bar {
