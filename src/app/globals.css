@@ -1829,8 +1829,18 @@ h3 {
     padding-bottom: 40px;
   }
 
-  .range-strip small {
-    display: none;
+  .range-strip {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    text-align: center;
+  }
+
+  .range-expand-button {
+    position: static;
+    order: 10;
+    align-self: center;
+    margin-top: 10px;
   }
 
   .room-grid {
