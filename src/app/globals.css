@@ -1830,17 +1830,23 @@ h3 {
   }
 
   .range-strip {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    text-align: center;
+    display: grid;
+    grid-template-areas:
+      "label button"
+      "price price"
+      "desc  desc";
+    grid-template-columns: 1fr auto;
+    gap: 4px;
+    align-items: center;
   }
+
+  .range-strip > span   { grid-area: label; }
+  .range-strip > strong { grid-area: price; }
+  .range-strip > small  { grid-area: desc; }
 
   .range-expand-button {
     position: static;
-    order: 10;
-    align-self: center;
-    margin-top: 10px;
+    grid-area: button;
   }
 
   .room-grid {
