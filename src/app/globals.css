@@ -1797,17 +1797,15 @@ h3 {
   .hero-actions {
     margin-top: auto;
     padding-top: 28px;
-    flex-direction: column;
     flex-wrap: nowrap;
     gap: 10px;
   }
 
   .hero-actions .primary-button,
   .hero-actions .secondary-button {
-    width: 100%;
-    justify-content: center;
-    font-size: 15px;
-    padding: 15px 18px;
+    white-space: nowrap;
+    font-size: 13px;
+    padding: 13px 10px;
   }
 
   h2 {
