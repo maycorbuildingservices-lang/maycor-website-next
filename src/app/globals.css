@@ -1702,6 +1702,22 @@ h3 {
     padding-bottom: calc(126px + env(safe-area-inset-bottom, 0px));
   }
 
+  .gallery-section,
+  .included-section,
+  .process-section,
+  .faq-section,
+  .testimonials-section {
+    padding: 48px 0;
+  }
+
+  .story-section {
+    padding: 32px 0 48px;
+  }
+
+  .london-section {
+    padding: 48px 0;
+  }
+
   .hero-copy {
     display: none;
   }
@@ -1810,6 +1826,11 @@ h3 {
 
   .estimate-panel {
     padding-top: 58px;
+    padding-bottom: 40px;
+  }
+
+  .range-strip small {
+    display: none;
   }
 
   .room-grid {
