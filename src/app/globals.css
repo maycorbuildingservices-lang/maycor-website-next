@@ -1714,6 +1714,14 @@ h3 {
     padding: 48px 0;
   }
 
+  .process-line article {
+    min-height: 0;
+  }
+
+  .process-line span {
+    margin-bottom: 20px;
+  }
+
   .story-section {
     padding: 32px 0 48px;
   }
