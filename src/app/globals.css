@@ -1526,11 +1526,6 @@ h3 {
     display: none;
   }
 
-  /* Stop the pulsing animation — creates an extra GPU compositing layer */
-  .estimate-highlight {
-    animation: none;
-  }
-
   /* White text that relied on the dark background image for contrast */
   .story-stats strong,
   .story-stats span {
