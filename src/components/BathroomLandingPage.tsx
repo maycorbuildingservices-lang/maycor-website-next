@@ -378,10 +378,12 @@ export function BathroomLandingPage() {
     }
 
     document.body.style.overflow = "hidden";
+    document.body.classList.add("lightbox-open");
     window.addEventListener("keydown", handleKeyDown);
 
     return () => {
       document.body.style.overflow = "";
+      document.body.classList.remove("lightbox-open");
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [lightboxIndex]);
@@ -456,6 +458,7 @@ export function BathroomLandingPage() {
     gallery.addEventListener("touchstart", pauseForInteraction, { passive: true });
 
     let scaleFrame: number | null = null;
+    const isMobile = window.matchMedia("(max-width: 767px)").matches;
 
     function updateScales() {
       if (!gallery) return;
@@ -486,6 +489,7 @@ export function BathroomLandingPage() {
     }
 
     function handleScroll() {
+      if (isMobile) return;
       if (scaleFrame !== null) return;
       scaleFrame = requestAnimationFrame(() => {
         updateScales();
@@ -493,7 +497,9 @@ export function BathroomLandingPage() {
       });
     }
 
-    updateScales();
+    if (!isMobile) {
+      updateScales();
+    }
     gallery.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", handleScroll);
 
