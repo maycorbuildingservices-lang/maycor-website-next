@@ -63,6 +63,8 @@ img {
   right: max(14px, calc((100vw - 1180px) / 2));
   left: max(14px, calc((100vw - 1180px) / 2));
   z-index: 30;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
   display: grid;
   width: auto;
   grid-template-columns: 190px 1fr auto;
@@ -604,6 +606,8 @@ h3 {
   bottom: 16px;
   left: 16px;
   z-index: 9999;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
   display: flex;
   gap: 16px;
   align-items: center;
