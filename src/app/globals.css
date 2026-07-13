@@ -1515,6 +1515,32 @@ h3 {
   .areas-body {
     font-size: 15px;
   }
+
+  /* Remove the fixed background image on mobile — forces a full-screen repaint
+     on every scroll frame which causes jank on older iPhones */
+  .page-bg {
+    display: none;
+  }
+
+  /* Stop the pulsing animation — creates an extra GPU compositing layer */
+  .estimate-highlight {
+    animation: none;
+  }
+
+  /* White text that relied on the dark background image for contrast */
+  .story-stats strong,
+  .story-stats span {
+    color: var(--olive-deep);
+  }
+
+  .accreditations-eyebrow,
+  .brands-section .eyebrow {
+    color: var(--olive-deep);
+  }
+
+  .site-footer {
+    color: var(--ink);
+  }
 }
 
 .site-footer {
