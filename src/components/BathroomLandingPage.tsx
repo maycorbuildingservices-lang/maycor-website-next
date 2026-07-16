@@ -332,6 +332,24 @@ const jsonLd = {
   ],
   telephone: "+442080507057",
   image: images.hero,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "120 Woodcock Hill",
+    addressLocality: "Harrow",
+    postalCode: "HA3 0JN",
+    addressCountry: "GB",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 51.577586,
+    longitude: -0.306405,
+  },
+  priceRange: "£6,000–£20,000+",
+  sameAs: [
+    "https://www.facebook.com/MaycorBuildingContractors",
+    "https://www.linkedin.com/in/victor-o-120686151/",
+    "https://g.co/kgs/49pzXDQ",
+  ],
   makesOffer: {
     "@type": "Offer",
     itemOffered: {
