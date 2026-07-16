@@ -6,6 +6,15 @@ const nextConfig: NextConfig = {
   },
   allowedDevOrigins: ["192.168.1.12"],
   devIndicators: false,
+  async redirects() {
+    return [
+      {
+        source: "/",
+        destination: "/bathroom-renovations-london/",
+        permanent: true,
+      },
+    ];
+  },
   images: {
     remotePatterns: [
       {

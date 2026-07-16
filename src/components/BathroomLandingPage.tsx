@@ -575,8 +575,8 @@ export function BathroomLandingPage() {
           />
           <div className="hero-shade" />
           <div className="hero-content">
-            <p className="eyebrow">Bathroom renovation contractors in London</p>
-            <h1>From tired bathroom to calm, finished space.</h1>
+            <p className="eyebrow">Premium bathroom renovation contractors</p>
+            <h1>Bathroom renovations in London, done calmly, start to finish.</h1>
             <p className="hero-copy">
               Maycor manages the full renovation: strip-out, plumbing, electrics,
               waterproofing, tiling, sanitaryware, finishing and waste removal.
