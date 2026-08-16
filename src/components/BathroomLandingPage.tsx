@@ -320,46 +320,76 @@ const brandLogos = [
     ],
   ];
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "HomeAndConstructionBusiness",
-  name: "Maycor Building Contractors",
-  url: "https://bathroom-renovations.maycor.co.uk/bathroom-renovations-london/",
-  areaServed: [
-    "Kensington", "Chelsea", "Fulham", "Battersea", "Notting Hill",
-    "Hammersmith", "Hampstead", "St John's Wood", "Maida Vale", "Chiswick",
-    "South Kensington", "Belgravia", "Putney", "Wimbledon", "Barnes", "Angel", "London"
-  ],
-  telephone: "+442080507057",
-  image: images.hero,
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "120 Woodcock Hill",
-    addressLocality: "Harrow",
-    postalCode: "HA3 0JN",
-    addressCountry: "GB",
-  },
-  geo: {
-    "@type": "GeoCoordinates",
-    latitude: 51.577586,
-    longitude: -0.306405,
-  },
-  priceRange: "£6,000–£20,000+",
-  sameAs: [
-    "https://www.facebook.com/MaycorBuildingContractors",
-    "https://www.linkedin.com/in/victor-o-120686151/",
-    "https://g.co/kgs/49pzXDQ",
-  ],
-  makesOffer: {
-    "@type": "Offer",
-    itemOffered: {
-      "@type": "Service",
-      name: "Bathroom renovations in London",
-    },
-  },
+const areaServedList = [
+  "Kensington", "Chelsea", "Fulham", "Battersea", "Notting Hill",
+  "Hammersmith", "Hampstead", "St John's Wood", "Maida Vale", "Chiswick",
+  "South Kensington", "Belgravia", "Putney", "Wimbledon", "Barnes", "Angel", "London"
+];
+
+export type LocalityConfig = {
+  slug: string;
+  name: string;
+  eyebrow: string;
+  h1: string;
+  intro?: string;
+  canonicalPath: string;
+  featuredTestimonial?: string;
 };
 
-export function BathroomLandingPage() {
+export const defaultLocality: LocalityConfig = {
+  slug: "london",
+  name: "London",
+  eyebrow: "Premium bathroom renovation contractors",
+  h1: "Bathroom renovations in London, done calmly, start to finish.",
+  canonicalPath: "/bathroom-renovations-london/",
+};
+
+export function BathroomLandingPage({ locality = defaultLocality }: { locality?: LocalityConfig } = {}) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "HomeAndConstructionBusiness",
+    name: "Maycor Building Contractors",
+    url: `https://bathroom-renovations.maycor.co.uk${locality.canonicalPath}`,
+    areaServed:
+      locality.slug === "london"
+        ? areaServedList
+        : [locality.name, ...areaServedList.filter((a) => a !== locality.name)],
+    telephone: "+442080507057",
+    image: images.hero,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "120 Woodcock Hill",
+      addressLocality: "Harrow",
+      postalCode: "HA3 0JN",
+      addressCountry: "GB",
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: 51.577586,
+      longitude: -0.306405,
+    },
+    priceRange: "£6,000–£20,000+",
+    sameAs: [
+      "https://www.facebook.com/MaycorBuildingContractors",
+      "https://www.linkedin.com/in/victor-o-120686151/",
+      "https://g.co/kgs/49pzXDQ",
+    ],
+    makesOffer: {
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: `Bathroom renovations in ${locality.name}`,
+      },
+    },
+  };
+
+  const orderedTestimonials = locality.featuredTestimonial
+    ? [
+        ...testimonials.filter((t) => t.name === locality.featuredTestimonial),
+        ...testimonials.filter((t) => t.name !== locality.featuredTestimonial),
+      ]
+    : testimonials;
+
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const lastTouchActivation = useRef(0);
@@ -593,12 +623,13 @@ export function BathroomLandingPage() {
           />
           <div className="hero-shade" />
           <div className="hero-content">
-            <p className="eyebrow">Premium bathroom renovation contractors</p>
-            <h1>Bathroom renovations in London, done calmly, start to finish.</h1>
+            <p className="eyebrow">{locality.eyebrow}</p>
+            <h1>{locality.h1}</h1>
             <p className="hero-copy">
               Maycor manages the full renovation: strip-out, plumbing, electrics,
               waterproofing, tiling, sanitaryware, finishing and waste removal.
             </p>
+            {locality.intro && <p className="hero-copy">{locality.intro}</p>}
             <div className="hero-actions">
               <a className="primary-button" href="#estimate">
                 See My Bathroom Cost
@@ -759,7 +790,7 @@ export function BathroomLandingPage() {
             <h2>Straightforward work, tidy finish, on schedule.</h2>
           </div>
           <div className="testimonials-grid">
-            {testimonials.map((t) => (
+            {orderedTestimonials.map((t) => (
               <article key={t.name} className="testimonial-card">
                 <p className="testimonial-quote">{t.quote}</p>
                 <div className="testimonial-author">
@@ -857,12 +888,19 @@ export function BathroomLandingPage() {
           <p className="areas-body">
             Maycor carries out bathroom renovations across premium London locations including{" "}
             <strong>Kensington (W8)</strong>, <strong>Chelsea (SW3)</strong>, <strong>Fulham (SW6)</strong>,{" "}
-            <strong>Battersea (SW11)</strong>, <strong>Notting Hill (W11)</strong>, <strong>Hammersmith (W6)</strong>,{" "}
+            <strong>Battersea (SW11)</strong>,{" "}
+            <a href="/bathroom-renovation-notting-hill/"><strong>Notting Hill (W11)</strong></a>,{" "}
+            <strong>Hammersmith (W6)</strong>,{" "}
             <strong>Hampstead (NW3)</strong>, <strong>St John&apos;s Wood (NW8)</strong>, <strong>Maida Vale (W9)</strong>,{" "}
             <strong>Chiswick (W4)</strong>, <strong>South Kensington (SW7)</strong>, <strong>Belgravia (SW1X)</strong>,{" "}
             <strong>Putney (SW15)</strong>, <strong>Wimbledon (SW19)</strong>, <strong>Barnes (SW13)</strong> and{" "}
             <strong>Angel (N1)</strong>. If your area is not listed, get in touch — we cover most of London.
           </p>
+          {locality.slug !== "london" && (
+            <p className="areas-body">
+              <a href="/bathroom-renovations-london/">See our full coverage across London →</a>
+            </p>
+          )}
         </div>
       </section>
 

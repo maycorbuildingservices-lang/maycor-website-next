@@ -1503,6 +1503,18 @@ h3 {
   color: var(--olive-deep);
 }
 
+.areas-body a {
+  color: var(--olive-deep);
+  text-decoration: underline;
+  text-decoration-color: var(--olive);
+  text-underline-offset: 3px;
+}
+
+.areas-body a:hover,
+.areas-body a:focus-visible {
+  color: var(--olive);
+}
+
 @media (max-width: 767px) {
   .cost-intro-section {
     padding: 40px 0 0;
