@@ -373,14 +373,35 @@ export function BathroomLandingPage({ locality = defaultLocality }: { locality?:
       "https://www.facebook.com/MaycorBuildingContractors",
       "https://www.linkedin.com/in/victor-o-120686151/",
       "https://g.co/kgs/49pzXDQ",
+      "https://www.mybuilder.com/profile/maycor-renovations",
     ],
     makesOffer: {
       "@type": "Offer",
       itemOffered: {
         "@type": "Service",
         name: `Bathroom renovations in ${locality.name}`,
+        description:
+          "Full bathroom renovation: strip-out, plumbing, electrics, waterproofing, tiling, decorating, fittings and waste removal.",
+        areaServed:
+          locality.slug === "london"
+            ? areaServedList
+            : [locality.name, ...areaServedList.filter((a) => a !== locality.name)],
+        priceRange: "£6,000–£20,000+",
       },
     },
+  };
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map(([question, answer]) => ({
+      "@type": "Question",
+      name: question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: answer,
+      },
+    })),
   };
 
   const orderedTestimonials = locality.featuredTestimonial
@@ -582,6 +603,10 @@ export function BathroomLandingPage({ locality = defaultLocality }: { locality?:
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
       <div className="page-bg" aria-hidden="true" />
       <header className="site-header" aria-label="Maycor site header">
