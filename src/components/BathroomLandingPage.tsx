@@ -323,7 +323,7 @@ const brandLogos = [
 const areaServedList = [
   "Kensington", "Chelsea", "Fulham", "Battersea", "Notting Hill",
   "Hammersmith", "Hampstead", "St John's Wood", "Maida Vale", "Chiswick",
-  "South Kensington", "Belgravia", "Putney", "Wimbledon", "Barnes", "Angel", "London"
+  "South Kensington", "Belgravia", "Putney", "Barnes", "Angel", "London"
 ];
 
 export type LocalityConfig = {
