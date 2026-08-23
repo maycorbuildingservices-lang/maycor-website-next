@@ -918,7 +918,7 @@ export function BathroomLandingPage({ locality = defaultLocality }: { locality?:
             <strong>Hammersmith (W6)</strong>,{" "}
             <strong>Hampstead (NW3)</strong>, <strong>St John&apos;s Wood (NW8)</strong>, <strong>Maida Vale (W9)</strong>,{" "}
             <strong>Chiswick (W4)</strong>, <strong>South Kensington (SW7)</strong>, <strong>Belgravia (SW1X)</strong>,{" "}
-            <strong>Putney (SW15)</strong>, <strong>Wimbledon (SW19)</strong>, <strong>Barnes (SW13)</strong> and{" "}
+            <strong>Putney (SW15)</strong>, <strong>Barnes (SW13)</strong> and{" "}
             <strong>Angel (N1)</strong>. If your area is not listed, get in touch — we cover most of London.
           </p>
           {locality.slug !== "london" && (
