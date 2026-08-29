@@ -5,7 +5,7 @@ const chelseaLocality: LocalityConfig = {
   slug: "chelsea",
   name: "Chelsea",
   eyebrow: "Premium bathroom renovation contractors in Chelsea",
-  h1: "Bathroom renovations in Chelsea, done calmly, start to finish.",
+  h1: "Bathroom renovations in Chelsea, fitted around period features and tight access.",
   intro:
     "Chelsea's Georgian and Victorian terraces, mews houses and King's Road conversions around SW3 and SW10 come with their own mix of conservation area constraints, tight access, and period features worth protecting. Maycor plans around all of it, so the finished bathroom fits a Chelsea property as much as it fits your brief.",
   canonicalPath: "/bathroom-renovation-chelsea/",

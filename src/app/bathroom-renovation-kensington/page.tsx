@@ -5,7 +5,7 @@ const kensingtonLocality: LocalityConfig = {
   slug: "kensington",
   name: "Kensington",
   eyebrow: "Premium bathroom renovation contractors in Kensington",
-  h1: "Bathroom renovations in Kensington, done calmly, start to finish.",
+  h1: "Bathroom renovations in Kensington, done with conservation rules in mind.",
   intro:
     "Kensington's stucco-fronted townhouses, red-brick mansion blocks and portered apartments around W8 mean most renovations involve conservation area rules, managing agent sign-off, or careful work around original plasterwork and period detailing. Maycor plans around all of it, so the finished bathroom fits a Kensington property as much as it fits your brief.",
   canonicalPath: "/bathroom-renovation-kensington/",

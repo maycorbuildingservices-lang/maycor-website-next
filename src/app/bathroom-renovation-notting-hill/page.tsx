@@ -5,7 +5,7 @@ const nottingHillLocality: LocalityConfig = {
   slug: "notting-hill",
   name: "Notting Hill",
   eyebrow: "Premium bathroom renovation contractors in Notting Hill",
-  h1: "Bathroom renovations in Notting Hill, done calmly, start to finish.",
+  h1: "Bathroom renovations in Notting Hill, built around period detail and access.",
   intro:
     "Notting Hill's mix of Victorian terraces, garden flats and portered mansion blocks around W11 means every renovation has its own access, planning and period-detail considerations. Maycor plans around all of it, so the finished bathroom fits the property as much as it fits your brief.",
   canonicalPath: "/bathroom-renovation-notting-hill/",
