@@ -310,7 +310,7 @@ export function BathroomLandingPage({ locality = defaultLocality }: { locality?:
       locality.slug === "london"
         ? areaServedList
         : [locality.name, ...areaServedList.filter((a) => a !== locality.name)],
-    telephone: "+442080507057",
+    telephone: "+447843746835",
     image: images.hero,
     address: {
       "@type": "PostalAddress",
@@ -330,6 +330,13 @@ export function BathroomLandingPage({ locality = defaultLocality }: { locality?:
       "https://www.linkedin.com/in/victor-o-120686151/",
       "https://g.co/kgs/49pzXDQ",
       "https://www.mybuilder.com/profile/maycor-renovations",
+    ],
+    hasCredential: [
+      { "@type": "EducationalOccupationalCredential", credentialCategory: "certification", name: "Federation of Master Builders (FMB) member" },
+      { "@type": "EducationalOccupationalCredential", credentialCategory: "certification", name: "NICEIC Approved Contractor" },
+      { "@type": "EducationalOccupationalCredential", credentialCategory: "certification", name: "Gas Safe Register" },
+      { "@type": "EducationalOccupationalCredential", credentialCategory: "certification", name: "CHAS Accredited" },
+      { "@type": "EducationalOccupationalCredential", credentialCategory: "certification", name: "Constructionline member" },
     ],
     makesOffer: {
       "@type": "Offer",
@@ -358,6 +365,22 @@ export function BathroomLandingPage({ locality = defaultLocality }: { locality?:
         text: answer,
       },
     })),
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement:
+      locality.slug === "london"
+        ? [
+            { "@type": "ListItem", position: 1, name: "Home", item: "https://bathroom-renovations.maycor.co.uk/" },
+            { "@type": "ListItem", position: 2, name: "Bathroom Renovations London", item: "https://bathroom-renovations.maycor.co.uk/bathroom-renovations-london/" },
+          ]
+        : [
+            { "@type": "ListItem", position: 1, name: "Home", item: "https://bathroom-renovations.maycor.co.uk/" },
+            { "@type": "ListItem", position: 2, name: "Bathroom Renovations London", item: "https://bathroom-renovations.maycor.co.uk/bathroom-renovations-london/" },
+            { "@type": "ListItem", position: 3, name: `Bathroom Renovation ${locality.name}`, item: `https://bathroom-renovations.maycor.co.uk${locality.canonicalPath}` },
+          ],
   };
 
   const orderedTestimonials = locality.featuredTestimonial
@@ -589,6 +612,10 @@ export function BathroomLandingPage({ locality = defaultLocality }: { locality?:
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <div className="page-bg" aria-hidden="true" />
       <header className="site-header" aria-label="Maycor site header">

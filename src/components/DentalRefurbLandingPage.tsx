@@ -162,7 +162,7 @@ export function DentalRefurbLandingPage() {
     name: "Maycor Building Contractors",
     url: "https://bathroom-renovations.maycor.co.uk/dental-practice-refurbishment-london/",
     areaServed: ["London", "United Kingdom"],
-    telephone: "+442080507057",
+    telephone: "+447843746835",
     image: images.hero,
     address: {
       "@type": "PostalAddress",
@@ -181,6 +181,13 @@ export function DentalRefurbLandingPage() {
       "https://www.linkedin.com/in/victor-o-120686151/",
       "https://g.co/kgs/49pzXDQ",
       "https://www.mybuilder.com/profile/maycor-renovations",
+    ],
+    hasCredential: [
+      { "@type": "EducationalOccupationalCredential", credentialCategory: "certification", name: "Federation of Master Builders (FMB) member" },
+      { "@type": "EducationalOccupationalCredential", credentialCategory: "certification", name: "NICEIC Approved Contractor" },
+      { "@type": "EducationalOccupationalCredential", credentialCategory: "certification", name: "Gas Safe Register" },
+      { "@type": "EducationalOccupationalCredential", credentialCategory: "certification", name: "CHAS Accredited" },
+      { "@type": "EducationalOccupationalCredential", credentialCategory: "certification", name: "Constructionline member" },
     ],
     makesOffer: {
       "@type": "Offer",
@@ -205,6 +212,15 @@ export function DentalRefurbLandingPage() {
         text: answer,
       },
     })),
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://bathroom-renovations.maycor.co.uk/" },
+      { "@type": "ListItem", position: 2, name: "Dental Practice Refurbishment", item: "https://bathroom-renovations.maycor.co.uk/dental-practice-refurbishment-london/" },
+    ],
   };
 
   function showPrevPhoto() {
@@ -267,6 +283,10 @@ export function DentalRefurbLandingPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <header className="site-header" aria-label="Maycor site header">
         <a className="brand" href="#top" aria-label="Maycor dental practice refurbishment page top">
@@ -563,7 +583,7 @@ export function DentalRefurbLandingPage() {
           maycor.co.uk
         </a>
         <span>
-          Call us: <a href="tel:+442080507057">020 8050 7057</a>
+          Call us: <a href="tel:+447843746835">07843 746 835</a>
         </span>
       </footer>
 

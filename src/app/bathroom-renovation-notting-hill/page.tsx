@@ -12,12 +12,27 @@ const nottingHillLocality: LocalityConfig = {
   featuredTestimonial: "Sophie Bower",
 };
 
+const title = "Bathroom Renovations in Notting Hill, W11";
+const description =
+  "Premium bathroom renovation in Notting Hill, W11. One coordinated Maycor team — strip-out to finish, quick estimate range online.";
+
 export const metadata: Metadata = {
-  title: "Bathroom Renovations in Notting Hill, W11",
-  description:
-    "Premium bathroom renovation in Notting Hill, W11. One coordinated Maycor team — strip-out to finish, quick estimate range online.",
+  title,
+  description,
   alternates: {
     canonical: "/bathroom-renovation-notting-hill/",
+  },
+  openGraph: {
+    title,
+    description,
+    url: "/bathroom-renovation-notting-hill/",
+    images: [{ url: "/images/hero-bathroom-vanity-mirror.jpg", width: 1200, height: 1500, alt: "Bathroom renovation in Notting Hill by Maycor" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: ["/images/hero-bathroom-vanity-mirror.jpg"],
   },
 };
 
