@@ -7,7 +7,7 @@ import { EstimateStarter } from "./EstimateStarter";
 const images = {
   logo: "https://maycor.co.uk/wp-content/uploads/2025/03/main-logo-all-04-300x93.png",
   hero: "/images/hero-bathroom-vanity-mirror.jpg",
-  story: "/images/story-jay-bathroom-v2.jpg",
+  story: "/images/story-dark-tile-vanity.jpg",
   wc: "/images/gallery-loo.jpg",
   niche: "/images/gallery-shower.jpg",
   vanity: "https://maycor.co.uk/wp-content/uploads/2025/05/maycor-gallery-7.jpg",
@@ -673,7 +673,7 @@ export function BathroomLandingPage({ locality = defaultLocality }: { locality?:
           <div className="story-media">
             <Image
               src={images.story}
-              alt="Modern bathroom with shower enclosure, illuminated mirror and fitted vanity"
+              alt="Matt black wall-hung vanity with an oval brass-framed mirror on a dark textured tile feature wall, wall-hung toilet and glass shower screen alongside"
               width={1200}
               height={1600}
               sizes="(max-width: 900px) 100vw, 42vw"
