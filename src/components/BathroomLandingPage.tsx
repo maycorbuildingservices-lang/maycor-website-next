@@ -371,6 +371,7 @@ export function BathroomLandingPage({ locality = defaultLocality }: { locality?:
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const lastTouchActivation = useRef(0);
   const galleryRef = useRef<HTMLDivElement>(null);
+  const galleryControls = useRef<{ prev: () => void; next: () => void } | null>(null);
 
   function showPrevPhoto() {
     setLightboxIndex((current) => (current === null ? null : (current - 1 + galleryPhotos.length) % galleryPhotos.length));
@@ -443,28 +444,52 @@ export function BathroomLandingPage({ locality = defaultLocality }: { locality?:
       }, 1300);
     }
 
+    function closestIndex() {
+      if (!gallery) return 0;
+      const figures = Array.from(gallery.querySelectorAll("figure"));
+      const galleryRect = gallery.getBoundingClientRect();
+      const galleryCenter = galleryRect.left + galleryRect.width / 2;
+      let closest = 0;
+      let closestDist = Infinity;
+      figures.forEach((figure, i) => {
+        const rect = figure.getBoundingClientRect();
+        const dist = Math.abs(rect.left + rect.width / 2 - galleryCenter);
+        if (dist < closestDist) {
+          closestDist = dist;
+          closest = i;
+        }
+      });
+      return closest;
+    }
+
     function pauseForInteraction() {
       stopAutoplay();
       if (resumeTimer) clearTimeout(resumeTimer);
       resumeTimer = setTimeout(() => {
-        if (!gallery) return;
-        const figures = Array.from(gallery.querySelectorAll("figure"));
-        const galleryRect = gallery.getBoundingClientRect();
-        const galleryCenter = galleryRect.left + galleryRect.width / 2;
-        let closest = 0;
-        let closestDist = Infinity;
-        figures.forEach((figure, i) => {
-          const rect = figure.getBoundingClientRect();
-          const dist = Math.abs(rect.left + rect.width / 2 - galleryCenter);
-          if (dist < closestDist) {
-            closestDist = dist;
-            closest = i;
-          }
-        });
-        index = closest;
+        index = closestIndex();
         startAutoplay();
       }, 2000);
     }
+
+    function goToIndex(newIndex: number) {
+      if (!gallery) return;
+      const figures = Array.from(gallery.querySelectorAll("figure")) as HTMLElement[];
+      if (figures.length === 0) return;
+      index = ((newIndex % figures.length) + figures.length) % figures.length;
+      const figure = figures[index];
+      const galleryRect = gallery.getBoundingClientRect();
+      const figureRect = figure.getBoundingClientRect();
+      const targetLeft =
+        gallery.scrollLeft + (figureRect.left - galleryRect.left) - (gallery.clientWidth - figureRect.width) / 2;
+      gallery.scrollTo({ left: targetLeft, behavior: "smooth" });
+    }
+
+    function goRelative(direction: number) {
+      pauseForInteraction();
+      goToIndex(closestIndex() + direction);
+    }
+
+    galleryControls.current = { prev: () => goRelative(-1), next: () => goRelative(1) };
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -537,6 +562,7 @@ export function BathroomLandingPage({ locality = defaultLocality }: { locality?:
       gallery.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleScroll);
       if (scaleFrame !== null) cancelAnimationFrame(scaleFrame);
+      galleryControls.current = null;
     };
   }, []);
 
@@ -684,7 +710,16 @@ export function BathroomLandingPage({ locality = defaultLocality }: { locality?:
             <p className="eyebrow">Recent finish direction</p>
             <h2>Clean lines, practical detailing, spaces that feel settled.</h2>
           </div>
-          <div className="gallery-grid" ref={galleryRef}>
+          <div className="gallery-grid-wrap">
+            <button
+              type="button"
+              className="gallery-nav gallery-nav-prev"
+              aria-label="Previous photo"
+              onClick={() => galleryControls.current?.prev()}
+            >
+              ‹
+            </button>
+            <div className="gallery-grid" ref={galleryRef}>
             {galleryPhotos.map((photo, photoIndex) => (
               <figure
                 key={photo.src}
@@ -711,6 +746,15 @@ export function BathroomLandingPage({ locality = defaultLocality }: { locality?:
                 </span>
               </figure>
             ))}
+            </div>
+            <button
+              type="button"
+              className="gallery-nav gallery-nav-next"
+              aria-label="Next photo"
+              onClick={() => galleryControls.current?.next()}
+            >
+              ›
+            </button>
           </div>
         </section>
 
