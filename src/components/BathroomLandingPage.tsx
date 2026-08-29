@@ -912,11 +912,12 @@ export function BathroomLandingPage({ locality = defaultLocality }: { locality?:
           <h2>Bathroom renovations across London&apos;s most sought-after neighbourhoods.</h2>
           <p className="areas-body">
             Maycor carries out bathroom renovations across premium London locations including{" "}
-            <strong>Kensington (W8)</strong>, <strong>Chelsea (SW3)</strong>, <strong>Fulham (SW6)</strong>,{" "}
+            <a href="/bathroom-renovation-kensington/"><strong>Kensington (W8)</strong></a>,{" "}
+            <a href="/bathroom-renovation-chelsea/"><strong>Chelsea (SW3)</strong></a>, <strong>Fulham (SW6)</strong>,{" "}
             <strong>Battersea (SW11)</strong>,{" "}
             <a href="/bathroom-renovation-notting-hill/"><strong>Notting Hill (W11)</strong></a>,{" "}
             <strong>Hammersmith (W6)</strong>,{" "}
-            <strong>Hampstead (NW3)</strong>, <strong>St John&apos;s Wood (NW8)</strong>, <strong>Maida Vale (W9)</strong>,{" "}
+            <a href="/bathroom-renovation-hampstead/"><strong>Hampstead (NW3)</strong></a>, <strong>St John&apos;s Wood (NW8)</strong>, <strong>Maida Vale (W9)</strong>,{" "}
             <strong>Chiswick (W4)</strong>, <strong>South Kensington (SW7)</strong>, <strong>Belgravia (SW1X)</strong>,{" "}
             <strong>Putney (SW15)</strong>, <strong>Barnes (SW13)</strong> and{" "}
             <strong>Angel (N1)</strong>. If your area is not listed, get in touch — we cover most of London.
