@@ -122,8 +122,8 @@ const galleryPhotos = [
   { src: images.vanity, alt: "Double vanity bathroom renovation detail", className: "" },
   { src: images.extra17, alt: "Frameless corner shower enclosure with black frame, recessed niche and matt black shower controls", className: "gallery-wide" },
   { src: images.extra18, alt: "Wall-mounted mirrored bathroom cabinet with integrated light and shaver socket above a round-basin vanity unit", className: "" },
-  { src: images.extra19, alt: "Stone-effect tiled shower with chrome riser rail, thermostatic shower valve and mirrored cabinet reflected alongside", className: "" },
-  { src: images.extra20, alt: "Stone-effect tiled shower with chrome riser rail, thermostatic shower valve and mirrored cabinet reflected alongside", className: "" },
+  { src: images.extra19, alt: "Wall-hung round-basin vanity with mirrored cabinet and wall-hung toilet, beside a glass shower screen in a grey stone-tiled bathroom", className: "" },
+  { src: images.extra20, alt: "Sliding glass shower screen with chrome riser rail and handheld shower head, grey stone-tiled walls and navy towel on a wall rail", className: "" },
   { src: images.extra21, alt: "Sliding glass shower door with stone-effect grey tiling, chrome thermostatic valve and handheld shower, navy towel on the rail alongside", className: "" },
   { src: images.extra22, alt: "Wall-hung basin with chrome tap beside a walk-in shower and bath, set against stone-effect grey wall tiles", className: "" },
   { src: images.wc, alt: "Wall hung toilet detail", className: "" },
@@ -145,8 +145,8 @@ const galleryPhotos = [
   { src: images.extra36, alt: "Corner walk-in shower with overhead rainfall head and stone-effect tiling, bedroom visible through the open door beyond", className: "" },
   { src: images.extra37, alt: "Stone-effect tiled walk-in shower with frameless glass screen and chrome concealed thermostatic valve", className: "" },
   { src: images.extra38, alt: "Walk-in shower with ceiling-mounted rainfall head, stone-effect tiling and chrome ladder towel rail beside a frosted window", className: "gallery-wide" },
-  { src: images.extra39, alt: "En-suite shower room with walk-in shower, floating vanity basin and toilet fitted with protective seal tape, stone-effect tiling throughout", className: "" },
-  { src: images.extra40, alt: "En-suite shower room with walk-in shower, floating vanity basin and toilet fitted with protective seal tape, stone-effect tiling throughout", className: "" },
+  { src: images.extra39, alt: "Walk-in wet-room shower with ceiling-mounted rain head, a window with plant on the sill and a chrome heated towel rail", className: "" },
+  { src: images.extra40, alt: "Walk-in shower with mirrored cabinet and wall-hung vanity basin, toilet still fitted with protective seal tape ready for handover", className: "" },
   { src: images.extra1, alt: "White marble bathroom with bath, wall-hung vanity basin, backlit mirror and toilet still fitted with protective seal tape, ready for handover", className: "" },
   { src: images.extra41, alt: "Walk-in wet-room shower with stone-effect tiling, ceiling-mounted rainfall head and chrome heated towel rail with striped towels", className: "" },
   { src: images.extra42, alt: "Beige stone-effect tiled bathroom with wall-hung basin, mirrored cabinet and toilet fitted with protective seal tape", className: "" },
@@ -213,8 +213,8 @@ const galleryPhotos = [
   { src: images.extra94, alt: "Sliding glass shower door with textured stone-effect tiling and rainfall head, deep blue accent wall and dressed window beyond", className: "gallery-wide" },
   { src: images.extra95, alt: "Wall-hung basin with toiletries beneath a windowsill styled with a soap dish and reed diffuser, deep blue accent wall", className: "" },
   { src: images.extra96, alt: "Close-up of a windowsill styled with soap dish, body brush and reed diffuser beside a wall-hung basin with toiletries and concealed cistern flush plate", className: "" },
-  { src: images.extra97, alt: "Round pebble-textured mirror above a vase of eucalyptus and a wall-mounted soap dispenser, deep grey-green walls", className: "" },
-  { src: images.extra98, alt: "Round pebble-textured mirror above a vase of eucalyptus and a wall-mounted soap dispenser, deep grey-green walls", className: "" },
+  { src: images.extra97, alt: "Windowsill styled with a soap dish and pump bottle, wall-hung basin below with a toothbrush holder and concealed cistern flush plate", className: "" },
+  { src: images.extra98, alt: "Round pebble-textured mirror above a vase of eucalyptus, deep grey-green walls with a window and blinds reflected in the glass", className: "" },
 ];
 
 // TODO: Replace these three placeholder quotes with real customer words before launch.
