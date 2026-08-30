@@ -31,6 +31,7 @@
 - [Bathroom Renovation Angel](https://bathroom-renovations.maycor.co.uk/bathroom-renovation-angel/): Locality page for Angel / N1.
 - [Bathroom Renovation Cost Guide](https://bathroom-renovations.maycor.co.uk/bathroom-renovation-cost-guide-london/): Long-form guide — real price ranges by room size (WC to 8+ sqm) and finish level (standard/mid-range/premium), from £3,900 to £21,700, plus what drives cost up or down (access, layout changes, structural work, shower type, heating, electrics, tiling).
 - [Dental Practice Refurbishment](https://bathroom-renovations.maycor.co.uk/dental-practice-refurbishment-london/): Dental practice fit-out and refurbishment — HTM 01-05 decontamination rooms, CQC-compliant surgery fit-outs, X-ray room lead lining, process, FAQ. London and UK-wide.
+- [HTM 01-05 Decontamination Room Guide](https://bathroom-renovations.maycor.co.uk/htm-01-05-decontamination-room-guide/): Long-form guide to HTM 01-05 — the dirty-to-clean workflow, two-room split vs single Instrument Processing Area, the ultrasonic bath / washer-disinfector / autoclave equipment sequence, surface and drainage requirements, and how CQC Regulation 15 registration ties in.
 
 ## Service area
 
