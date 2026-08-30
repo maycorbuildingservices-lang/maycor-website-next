@@ -279,7 +279,7 @@ const brandLogos = [
 const areaServedList = [
   "Kensington", "Chelsea", "Fulham", "Battersea", "Notting Hill",
   "Hammersmith", "Hampstead", "St John's Wood", "Maida Vale", "Chiswick",
-  "South Kensington", "Belgravia", "Putney", "Barnes", "Angel", "London"
+  "South Kensington", "Belgravia", "Putney", "Angel", "London"
 ];
 
 export type LocalityConfig = {
@@ -940,16 +940,21 @@ export function BathroomLandingPage({ locality = defaultLocality }: { locality?:
           <p className="areas-body">
             Maycor carries out bathroom renovations across premium London locations including{" "}
             <a href="/bathroom-renovation-kensington/"><strong>Kensington (W8)</strong></a>,{" "}
-            <a href="/bathroom-renovation-chelsea/"><strong>Chelsea (SW3)</strong></a>, <strong>Fulham (SW6)</strong>,{" "}
-            <strong>Battersea (SW11)</strong>,{" "}
+            <a href="/bathroom-renovation-chelsea/"><strong>Chelsea (SW3)</strong></a>,{" "}
+            <a href="/bathroom-renovation-fulham/"><strong>Fulham (SW6)</strong></a>,{" "}
+            <a href="/bathroom-renovation-battersea/"><strong>Battersea (SW11)</strong></a>,{" "}
             <a href="/bathroom-renovation-notting-hill/"><strong>Notting Hill (W11)</strong></a>,{" "}
             <a href="/bathroom-renovation-hammersmith/"><strong>Hammersmith (W6)</strong></a>,{" "}
             <a href="/bathroom-renovation-shepherds-bush/"><strong>Shepherd&apos;s Bush (W12)</strong></a>,{" "}
             <a href="/bathroom-renovation-earls-court/"><strong>Earls Court (SW5)</strong></a>,{" "}
-            <a href="/bathroom-renovation-hampstead/"><strong>Hampstead (NW3)</strong></a>, <strong>St John&apos;s Wood (NW8)</strong>, <strong>Maida Vale (W9)</strong>,{" "}
-            <strong>Chiswick (W4)</strong>, <strong>South Kensington (SW7)</strong>, <strong>Belgravia (SW1X)</strong>,{" "}
-            <a href="/bathroom-renovation-putney/"><strong>Putney (SW15)</strong></a>, <strong>Barnes (SW13)</strong> and{" "}
-            <strong>Angel (N1)</strong>. If your area is not listed, get in touch — we cover most of London.
+            <a href="/bathroom-renovation-hampstead/"><strong>Hampstead (NW3)</strong></a>,{" "}
+            <a href="/bathroom-renovation-st-johns-wood/"><strong>St John&apos;s Wood (NW8)</strong></a>,{" "}
+            <a href="/bathroom-renovation-maida-vale/"><strong>Maida Vale (W9)</strong></a>,{" "}
+            <a href="/bathroom-renovation-chiswick/"><strong>Chiswick (W4)</strong></a>,{" "}
+            <a href="/bathroom-renovation-south-kensington/"><strong>South Kensington (SW7)</strong></a>,{" "}
+            <a href="/bathroom-renovation-belgravia/"><strong>Belgravia (SW1X)</strong></a>,{" "}
+            <a href="/bathroom-renovation-putney/"><strong>Putney (SW15)</strong></a> and{" "}
+            <a href="/bathroom-renovation-angel/"><strong>Angel (N1)</strong></a>. If your area is not listed, get in touch — we cover most of London.
           </p>
           {locality.slug !== "london" && (
             <p className="areas-body">
