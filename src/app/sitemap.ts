@@ -39,6 +39,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: "https://bathroom-renovations.maycor.co.uk/bathroom-renovation-hammersmith/",
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: "https://bathroom-renovations.maycor.co.uk/bathroom-renovation-shepherds-bush/",
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: "https://bathroom-renovations.maycor.co.uk/bathroom-renovation-earls-court/",
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
       url: "https://bathroom-renovations.maycor.co.uk/dental-practice-refurbishment-london/",
       lastModified: new Date(),
       changeFrequency: "weekly",

@@ -943,7 +943,9 @@ export function BathroomLandingPage({ locality = defaultLocality }: { locality?:
             <a href="/bathroom-renovation-chelsea/"><strong>Chelsea (SW3)</strong></a>, <strong>Fulham (SW6)</strong>,{" "}
             <strong>Battersea (SW11)</strong>,{" "}
             <a href="/bathroom-renovation-notting-hill/"><strong>Notting Hill (W11)</strong></a>,{" "}
-            <strong>Hammersmith (W6)</strong>,{" "}
+            <a href="/bathroom-renovation-hammersmith/"><strong>Hammersmith (W6)</strong></a>,{" "}
+            <a href="/bathroom-renovation-shepherds-bush/"><strong>Shepherd&apos;s Bush (W12)</strong></a>,{" "}
+            <a href="/bathroom-renovation-earls-court/"><strong>Earls Court (SW5)</strong></a>,{" "}
             <a href="/bathroom-renovation-hampstead/"><strong>Hampstead (NW3)</strong></a>, <strong>St John&apos;s Wood (NW8)</strong>, <strong>Maida Vale (W9)</strong>,{" "}
             <strong>Chiswick (W4)</strong>, <strong>South Kensington (SW7)</strong>, <strong>Belgravia (SW1X)</strong>,{" "}
             <a href="/bathroom-renovation-putney/"><strong>Putney (SW15)</strong></a>, <strong>Barnes (SW13)</strong> and{" "}
