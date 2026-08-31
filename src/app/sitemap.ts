@@ -25,6 +25,7 @@ const bathroomUrls = [
 const dentalUrls = [
   { path: "", priority: 1 },
   { path: "htm-01-05-decontamination-room-guide", priority: 0.9 },
+  { path: "cqc-regulation-15-checklist", priority: 0.9 },
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
