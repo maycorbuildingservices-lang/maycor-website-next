@@ -160,7 +160,7 @@ export function DentalRefurbLandingPage() {
     "@context": "https://schema.org",
     "@type": "HomeAndConstructionBusiness",
     name: "Maycor Building Contractors",
-    url: "https://bathroom-renovations.maycor.co.uk/dental-practice-refurbishment-london/",
+    url: "https://dental.maycor.co.uk/",
     areaServed: ["London", "United Kingdom"],
     telephone: "+447843746835",
     image: images.hero,
@@ -218,8 +218,7 @@ export function DentalRefurbLandingPage() {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: "https://bathroom-renovations.maycor.co.uk/" },
-      { "@type": "ListItem", position: 2, name: "Dental Practice Refurbishment", item: "https://bathroom-renovations.maycor.co.uk/dental-practice-refurbishment-london/" },
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://dental.maycor.co.uk/" },
     ],
   };
 

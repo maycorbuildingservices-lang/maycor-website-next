@@ -9,12 +9,12 @@ export const metadata: Metadata = {
   title,
   description,
   alternates: {
-    canonical: "/dental-practice-refurbishment-london/",
+    canonical: "https://dental.maycor.co.uk/",
   },
   openGraph: {
     title,
     description,
-    url: "/dental-practice-refurbishment-london/",
+    url: "https://dental.maycor.co.uk/",
     images: [{ url: "https://maycor.co.uk/wp-content/uploads/2025/05/maycor-gallery-20.jpg", width: 1200, height: 1500, alt: "Dental practice refurbishment by Maycor" }],
   },
   twitter: {

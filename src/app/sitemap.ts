@@ -1,126 +1,43 @@
 import type { MetadataRoute } from "next";
+import { headers } from "next/headers";
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  return [
-    {
-      url: "https://bathroom-renovations.maycor.co.uk/bathroom-renovations-london/",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 1,
-    },
-    {
-      url: "https://bathroom-renovations.maycor.co.uk/bathroom-renovation-notting-hill/",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: "https://bathroom-renovations.maycor.co.uk/bathroom-renovation-kensington/",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: "https://bathroom-renovations.maycor.co.uk/bathroom-renovation-chelsea/",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: "https://bathroom-renovations.maycor.co.uk/bathroom-renovation-hampstead/",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: "https://bathroom-renovations.maycor.co.uk/bathroom-renovation-putney/",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: "https://bathroom-renovations.maycor.co.uk/bathroom-renovation-hammersmith/",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: "https://bathroom-renovations.maycor.co.uk/bathroom-renovation-shepherds-bush/",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: "https://bathroom-renovations.maycor.co.uk/bathroom-renovation-earls-court/",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: "https://bathroom-renovations.maycor.co.uk/bathroom-renovation-fulham/",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: "https://bathroom-renovations.maycor.co.uk/bathroom-renovation-battersea/",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: "https://bathroom-renovations.maycor.co.uk/bathroom-renovation-chiswick/",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: "https://bathroom-renovations.maycor.co.uk/bathroom-renovation-south-kensington/",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: "https://bathroom-renovations.maycor.co.uk/bathroom-renovation-belgravia/",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: "https://bathroom-renovations.maycor.co.uk/bathroom-renovation-maida-vale/",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: "https://bathroom-renovations.maycor.co.uk/bathroom-renovation-st-johns-wood/",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: "https://bathroom-renovations.maycor.co.uk/bathroom-renovation-angel/",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: "https://bathroom-renovations.maycor.co.uk/bathroom-renovation-cost-guide-london/",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: "https://bathroom-renovations.maycor.co.uk/dental-practice-refurbishment-london/",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: "https://bathroom-renovations.maycor.co.uk/htm-01-05-decontamination-room-guide/",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-  ];
+const bathroomUrls = [
+  { path: "bathroom-renovations-london", priority: 1 },
+  { path: "bathroom-renovation-notting-hill", priority: 0.9 },
+  { path: "bathroom-renovation-kensington", priority: 0.9 },
+  { path: "bathroom-renovation-chelsea", priority: 0.9 },
+  { path: "bathroom-renovation-hampstead", priority: 0.9 },
+  { path: "bathroom-renovation-putney", priority: 0.9 },
+  { path: "bathroom-renovation-hammersmith", priority: 0.9 },
+  { path: "bathroom-renovation-shepherds-bush", priority: 0.9 },
+  { path: "bathroom-renovation-earls-court", priority: 0.9 },
+  { path: "bathroom-renovation-fulham", priority: 0.9 },
+  { path: "bathroom-renovation-battersea", priority: 0.9 },
+  { path: "bathroom-renovation-chiswick", priority: 0.9 },
+  { path: "bathroom-renovation-south-kensington", priority: 0.9 },
+  { path: "bathroom-renovation-belgravia", priority: 0.9 },
+  { path: "bathroom-renovation-maida-vale", priority: 0.9 },
+  { path: "bathroom-renovation-st-johns-wood", priority: 0.9 },
+  { path: "bathroom-renovation-angel", priority: 0.9 },
+  { path: "bathroom-renovation-cost-guide-london", priority: 0.9 },
+];
+
+const dentalUrls = [
+  { path: "", priority: 1 },
+  { path: "htm-01-05-decontamination-room-guide", priority: 0.9 },
+];
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const host = (await headers()).get("host") || "";
+  const isDental = host.includes("dental.maycor.co.uk");
+
+  const base = isDental ? "https://dental.maycor.co.uk" : "https://bathroom-renovations.maycor.co.uk";
+  const entries = isDental ? dentalUrls : bathroomUrls;
+
+  return entries.map(({ path, priority }) => ({
+    url: `${base}/${path}${path ? "/" : ""}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly",
+    priority,
+  }));
 }

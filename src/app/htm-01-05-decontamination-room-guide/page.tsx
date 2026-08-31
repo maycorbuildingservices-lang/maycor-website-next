@@ -9,12 +9,12 @@ export const metadata: Metadata = {
   title,
   description,
   alternates: {
-    canonical: "/htm-01-05-decontamination-room-guide/",
+    canonical: "https://dental.maycor.co.uk/htm-01-05-decontamination-room-guide/",
   },
   openGraph: {
     title,
     description,
-    url: "/htm-01-05-decontamination-room-guide/",
+    url: "https://dental.maycor.co.uk/htm-01-05-decontamination-room-guide/",
     images: [{ url: "https://maycor.co.uk/wp-content/uploads/2025/05/maycor-gallery-20.jpg", width: 1200, height: 1500, alt: "Dental decontamination room fit-out by Maycor" }],
   },
   twitter: {

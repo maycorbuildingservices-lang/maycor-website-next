@@ -59,7 +59,7 @@ export function HtmGuideArticle() {
       "What HTM 01-05 actually requires for a dental decontamination room: the dirty-to-clean workflow, two-room split vs single IPA, equipment sequence, and surface requirements.",
     author: { "@type": "Organization", name: "Maycor Building Contractors" },
     publisher: { "@type": "Organization", name: "Maycor Building Contractors" },
-    mainEntityOfPage: "https://bathroom-renovations.maycor.co.uk/htm-01-05-decontamination-room-guide/",
+    mainEntityOfPage: "https://dental.maycor.co.uk/htm-01-05-decontamination-room-guide/",
   };
 
   const faqJsonLd = {
@@ -76,9 +76,8 @@ export function HtmGuideArticle() {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: "https://bathroom-renovations.maycor.co.uk/" },
-      { "@type": "ListItem", position: 2, name: "Dental Practice Refurbishment", item: "https://bathroom-renovations.maycor.co.uk/dental-practice-refurbishment-london/" },
-      { "@type": "ListItem", position: 3, name: "HTM 01-05 Decontamination Room Guide", item: "https://bathroom-renovations.maycor.co.uk/htm-01-05-decontamination-room-guide/" },
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://dental.maycor.co.uk/" },
+      { "@type": "ListItem", position: 2, name: "HTM 01-05 Decontamination Room Guide", item: "https://dental.maycor.co.uk/htm-01-05-decontamination-room-guide/" },
     ],
   };
 
@@ -89,20 +88,20 @@ export function HtmGuideArticle() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
 
       <header className="site-header" aria-label="Maycor site header">
-        <a className="brand" href="/dental-practice-refurbishment-london/" aria-label="Maycor dental practice refurbishment home">
+        <a className="brand" href="/" aria-label="Maycor dental practice refurbishment home">
           <Image src={images.logo} alt="Maycor Building Contractors" width={300} height={93} priority />
         </a>
         <nav className="site-nav" aria-label="Page sections">
-          <a href="/dental-practice-refurbishment-london/#services">Services</a>
-          <a href="/dental-practice-refurbishment-london/#work">Our Projects</a>
-          <a href="/dental-practice-refurbishment-london/#process">Process</a>
-          <a href="/dental-practice-refurbishment-london/#faq">FAQ</a>
+          <a href="/#services">Services</a>
+          <a href="/#work">Our Projects</a>
+          <a href="/#process">Process</a>
+          <a href="/#faq">FAQ</a>
         </nav>
         <div className="header-actions">
           <a className="header-whatsapp" href="https://wa.me/447843746835" target="_blank" rel="noreferrer">
             WhatsApp
           </a>
-          <a className="header-call" href="/dental-practice-refurbishment-london/#enquiry">
+          <a className="header-call" href="/#enquiry">
             Book a Feasibility Survey
           </a>
         </div>
@@ -197,7 +196,7 @@ export function HtmGuideArticle() {
 
           <div className="cost-guide-cta">
             <p>Check your site against HTM 01-05 and CQC Regulation 15 before you commit to it.</p>
-            <a className="primary-button" href="/dental-practice-refurbishment-london/#enquiry">
+            <a className="primary-button" href="/#enquiry">
               Book a Feasibility Survey
             </a>
           </div>
