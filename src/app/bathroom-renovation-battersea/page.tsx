@@ -8,7 +8,7 @@ const batterseaLocality: LocalityConfig = {
   h1: "Bathroom renovations in Battersea, fitted around period conversions and new-build flats.",
   intro:
     "Battersea's Victorian terraces split into flats sit alongside the newer developments around Battersea Power Station and SW11, each bringing a different mix of shared freeholds, building management sign-off and layout constraints. Maycor plans around all of it, so the finished bathroom fits a Battersea property as much as it fits your brief.",
-  canonicalPath: "/bathroom-renovation-battersea/",
+  canonicalPath: "/bathroom-renovation-battersea",
 };
 
 const title = "Bathroom Renovations in Battersea, SW11";
@@ -19,12 +19,12 @@ export const metadata: Metadata = {
   title,
   description,
   alternates: {
-    canonical: "/bathroom-renovation-battersea/",
+    canonical: "/bathroom-renovation-battersea",
   },
   openGraph: {
     title,
     description,
-    url: "/bathroom-renovation-battersea/",
+    url: "/bathroom-renovation-battersea",
     images: [{ url: "/images/hero-bathroom-vanity-mirror.jpg", width: 1200, height: 1500, alt: "Bathroom renovation in Battersea by Maycor" }],
   },
   twitter: {

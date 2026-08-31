@@ -8,7 +8,7 @@ const hammersmithLocality: LocalityConfig = {
   h1: "Bathroom renovations in Hammersmith, fitted around period flats and riverside blocks.",
   intro:
     "Hammersmith's Victorian and Edwardian terraces converted into flats, alongside newer riverside developments near the Thames around W6, each bring their own access and layout considerations, from shared freeholds to lift-access apartments. Maycor plans around all of it, so the finished bathroom fits a Hammersmith property as much as it fits your brief.",
-  canonicalPath: "/bathroom-renovation-hammersmith/",
+  canonicalPath: "/bathroom-renovation-hammersmith",
 };
 
 const title = "Bathroom Renovations in Hammersmith, W6";
@@ -19,12 +19,12 @@ export const metadata: Metadata = {
   title,
   description,
   alternates: {
-    canonical: "/bathroom-renovation-hammersmith/",
+    canonical: "/bathroom-renovation-hammersmith",
   },
   openGraph: {
     title,
     description,
-    url: "/bathroom-renovation-hammersmith/",
+    url: "/bathroom-renovation-hammersmith",
     images: [{ url: "/images/hero-bathroom-vanity-mirror.jpg", width: 1200, height: 1500, alt: "Bathroom renovation in Hammersmith by Maycor" }],
   },
   twitter: {

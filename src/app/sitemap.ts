@@ -36,7 +36,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const entries = isDental ? dentalUrls : bathroomUrls;
 
   return entries.map(({ path, priority }) => ({
-    url: `${base}/${path}${path ? "/" : ""}`,
+    url: path ? `${base}/${path}` : `${base}/`,
     lastModified: new Date(),
     changeFrequency: "weekly",
     priority,

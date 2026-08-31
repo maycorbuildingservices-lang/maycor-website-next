@@ -8,7 +8,7 @@ const fulhamLocality: LocalityConfig = {
   h1: "Bathroom renovations in Fulham, fitted around period terraces and riverside flats.",
   intro:
     "Fulham's Victorian terraces converted into flats sit alongside newer riverside developments around SW6, each with their own mix of shared pipework and managing agent sign-off to plan around. Maycor plans around all of it, so the finished bathroom fits a Fulham property as much as it fits your brief.",
-  canonicalPath: "/bathroom-renovation-fulham/",
+  canonicalPath: "/bathroom-renovation-fulham",
 };
 
 const title = "Bathroom Renovations in Fulham, SW6";
@@ -19,12 +19,12 @@ export const metadata: Metadata = {
   title,
   description,
   alternates: {
-    canonical: "/bathroom-renovation-fulham/",
+    canonical: "/bathroom-renovation-fulham",
   },
   openGraph: {
     title,
     description,
-    url: "/bathroom-renovation-fulham/",
+    url: "/bathroom-renovation-fulham",
     images: [{ url: "/images/hero-bathroom-vanity-mirror.jpg", width: 1200, height: 1500, alt: "Bathroom renovation in Fulham by Maycor" }],
   },
   twitter: {

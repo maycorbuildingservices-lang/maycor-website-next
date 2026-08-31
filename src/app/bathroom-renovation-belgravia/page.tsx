@@ -8,7 +8,7 @@ const belgraviaLocality: LocalityConfig = {
   h1: "Bathroom renovations in Belgravia, fitted around grand stucco terraces and garden squares.",
   intro:
     "Belgravia's grand Regency stucco terraces around Belgrave Square and SW1X are among London's most protected properties, so renovations need careful conservation-area planning, managing agent sign-off and precise work around period detailing. Maycor plans around all of it, so the finished bathroom fits a Belgravia property as much as it fits your brief.",
-  canonicalPath: "/bathroom-renovation-belgravia/",
+  canonicalPath: "/bathroom-renovation-belgravia",
 };
 
 const title = "Bathroom Renovations in Belgravia, SW1X";
@@ -19,12 +19,12 @@ export const metadata: Metadata = {
   title,
   description,
   alternates: {
-    canonical: "/bathroom-renovation-belgravia/",
+    canonical: "/bathroom-renovation-belgravia",
   },
   openGraph: {
     title,
     description,
-    url: "/bathroom-renovation-belgravia/",
+    url: "/bathroom-renovation-belgravia",
     images: [{ url: "/images/hero-bathroom-vanity-mirror.jpg", width: 1200, height: 1500, alt: "Bathroom renovation in Belgravia by Maycor" }],
   },
   twitter: {

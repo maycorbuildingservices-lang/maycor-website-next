@@ -8,7 +8,7 @@ const earlsCourtLocality: LocalityConfig = {
   h1: "Bathroom renovations in Earls Court, fitted around stucco terraces and garden squares.",
   intro:
     "Earls Court's grand stucco-fronted terraces and garden squares around SW5 are largely split into flats, so most renovations involve shared freeholds, period plasterwork or awkward pipe runs from a much older layout. Maycor plans around all of it, so the finished bathroom fits an Earls Court property as much as it fits your brief.",
-  canonicalPath: "/bathroom-renovation-earls-court/",
+  canonicalPath: "/bathroom-renovation-earls-court",
 };
 
 const title = "Bathroom Renovations in Earls Court, SW5";
@@ -19,12 +19,12 @@ export const metadata: Metadata = {
   title,
   description,
   alternates: {
-    canonical: "/bathroom-renovation-earls-court/",
+    canonical: "/bathroom-renovation-earls-court",
   },
   openGraph: {
     title,
     description,
-    url: "/bathroom-renovation-earls-court/",
+    url: "/bathroom-renovation-earls-court",
     images: [{ url: "/images/hero-bathroom-vanity-mirror.jpg", width: 1200, height: 1500, alt: "Bathroom renovation in Earls Court by Maycor" }],
   },
   twitter: {

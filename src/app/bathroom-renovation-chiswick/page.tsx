@@ -8,7 +8,7 @@ const chiswickLocality: LocalityConfig = {
   h1: "Bathroom renovations in Chiswick, fitted around Georgian and Victorian family homes.",
   intro:
     "Chiswick's Georgian and Victorian houses around W4, many close to the river and within conservation areas, often still have original layouts and pipework that need careful planning before anything is stripped out. Maycor plans around all of it, so the finished bathroom fits a Chiswick property as much as it fits your brief.",
-  canonicalPath: "/bathroom-renovation-chiswick/",
+  canonicalPath: "/bathroom-renovation-chiswick",
 };
 
 const title = "Bathroom Renovations in Chiswick, W4";
@@ -19,12 +19,12 @@ export const metadata: Metadata = {
   title,
   description,
   alternates: {
-    canonical: "/bathroom-renovation-chiswick/",
+    canonical: "/bathroom-renovation-chiswick",
   },
   openGraph: {
     title,
     description,
-    url: "/bathroom-renovation-chiswick/",
+    url: "/bathroom-renovation-chiswick",
     images: [{ url: "/images/hero-bathroom-vanity-mirror.jpg", width: 1200, height: 1500, alt: "Bathroom renovation in Chiswick by Maycor" }],
   },
   twitter: {

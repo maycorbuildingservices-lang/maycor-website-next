@@ -9,12 +9,12 @@ export const metadata: Metadata = {
   title,
   description,
   alternates: {
-    canonical: "/bathroom-renovations-london/",
+    canonical: "/bathroom-renovations-london",
   },
   openGraph: {
     title,
     description,
-    url: "/bathroom-renovations-london/",
+    url: "/bathroom-renovations-london",
     images: [{ url: "/images/hero-bathroom-vanity-mirror.jpg", width: 1200, height: 1500, alt: "Modern London bathroom renovation by Maycor" }],
   },
   twitter: {

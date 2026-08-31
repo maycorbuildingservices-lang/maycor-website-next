@@ -8,7 +8,7 @@ const shepherdsBushLocality: LocalityConfig = {
   h1: "Bathroom renovations in Shepherd's Bush, fitted around period conversions and new builds.",
   intro:
     "Shepherd's Bush's Victorian terraces split into flats sit alongside newer developments around W12, each with their own mix of shared pipework, leasehold sign-off and layout constraints to plan around. Maycor plans around all of it, so the finished bathroom fits a Shepherd's Bush property as much as it fits your brief.",
-  canonicalPath: "/bathroom-renovation-shepherds-bush/",
+  canonicalPath: "/bathroom-renovation-shepherds-bush",
 };
 
 const title = "Bathroom Renovations in Shepherd's Bush, W12";
@@ -19,12 +19,12 @@ export const metadata: Metadata = {
   title,
   description,
   alternates: {
-    canonical: "/bathroom-renovation-shepherds-bush/",
+    canonical: "/bathroom-renovation-shepherds-bush",
   },
   openGraph: {
     title,
     description,
-    url: "/bathroom-renovation-shepherds-bush/",
+    url: "/bathroom-renovation-shepherds-bush",
     images: [{ url: "/images/hero-bathroom-vanity-mirror.jpg", width: 1200, height: 1500, alt: "Bathroom renovation in Shepherd's Bush by Maycor" }],
   },
   twitter: {

@@ -8,7 +8,7 @@ const maidaValeLocality: LocalityConfig = {
   h1: "Bathroom renovations in Maida Vale, fitted around grand mansion blocks and period flats.",
   intro:
     "Maida Vale's wide tree-lined avenues of red-brick mansion blocks around W9 mean most renovations involve managing agent approval, lift access and shared pipework running through a much older building. Maycor plans around all of it, so the finished bathroom fits a Maida Vale property as much as it fits your brief.",
-  canonicalPath: "/bathroom-renovation-maida-vale/",
+  canonicalPath: "/bathroom-renovation-maida-vale",
 };
 
 const title = "Bathroom Renovations in Maida Vale, W9";
@@ -19,12 +19,12 @@ export const metadata: Metadata = {
   title,
   description,
   alternates: {
-    canonical: "/bathroom-renovation-maida-vale/",
+    canonical: "/bathroom-renovation-maida-vale",
   },
   openGraph: {
     title,
     description,
-    url: "/bathroom-renovation-maida-vale/",
+    url: "/bathroom-renovation-maida-vale",
     images: [{ url: "/images/hero-bathroom-vanity-mirror.jpg", width: 1200, height: 1500, alt: "Bathroom renovation in Maida Vale by Maycor" }],
   },
   twitter: {

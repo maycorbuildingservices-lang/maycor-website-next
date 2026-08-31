@@ -8,7 +8,7 @@ const kensingtonLocality: LocalityConfig = {
   h1: "Bathroom renovations in Kensington, done with conservation rules in mind.",
   intro:
     "Kensington's stucco-fronted townhouses, red-brick mansion blocks and portered apartments around W8 mean most renovations involve conservation area rules, managing agent sign-off, or careful work around original plasterwork and period detailing. Maycor plans around all of it, so the finished bathroom fits a Kensington property as much as it fits your brief.",
-  canonicalPath: "/bathroom-renovation-kensington/",
+  canonicalPath: "/bathroom-renovation-kensington",
 };
 
 const title = "Bathroom Renovations in Kensington, W8";
@@ -19,12 +19,12 @@ export const metadata: Metadata = {
   title,
   description,
   alternates: {
-    canonical: "/bathroom-renovation-kensington/",
+    canonical: "/bathroom-renovation-kensington",
   },
   openGraph: {
     title,
     description,
-    url: "/bathroom-renovation-kensington/",
+    url: "/bathroom-renovation-kensington",
     images: [{ url: "/images/hero-bathroom-vanity-mirror.jpg", width: 1200, height: 1500, alt: "Bathroom renovation in Kensington by Maycor" }],
   },
   twitter: {
