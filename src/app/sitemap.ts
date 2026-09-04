@@ -7,6 +7,7 @@ const bathroomUrls = [
   { path: "bathroom-renovation-kensington", priority: 0.9 },
   { path: "bathroom-renovation-chelsea", priority: 0.9 },
   { path: "bathroom-renovation-hampstead", priority: 0.9 },
+  { path: "bathroom-renovation-west-hampstead", priority: 0.9 },
   { path: "bathroom-renovation-putney", priority: 0.9 },
   { path: "bathroom-renovation-hammersmith", priority: 0.9 },
   { path: "bathroom-renovation-shepherds-bush", priority: 0.9 },

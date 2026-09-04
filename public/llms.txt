@@ -17,6 +17,7 @@
 - [Bathroom Renovation Kensington](https://bathroom-renovations.maycor.co.uk/bathroom-renovation-kensington/): Locality page for Kensington / W8.
 - [Bathroom Renovation Chelsea](https://bathroom-renovations.maycor.co.uk/bathroom-renovation-chelsea/): Locality page for Chelsea / SW3.
 - [Bathroom Renovation Hampstead](https://bathroom-renovations.maycor.co.uk/bathroom-renovation-hampstead/): Locality page for Hampstead / NW3.
+- [Bathroom Renovation West Hampstead](https://bathroom-renovations.maycor.co.uk/bathroom-renovation-west-hampstead/): Locality page for West Hampstead / NW6.
 - [Bathroom Renovation Putney](https://bathroom-renovations.maycor.co.uk/bathroom-renovation-putney/): Locality page for Putney / SW15.
 - [Bathroom Renovation Hammersmith](https://bathroom-renovations.maycor.co.uk/bathroom-renovation-hammersmith/): Locality page for Hammersmith / W6.
 - [Bathroom Renovation Shepherd's Bush](https://bathroom-renovations.maycor.co.uk/bathroom-renovation-shepherds-bush/): Locality page for Shepherd's Bush / W12.
@@ -36,9 +37,10 @@
 
 ## Service area
 
-Kensington, Chelsea, Fulham, Battersea, Notting Hill, Hammersmith, Hampstead,
-St John's Wood, Maida Vale, Chiswick, South Kensington, Belgravia, Putney,
-Barnes, Angel, and wider London.
+Kensington, Chelsea, Fulham, Battersea, Notting Hill, Hammersmith,
+Shepherd's Bush, Earls Court, Hampstead, West Hampstead, St John's Wood,
+Maida Vale, Chiswick, South Kensington, Belgravia, Putney, Angel, and wider
+London.
 
 ## Accreditations
 

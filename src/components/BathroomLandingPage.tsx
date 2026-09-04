@@ -278,7 +278,8 @@ const brandLogos = [
 
 const areaServedList = [
   "Kensington", "Chelsea", "Fulham", "Battersea", "Notting Hill",
-  "Hammersmith", "Hampstead", "St John's Wood", "Maida Vale", "Chiswick",
+  "Hammersmith", "Shepherd's Bush", "Earls Court", "Hampstead",
+  "West Hampstead", "St John's Wood", "Maida Vale", "Chiswick",
   "South Kensington", "Belgravia", "Putney", "Angel", "London"
 ];
 
@@ -948,6 +949,7 @@ export function BathroomLandingPage({ locality = defaultLocality }: { locality?:
             <a href="/bathroom-renovation-shepherds-bush"><strong>Shepherd&apos;s Bush (W12)</strong></a>,{" "}
             <a href="/bathroom-renovation-earls-court"><strong>Earls Court (SW5)</strong></a>,{" "}
             <a href="/bathroom-renovation-hampstead"><strong>Hampstead (NW3)</strong></a>,{" "}
+            <a href="/bathroom-renovation-west-hampstead"><strong>West Hampstead (NW6)</strong></a>,{" "}
             <a href="/bathroom-renovation-st-johns-wood"><strong>St John&apos;s Wood (NW8)</strong></a>,{" "}
             <a href="/bathroom-renovation-maida-vale"><strong>Maida Vale (W9)</strong></a>,{" "}
             <a href="/bathroom-renovation-chiswick"><strong>Chiswick (W4)</strong></a>,{" "}
