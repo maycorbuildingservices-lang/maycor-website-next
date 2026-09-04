@@ -328,10 +328,10 @@ export function DentalRefurbLandingPage() {
             </p>
             <div className="hero-actions">
               <a className="primary-button" href="#enquiry">
-                Book a Feasibility Survey
+                Book a Survey
               </a>
               <a className="secondary-button" href="#work">
-                View Our Dental Projects
+                View Our Projects
               </a>
             </div>
           </div>
