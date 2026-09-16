@@ -11,12 +11,17 @@ const stJohnsWoodLocality: LocalityConfig = {
   canonicalPath: "/bathroom-renovation-st-johns-wood",
 };
 
-const title = "Bathroom Renovations in St John's Wood, NW8";
+// 2026-09-16: title set to an absolute string (bypassing the site-wide "%s | Maycor Building
+// Contractors" template) as a one-page CTR test — shorter, with a CTA, since the dominant query
+// for this page ("bathroom renovations st johns wood") sits at position ~8.8, right at the
+// page-1 boundary where snippet wording matters most. Revert to the templated form if the test
+// doesn't help.
+const title = "Bathroom Renovations St John's Wood, NW8 | Free Estimate";
 const description =
   "Premium bathroom renovation in St John's Wood, NW8. One coordinated Maycor team — strip-out to finish, quick estimate range online.";
 
 export const metadata: Metadata = {
-  title,
+  title: { absolute: title },
   description,
   alternates: {
     canonical: "/bathroom-renovation-st-johns-wood",
