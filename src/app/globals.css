@@ -2052,7 +2052,7 @@ h3 {
     display: none;
   }
 
-  .sticky-estimate-bar:not(.sticky-bar-expanded) .sticky-whatsapp {
+  .sticky-estimate-bar:not(.sticky-bar-expanded) .sticky-actions a:not(.sticky-whatsapp) {
     display: none;
   }
 

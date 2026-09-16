@@ -173,8 +173,7 @@ const galleryPhotos = [
   { src: images.extra96, alt: "Close-up of a windowsill styled with soap dish, body brush and reed diffuser beside a wall-hung basin with toiletries and concealed cistern flush plate", className: "" },
 ];
 
-// TODO: Replace these three placeholder quotes with real customer words before launch.
-// Even short informal messages (WhatsApp, email) work — paste the actual words here.
+// Confirmed by Victor 2026-09-16: all 3 are real clients, not placeholders.
 const testimonials = [
   {
     initial: "J",
