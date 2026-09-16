@@ -13,7 +13,7 @@ const hammersmithLocality: LocalityConfig = {
 
 const title = "Bathroom Renovations in Hammersmith, W6";
 const description =
-  "Premium bathroom renovation in Hammersmith, W6. One coordinated Maycor team — strip-out to finish, quick estimate range online.";
+  "Bathroom renovation in Hammersmith, W6 — period flats and riverside blocks, lift access and layout sorted. One Maycor team, quick estimate online.";
 
 export const metadata: Metadata = {
   title,

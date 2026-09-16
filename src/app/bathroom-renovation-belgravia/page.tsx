@@ -13,7 +13,7 @@ const belgraviaLocality: LocalityConfig = {
 
 const title = "Bathroom Renovations in Belgravia, SW1X";
 const description =
-  "Premium bathroom renovation in Belgravia, SW1X. One coordinated Maycor team — strip-out to finish, quick estimate range online.";
+  "Bathroom renovation in Belgravia, SW1X — Regency stucco terraces, conservation-area care and period detail. One Maycor team, quick estimate online.";
 
 export const metadata: Metadata = {
   title,

@@ -13,7 +13,7 @@ const westHampsteadLocality: LocalityConfig = {
 
 const title = "Bathroom Renovations in West Hampstead, NW6";
 const description =
-  "Premium bathroom renovation in West Hampstead, NW6. One coordinated Maycor team — strip-out to finish, quick estimate range online.";
+  "Bathroom renovation in West Hampstead, NW6 — Victorian conversion flats, lease conditions and managing agent sign-off sorted. Quick estimate online.";
 
 export const metadata: Metadata = {
   title,

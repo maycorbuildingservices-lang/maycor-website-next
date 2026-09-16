@@ -13,7 +13,7 @@ const kensingtonLocality: LocalityConfig = {
 
 const title = "Bathroom Renovations in Kensington, W8";
 const description =
-  "Premium bathroom renovation in Kensington, W8. One coordinated Maycor team — strip-out to finish, quick estimate range online.";
+  "Bathroom renovation in Kensington, W8 — stucco townhouses and mansion blocks, conservation rules handled with care. One Maycor team, quick estimate.";
 
 export const metadata: Metadata = {
   title,

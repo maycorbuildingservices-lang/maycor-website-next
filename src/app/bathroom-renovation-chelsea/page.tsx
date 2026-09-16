@@ -13,7 +13,7 @@ const chelseaLocality: LocalityConfig = {
 
 const title = "Bathroom Renovations in Chelsea, SW3";
 const description =
-  "Premium bathroom renovation in Chelsea, SW3. One coordinated Maycor team — strip-out to finish, quick estimate range online.";
+  "Bathroom renovation in Chelsea, SW3 — Georgian terraces, mews houses and tight access handled with care. One Maycor team, quick estimate online.";
 
 export const metadata: Metadata = {
   title,

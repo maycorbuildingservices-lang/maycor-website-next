@@ -13,7 +13,7 @@ const southKensingtonLocality: LocalityConfig = {
 
 const title = "Bathroom Renovations in South Kensington, SW7";
 const description =
-  "Premium bathroom renovation in South Kensington, SW7. One coordinated Maycor team — strip-out to finish, quick estimate range online.";
+  "Bathroom renovation in South Kensington, SW7 — stucco terraces and garden squares, period plasterwork handled with care. One Maycor team, quick estimate.";
 
 export const metadata: Metadata = {
   title,

@@ -13,7 +13,7 @@ const batterseaLocality: LocalityConfig = {
 
 const title = "Bathroom Renovations in Battersea, SW11";
 const description =
-  "Premium bathroom renovation in Battersea, SW11. One coordinated Maycor team — strip-out to finish, quick estimate range online.";
+  "Bathroom renovation in Battersea, SW11 — Victorian conversions and Power Station new-builds. One Maycor team, quick estimate online.";
 
 export const metadata: Metadata = {
   title,

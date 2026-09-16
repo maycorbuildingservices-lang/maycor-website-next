@@ -13,7 +13,7 @@ const chiswickLocality: LocalityConfig = {
 
 const title = "Bathroom Renovations in Chiswick, W4";
 const description =
-  "Premium bathroom renovation in Chiswick, W4. One coordinated Maycor team — strip-out to finish, quick estimate range online.";
+  "Bathroom renovation in Chiswick, W4 — Georgian and Victorian houses with original pipework, planned with care. One Maycor team, quick estimate online.";
 
 export const metadata: Metadata = {
   title,

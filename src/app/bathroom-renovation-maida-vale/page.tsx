@@ -13,7 +13,7 @@ const maidaValeLocality: LocalityConfig = {
 
 const title = "Bathroom Renovations in Maida Vale, W9";
 const description =
-  "Premium bathroom renovation in Maida Vale, W9. One coordinated Maycor team — strip-out to finish, quick estimate range online.";
+  "Bathroom renovation in Maida Vale, W9 — mansion-block flats, managing agent approval and lift access sorted. One Maycor team, quick estimate online.";
 
 export const metadata: Metadata = {
   title,

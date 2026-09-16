@@ -13,7 +13,7 @@ const putneyLocality: LocalityConfig = {
 
 const title = "Bathroom Renovations in Putney, SW15";
 const description =
-  "Premium bathroom renovation in Putney, SW15. One coordinated Maycor team — strip-out to finish, quick estimate range online.";
+  "Bathroom renovation in Putney, SW15 — riverside conversions and period terraces, layout quirks planned around. One Maycor team, quick estimate online.";
 
 export const metadata: Metadata = {
   title,

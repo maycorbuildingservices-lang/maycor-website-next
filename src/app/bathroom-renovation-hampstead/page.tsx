@@ -13,7 +13,7 @@ const hampsteadLocality: LocalityConfig = {
 
 const title = "Bathroom Renovations in Hampstead, NW3";
 const description =
-  "Premium bathroom renovation in Hampstead, NW3. One coordinated Maycor team — strip-out to finish, quick estimate range online.";
+  "Bathroom renovation in Hampstead, NW3 — Victorian and Edwardian houses, original pipework and layout planned with care. One Maycor team, quick estimate.";
 
 export const metadata: Metadata = {
   title,

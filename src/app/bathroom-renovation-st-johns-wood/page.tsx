@@ -18,7 +18,7 @@ const stJohnsWoodLocality: LocalityConfig = {
 // doesn't help.
 const title = "Bathroom Renovations St John's Wood, NW8 | Free Estimate";
 const description =
-  "Premium bathroom renovation in St John's Wood, NW8. One coordinated Maycor team — strip-out to finish, quick estimate range online.";
+  "Bathroom renovation in St John's Wood, NW8 — Regency villas and mansion blocks, lift access and period detail handled. One Maycor team, quick estimate.";
 
 export const metadata: Metadata = {
   title: { absolute: title },

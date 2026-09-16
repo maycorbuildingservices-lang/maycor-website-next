@@ -13,7 +13,7 @@ const shepherdsBushLocality: LocalityConfig = {
 
 const title = "Bathroom Renovations in Shepherd's Bush, W12";
 const description =
-  "Premium bathroom renovation in Shepherd's Bush, W12. One coordinated Maycor team — strip-out to finish, quick estimate range online.";
+  "Bathroom renovation in Shepherd's Bush, W12 — Victorian conversions and new-builds, leasehold sign-off sorted. One Maycor team, quick estimate online.";
 
 export const metadata: Metadata = {
   title,

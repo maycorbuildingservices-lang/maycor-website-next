@@ -13,7 +13,7 @@ const earlsCourtLocality: LocalityConfig = {
 
 const title = "Bathroom Renovations in Earls Court, SW5";
 const description =
-  "Premium bathroom renovation in Earls Court, SW5. One coordinated Maycor team — strip-out to finish, quick estimate range online.";
+  "Bathroom renovation in Earls Court, SW5 — stucco terraces and garden-square flats, period plasterwork handled with care. One Maycor team, quick estimate.";
 
 export const metadata: Metadata = {
   title,
