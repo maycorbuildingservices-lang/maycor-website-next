@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
+import { GclidCapture } from "@/components/GclidCapture";
 import "./globals.css";
 
 export const viewport: Viewport = {
@@ -58,7 +59,10 @@ export default function RootLayout({
           gtag('config', '${AW_ID}');
         `}</Script>
       </head>
-      <body>{children}</body>
+      <body>
+        <GclidCapture />
+        {children}
+      </body>
     </html>
   );
 }

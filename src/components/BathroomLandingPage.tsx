@@ -3,6 +3,7 @@
 import { PointerEvent, TouchEvent, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { EstimateStarter } from "./EstimateStarter";
+import { logWhatsAppClick } from "@/lib/adTracking";
 
 const images = {
   logo: "https://maycor.co.uk/wp-content/uploads/2025/03/main-logo-all-04-300x93.png",
@@ -636,7 +637,13 @@ export function BathroomLandingPage({ locality = defaultLocality }: { locality?:
           <a href="#faq">FAQ</a>
         </nav>
         <div className="header-actions">
-          <a className="header-whatsapp" href="https://wa.me/447843746835" target="_blank" rel="noreferrer">
+          <a
+            className="header-whatsapp"
+            href="https://wa.me/447843746835"
+            target="_blank"
+            rel="noreferrer"
+            onClick={() => logWhatsAppClick("header")}
+          >
             WhatsApp
           </a>
           <a className="header-call" href="#estimate">

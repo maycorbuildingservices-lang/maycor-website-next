@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, PointerEvent, useEffect, useMemo, useRef, useState } from "react";
+import { logWhatsAppClick } from "@/lib/adTracking";
 
 declare global {
   interface Window {
@@ -602,7 +603,15 @@ export function EstimateStarter() {
           <small>Includes labour, materials, sanitaryware, fixtures, fittings and waste removal.</small>
         </div>
         <div className="sticky-actions">
-          <a href="https://wa.me/447843746835" target="_blank" rel="noreferrer" className="sticky-whatsapp">WhatsApp us</a>
+          <a
+            href="https://wa.me/447843746835"
+            target="_blank"
+            rel="noreferrer"
+            className="sticky-whatsapp"
+            onClick={() => logWhatsAppClick("sticky-bar")}
+          >
+            WhatsApp us
+          </a>
           <a href="#estimate">Adjust My Estimate</a>
           {isExpanded ? (
             <button type="button" {...tapBridge(collapseCalculator)}>
