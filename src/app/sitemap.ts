@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { headers } from "next/headers";
 
 const bathroomUrls = [
-  { path: "", priority: 1 },
+  { path: "london", priority: 1 },
   { path: "bathroom-renovation-notting-hill", priority: 0.9 },
   { path: "bathroom-renovation-kensington", priority: 0.9 },
   { path: "bathroom-renovation-chelsea", priority: 0.9 },

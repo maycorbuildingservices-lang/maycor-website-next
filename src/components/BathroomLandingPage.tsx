@@ -316,7 +316,7 @@ export const defaultLocality: LocalityConfig = {
   name: "London",
   eyebrow: "Premium bathroom renovation contractors",
   h1: "Bathroom renovations in London, done calmly, start to finish.",
-  canonicalPath: "/",
+  canonicalPath: "/london",
 };
 
 export function BathroomLandingPage({ locality = defaultLocality }: { locality?: LocalityConfig } = {}) {
@@ -393,10 +393,12 @@ export function BathroomLandingPage({ locality = defaultLocality }: { locality?:
       locality.slug === "london"
         ? [
             { "@type": "ListItem", position: 1, name: "Home", item: "https://bathroom-renovations.maycor.co.uk/" },
+            { "@type": "ListItem", position: 2, name: "Bathroom Renovations London", item: "https://bathroom-renovations.maycor.co.uk/london" },
           ]
         : [
             { "@type": "ListItem", position: 1, name: "Home", item: "https://bathroom-renovations.maycor.co.uk/" },
-            { "@type": "ListItem", position: 2, name: `Bathroom Renovation ${locality.name}`, item: `https://bathroom-renovations.maycor.co.uk${locality.canonicalPath}` },
+            { "@type": "ListItem", position: 2, name: "Bathroom Renovations London", item: "https://bathroom-renovations.maycor.co.uk/london" },
+            { "@type": "ListItem", position: 3, name: `Bathroom Renovation ${locality.name}`, item: `https://bathroom-renovations.maycor.co.uk${locality.canonicalPath}` },
           ],
   };
 
@@ -982,7 +984,7 @@ export function BathroomLandingPage({ locality = defaultLocality }: { locality?:
           </p>
           {locality.slug !== "london" && (
             <p className="areas-body">
-              <a href="/">See our full coverage across London →</a>
+              <a href="/london">See our full coverage across London →</a>
             </p>
           )}
         </div>

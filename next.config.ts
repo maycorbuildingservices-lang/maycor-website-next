@@ -8,18 +8,24 @@ const nextConfig: NextConfig = {
   devIndicators: false,
   async redirects() {
     return [
-      // Hub page now lives at the domain root — old URL 301s here to remove the
-      // repeated "bathroom-renovations" keyword stuffing in the address.
+      // Hub page now lives at /london — short enough to remove the repeated
+      // "bathroom-renovations" keyword stuffing, while keeping the geo keyword.
+      {
+        source: "/",
+        has: [{ type: "host", value: "bathroom-renovations.maycor.co.uk" }],
+        destination: "/london",
+        permanent: true,
+      },
       {
         source: "/bathroom-renovations-london",
         has: [{ type: "host", value: "bathroom-renovations.maycor.co.uk" }],
-        destination: "/",
+        destination: "/london",
         permanent: true,
       },
       {
         source: "/bathroom-renovations-london/",
         has: [{ type: "host", value: "bathroom-renovations.maycor.co.uk" }],
-        destination: "/",
+        destination: "/london",
         permanent: true,
       },
       // Dental content moved to its own subdomain — old URLs 301 out.

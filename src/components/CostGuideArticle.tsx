@@ -111,7 +111,7 @@ export function CostGuideArticle() {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: "https://bathroom-renovations.maycor.co.uk/" },
-      { "@type": "ListItem", position: 2, name: "Bathroom Renovations London", item: "https://bathroom-renovations.maycor.co.uk/" },
+      { "@type": "ListItem", position: 2, name: "Bathroom Renovations London", item: "https://bathroom-renovations.maycor.co.uk/london" },
       { "@type": "ListItem", position: 3, name: "Bathroom Renovation Cost Guide", item: "https://bathroom-renovations.maycor.co.uk/bathroom-renovation-cost-guide-london/" },
     ],
   };
@@ -123,20 +123,20 @@ export function CostGuideArticle() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
 
       <header className="site-header" aria-label="Maycor site header">
-        <a className="brand" href="/" aria-label="Maycor bathroom renovations home">
+        <a className="brand" href="/london" aria-label="Maycor bathroom renovations home">
           <Image src={images.logo} alt="Maycor Building Contractors" width={300} height={93} priority />
         </a>
         <nav className="site-nav" aria-label="Page sections">
-          <a href="/#estimate">Estimate</a>
-          <a href="/#work">Our Gallery</a>
-          <a href="/#included">Included</a>
-          <a href="/#faq">FAQ</a>
+          <a href="/london#estimate">Estimate</a>
+          <a href="/london#work">Our Gallery</a>
+          <a href="/london#included">Included</a>
+          <a href="/london#faq">FAQ</a>
         </nav>
         <div className="header-actions">
           <a className="header-whatsapp" href="https://wa.me/447843746835" target="_blank" rel="noreferrer">
             WhatsApp
           </a>
-          <a className="header-call" href="/#estimate">
+          <a className="header-call" href="/london#estimate">
             Get My Estimate
           </a>
         </div>
@@ -190,7 +190,7 @@ export function CostGuideArticle() {
             Mid-range finish runs roughly 25% above standard, and premium roughly 40% above
             standard — better tiles, sanitaryware and fittings, not a different scope of work.
             For your exact range, based on your actual room and choices, use the{" "}
-            <a href="/#estimate">estimate calculator</a>.
+            <a href="/london#estimate">estimate calculator</a>.
           </p>
 
           <h2>What&apos;s included at these prices</h2>
@@ -234,7 +234,7 @@ export function CostGuideArticle() {
 
           <div className="cost-guide-cta">
             <p>Get a range for your actual room, not a general estimate.</p>
-            <a className="primary-button" href="/#estimate">
+            <a className="primary-button" href="/london#estimate">
               See My Bathroom Cost
             </a>
           </div>
