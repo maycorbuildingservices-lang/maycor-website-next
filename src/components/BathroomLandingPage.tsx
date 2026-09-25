@@ -216,7 +216,7 @@ const testimonials = [
 
 const proofPoints = [
   ["One accountable team", "Planning, strip-out, plumbing, electrics, tiling and finishing coordinated by Maycor."],
-  ["Built for London homes", "Compact rooms, older pipework, access constraints and lived-in properties handled properly."],
+  ["Built for local homes", "Compact rooms, older pipework, access constraints and lived-in properties handled properly."],
   ["Estimate first", "A clear range and a full breakdown before you commit to the next step."],
 ];
 
@@ -273,7 +273,7 @@ const brandLogos = [
       "Yes. Maycor can coordinate strip-out, plumbing, electrics, waterproofing, tiling, decorating, fittings and waste removal.",
     ],
     [
-      "Do you work with small London bathrooms?",
+      "Do you work with small bathrooms?",
       "Yes. Compact rooms are often where planning matters most: storage, ventilation, access, pipe routes and tile layout all affect the result.",
     ],
     [
@@ -837,7 +837,7 @@ export function BathroomLandingPage({ locality = defaultLocality }: { locality?:
 
         <section className="london-section">
           <div>
-            <p className="eyebrow">Built for real London homes</p>
+            <p className="eyebrow">Built for real {locality.name} homes</p>
             <h2>The hidden work matters as much as the visible finish.</h2>
           </div>
           <div className="london-list">
@@ -919,7 +919,7 @@ export function BathroomLandingPage({ locality = defaultLocality }: { locality?:
 
       <section className="faq-section" id="faq">
         <div className="section-heading">
-          <h2>Quick answers for London bathroom projects.</h2>
+          <h2>Quick answers for {locality.name} bathroom projects.</h2>
         </div>
             <div className="faq-list">
               {faqs.map(([question, answer], index) => {
