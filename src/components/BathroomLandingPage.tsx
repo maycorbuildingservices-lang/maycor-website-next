@@ -309,6 +309,16 @@ export type LocalityConfig = {
   intro?: string;
   canonicalPath: string;
   featuredTestimonial?: string;
+  /** Set to "hertfordshire" for commuter towns outside London (e.g. St Albans) so the
+   * schema areaServed and "Areas we cover" section don't claim London boroughs. */
+  region?: "london" | "hertfordshire";
+  /** Overrides the default areaServed list (locality name + all London boroughs) — use for
+   * localities outside that borough list. */
+  areaServedOverride?: string[];
+  /** Overrides the default £6,000 / £20,000+ cost-section and schema priceRange figures —
+   * use for markets with a different local price ceiling than premium-central-London. */
+  priceLow?: string;
+  priceHigh?: string;
 };
 
 export const defaultLocality: LocalityConfig = {
@@ -320,15 +330,28 @@ export const defaultLocality: LocalityConfig = {
 };
 
 export function BathroomLandingPage({ locality = defaultLocality }: { locality?: LocalityConfig } = {}) {
+  const priceLow = locality.priceLow ?? "£6,000";
+  const priceHigh = locality.priceHigh ?? "£20,000+";
+  const resolvedPriceRange = `${priceLow}–${priceHigh}`;
+  const costIntroLocation =
+    locality.slug === "london"
+      ? "In London"
+      : locality.region === "hertfordshire"
+      ? `In ${locality.name} and the surrounding area`
+      : `In ${locality.name}`;
+
+  const resolvedAreaServed =
+    locality.areaServedOverride ??
+    (locality.slug === "london"
+      ? areaServedList
+      : [locality.name, ...areaServedList.filter((a) => a !== locality.name)]);
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "HomeAndConstructionBusiness",
     name: "Maycor Building Contractors",
     url: `https://bathroom-renovations.maycor.co.uk${locality.canonicalPath}`,
-    areaServed:
-      locality.slug === "london"
-        ? areaServedList
-        : [locality.name, ...areaServedList.filter((a) => a !== locality.name)],
+    areaServed: resolvedAreaServed,
     telephone: "+447843746835",
     image: images.hero,
     address: {
@@ -343,7 +366,7 @@ export function BathroomLandingPage({ locality = defaultLocality }: { locality?:
       latitude: 51.577586,
       longitude: -0.306405,
     },
-    priceRange: "£6,000–£20,000+",
+    priceRange: resolvedPriceRange,
     sameAs: [
       "https://www.facebook.com/MaycorBuildingContractors",
       "https://www.linkedin.com/in/victor-o-120686151/",
@@ -364,11 +387,8 @@ export function BathroomLandingPage({ locality = defaultLocality }: { locality?:
         name: `Bathroom renovations in ${locality.name}`,
         description:
           "Full bathroom renovation: strip-out, plumbing, electrics, waterproofing, tiling, decorating, fittings and waste removal.",
-        areaServed:
-          locality.slug === "london"
-            ? areaServedList
-            : [locality.name, ...areaServedList.filter((a) => a !== locality.name)],
-        priceRange: "£6,000–£20,000+",
+        areaServed: resolvedAreaServed,
+        priceRange: resolvedPriceRange,
       },
     },
   };
@@ -394,6 +414,11 @@ export function BathroomLandingPage({ locality = defaultLocality }: { locality?:
         ? [
             { "@type": "ListItem", position: 1, name: "Home", item: "https://bathroom-renovations.maycor.co.uk/" },
             { "@type": "ListItem", position: 2, name: "Bathroom Renovations London", item: "https://bathroom-renovations.maycor.co.uk/london" },
+          ]
+        : locality.region === "hertfordshire"
+        ? [
+            { "@type": "ListItem", position: 1, name: "Home", item: "https://bathroom-renovations.maycor.co.uk/" },
+            { "@type": "ListItem", position: 2, name: `Bathroom Renovation ${locality.name}`, item: `https://bathroom-renovations.maycor.co.uk${locality.canonicalPath}` },
           ]
         : [
             { "@type": "ListItem", position: 1, name: "Home", item: "https://bathroom-renovations.maycor.co.uk/" },
@@ -711,10 +736,10 @@ export function BathroomLandingPage({ locality = defaultLocality }: { locality?:
 
         <section className="cost-intro-section">
           <div className="section-heading">
-            <p className="eyebrow">Bathroom renovation cost in London</p>
-            <h2>How much does a bathroom renovation cost in London?</h2>
+            <p className="eyebrow">Bathroom renovation cost in {locality.name}</p>
+            <h2>How much does a bathroom renovation cost in {locality.name}?</h2>
             <p className="cost-intro-body">
-              In London, bathroom renovation costs typically range from <strong>£6,000 for a straightforward refresh</strong> to <strong>£20,000+ for a full premium renovation</strong>. The final cost depends on room size, finish level, structural changes, access conditions and sanitaryware specification. Use the estimate tool below to get an accurate range based on your specific bathroom.
+              {costIntroLocation}, bathroom renovation costs typically range from <strong>{priceLow} for a straightforward refresh</strong> to <strong>{priceHigh} for a full premium renovation</strong>. The final cost depends on room size, finish level, structural changes, access conditions and sanitaryware specification. Use the estimate tool below to get an accurate range based on your specific bathroom.
             </p>
           </div>
         </section>
@@ -960,32 +985,56 @@ export function BathroomLandingPage({ locality = defaultLocality }: { locality?:
 
       <section className="areas-section" aria-label="Areas we cover">
         <div className="section-heading">
-          <p className="eyebrow">Areas we cover</p>
-          <h2>Bathroom renovations across London&apos;s most sought-after neighbourhoods.</h2>
-          <p className="areas-body">
-            Maycor carries out bathroom renovations across premium London locations including{" "}
-            <a href="/bathroom-renovation-kensington"><strong>Kensington (W8)</strong></a>,{" "}
-            <a href="/bathroom-renovation-chelsea"><strong>Chelsea (SW3)</strong></a>,{" "}
-            <a href="/bathroom-renovation-fulham"><strong>Fulham (SW6)</strong></a>,{" "}
-            <a href="/bathroom-renovation-battersea"><strong>Battersea (SW11)</strong></a>,{" "}
-            <a href="/bathroom-renovation-notting-hill"><strong>Notting Hill (W11)</strong></a>,{" "}
-            <a href="/bathroom-renovation-hammersmith"><strong>Hammersmith (W6)</strong></a>,{" "}
-            <a href="/bathroom-renovation-shepherds-bush"><strong>Shepherd&apos;s Bush (W12)</strong></a>,{" "}
-            <a href="/bathroom-renovation-earls-court"><strong>Earls Court (SW5)</strong></a>,{" "}
-            <a href="/bathroom-renovation-hampstead"><strong>Hampstead (NW3)</strong></a>,{" "}
-            <a href="/bathroom-renovation-west-hampstead"><strong>West Hampstead (NW6)</strong></a>,{" "}
-            <a href="/bathroom-renovation-st-johns-wood"><strong>St John&apos;s Wood (NW8)</strong></a>,{" "}
-            <a href="/bathroom-renovation-maida-vale"><strong>Maida Vale (W9)</strong></a>,{" "}
-            <a href="/bathroom-renovation-chiswick"><strong>Chiswick (W4)</strong></a>,{" "}
-            <a href="/bathroom-renovation-south-kensington"><strong>South Kensington (SW7)</strong></a>,{" "}
-            <a href="/bathroom-renovation-belgravia"><strong>Belgravia (SW1X)</strong></a>,{" "}
-            <a href="/bathroom-renovation-putney"><strong>Putney (SW15)</strong></a> and{" "}
-            <a href="/bathroom-renovation-angel"><strong>Angel (N1)</strong></a>. If your area is not listed, get in touch — we cover most of London.
-          </p>
-          {locality.slug !== "london" && (
-            <p className="areas-body">
-              <a href="/london">See our full coverage across London →</a>
-            </p>
+          {locality.region === "hertfordshire" ? (
+            <>
+              <p className="eyebrow">Areas we cover</p>
+              <h2>Bathroom renovations across St Albans and the surrounding area.</h2>
+              <p className="areas-body">
+                Maycor carries out bathroom renovations in{" "}
+                <a href="/bathroom-renovation-st-albans"><strong>St Albans</strong></a> and nearby{" "}
+                <strong>Harpenden</strong>, covering the Georgian and Victorian homes around the
+                Cathedral and city centre as well as the wider commuter-belt streets further out.
+                If your area is not listed, get in touch — we cover most of Hertfordshire.
+              </p>
+              <p className="areas-body">
+                <a href="/london">We also cover London →</a>
+              </p>
+            </>
+          ) : (
+            <>
+              <p className="eyebrow">Areas we cover</p>
+              <h2>Bathroom renovations across London&apos;s most sought-after neighbourhoods.</h2>
+              <p className="areas-body">
+                Maycor carries out bathroom renovations across premium London locations including{" "}
+                <a href="/bathroom-renovation-kensington"><strong>Kensington (W8)</strong></a>,{" "}
+                <a href="/bathroom-renovation-chelsea"><strong>Chelsea (SW3)</strong></a>,{" "}
+                <a href="/bathroom-renovation-fulham"><strong>Fulham (SW6)</strong></a>,{" "}
+                <a href="/bathroom-renovation-battersea"><strong>Battersea (SW11)</strong></a>,{" "}
+                <a href="/bathroom-renovation-notting-hill"><strong>Notting Hill (W11)</strong></a>,{" "}
+                <a href="/bathroom-renovation-hammersmith"><strong>Hammersmith (W6)</strong></a>,{" "}
+                <a href="/bathroom-renovation-shepherds-bush"><strong>Shepherd&apos;s Bush (W12)</strong></a>,{" "}
+                <a href="/bathroom-renovation-earls-court"><strong>Earls Court (SW5)</strong></a>,{" "}
+                <a href="/bathroom-renovation-hampstead"><strong>Hampstead (NW3)</strong></a>,{" "}
+                <a href="/bathroom-renovation-west-hampstead"><strong>West Hampstead (NW6)</strong></a>,{" "}
+                <a href="/bathroom-renovation-st-johns-wood"><strong>St John&apos;s Wood (NW8)</strong></a>,{" "}
+                <a href="/bathroom-renovation-maida-vale"><strong>Maida Vale (W9)</strong></a>,{" "}
+                <a href="/bathroom-renovation-chiswick"><strong>Chiswick (W4)</strong></a>,{" "}
+                <a href="/bathroom-renovation-south-kensington"><strong>South Kensington (SW7)</strong></a>,{" "}
+                <a href="/bathroom-renovation-belgravia"><strong>Belgravia (SW1X)</strong></a>,{" "}
+                <a href="/bathroom-renovation-putney"><strong>Putney (SW15)</strong></a> and{" "}
+                <a href="/bathroom-renovation-angel"><strong>Angel (N1)</strong></a>. If your area is not listed, get in touch — we cover most of London.
+              </p>
+              <p className="areas-body">
+                We also cover{" "}
+                <a href="/bathroom-renovation-st-albans"><strong>St Albans and Harpenden</strong></a>{" "}
+                in Hertfordshire.
+              </p>
+              {locality.slug !== "london" && (
+                <p className="areas-body">
+                  <a href="/london">See our full coverage across London →</a>
+                </p>
+              )}
+            </>
           )}
         </div>
       </section>

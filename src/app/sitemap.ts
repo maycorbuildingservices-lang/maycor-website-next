@@ -20,6 +20,7 @@ const bathroomUrls = [
   { path: "bathroom-renovation-maida-vale", priority: 0.9 },
   { path: "bathroom-renovation-st-johns-wood", priority: 0.9 },
   { path: "bathroom-renovation-angel", priority: 0.9 },
+  { path: "bathroom-renovation-st-albans", priority: 0.9 },
   { path: "bathroom-renovation-cost-guide-london", priority: 0.9 },
 ];
 
