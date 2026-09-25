@@ -12,7 +12,7 @@
 
 ## Pages
 
-- [Bathroom Renovations London](https://bathroom-renovations.maycor.co.uk/bathroom-renovations-london/): Main bathroom service page — process, gallery, pricing estimator, FAQ, testimonials.
+- [Bathroom Renovations London](https://bathroom-renovations.maycor.co.uk/): Main bathroom service page — process, gallery, pricing estimator, FAQ, testimonials.
 - [Bathroom Renovation Notting Hill](https://bathroom-renovations.maycor.co.uk/bathroom-renovation-notting-hill/): Locality page for Notting Hill / W11.
 - [Bathroom Renovation Kensington](https://bathroom-renovations.maycor.co.uk/bathroom-renovation-kensington/): Locality page for Kensington / W8.
 - [Bathroom Renovation Chelsea](https://bathroom-renovations.maycor.co.uk/bathroom-renovation-chelsea/): Locality page for Chelsea / SW3.

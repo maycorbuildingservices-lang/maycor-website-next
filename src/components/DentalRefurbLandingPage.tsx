@@ -571,7 +571,7 @@ export function DentalRefurbLandingPage() {
             takes us across the UK.
           </p>
           <p className="areas-body">
-            <a href="/bathroom-renovations-london/">Looking for a bathroom renovation instead? →</a>
+            <a href="https://bathroom-renovations.maycor.co.uk/">Looking for a bathroom renovation instead? →</a>
           </p>
         </div>
       </section>
