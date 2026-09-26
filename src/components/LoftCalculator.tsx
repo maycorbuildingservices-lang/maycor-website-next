@@ -161,7 +161,7 @@ export function LoftCalculator() {
 
   return (
     <>
-      <div className={`estimate-panel${expanded ? " calculator-expanded" : ""}`} id="estimate">
+      <div className={`estimate-panel loft-calculator${expanded ? " calculator-expanded" : ""}`} id="estimate">
         <div className="estimate-copy">
           <p className="eyebrow">Free Online Estimate</p>
           <h2>

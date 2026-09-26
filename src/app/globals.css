@@ -506,6 +506,51 @@ h3 {
   min-height: 88px;
 }
 
+/* Loft conversion calculator (St Albans) — its own type/finish grid classes
+   don't exist elsewhere in this stylesheet, and its cards should read
+   centered rather than left-aligned like the bathroom calculator's. */
+.estimate-panel.loft-calculator {
+  width: min(1160px, calc(100% - 36px));
+  grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.2fr);
+}
+
+.estimate-panel.loft-calculator.calculator-expanded {
+  width: min(1360px, calc(100% - 24px));
+  grid-template-columns: minmax(280px, 0.55fr) minmax(0, 1.45fr);
+}
+
+.loft-calculator .calc-title {
+  margin: 0 0 14px;
+}
+
+.loft-calculator .calc-title h3 {
+  margin: 0 0 4px;
+  font-size: 19px;
+}
+
+.loft-calculator .calc-title p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.loft-calculator .type-grid,
+.loft-calculator .finish-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.loft-calculator .choice-card {
+  display: flex;
+  min-height: 100px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
 .calculator-compact .choice-grid {
   gap: 10px;
 }
@@ -1675,6 +1720,11 @@ h3 {
     gap: 34px;
   }
 
+  .estimate-panel.loft-calculator,
+  .estimate-panel.loft-calculator.calculator-expanded {
+    grid-template-columns: 1fr;
+  }
+
   .calculator-expanded .detail-options.tile {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1885,6 +1935,7 @@ h3 {
   .hero-proof,
   .breakdown-gate,
   .finish-grid,
+  .type-grid,
   .lead-form,
   .included-grid,
   .process-line {
