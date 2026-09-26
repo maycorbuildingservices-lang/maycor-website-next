@@ -30,12 +30,19 @@ const dentalUrls = [
   { path: "cqc-regulation-15-checklist", priority: 0.9 },
 ];
 
+const loftUrls = [{ path: "", priority: 1 }];
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const host = (await headers()).get("host") || "";
   const isDental = host.includes("dental.maycor.co.uk");
+  const isLofts = host.includes("lofts.maycor.co.uk");
 
-  const base = isDental ? "https://dental.maycor.co.uk" : "https://bathroom-renovations.maycor.co.uk";
-  const entries = isDental ? dentalUrls : bathroomUrls;
+  const base = isDental
+    ? "https://dental.maycor.co.uk"
+    : isLofts
+    ? "https://lofts.maycor.co.uk"
+    : "https://bathroom-renovations.maycor.co.uk";
+  const entries = isDental ? dentalUrls : isLofts ? loftUrls : bathroomUrls;
 
   return entries.map(({ path, priority }) => ({
     url: path ? `${base}/${path}` : `${base}/`,

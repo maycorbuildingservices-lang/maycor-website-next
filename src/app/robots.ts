@@ -4,7 +4,12 @@ import { headers } from "next/headers";
 export default async function robots(): Promise<MetadataRoute.Robots> {
   const host = (await headers()).get("host") || "";
   const isDental = host.includes("dental.maycor.co.uk");
-  const base = isDental ? "https://dental.maycor.co.uk" : "https://bathroom-renovations.maycor.co.uk";
+  const isLofts = host.includes("lofts.maycor.co.uk");
+  const base = isDental
+    ? "https://dental.maycor.co.uk"
+    : isLofts
+    ? "https://lofts.maycor.co.uk"
+    : "https://bathroom-renovations.maycor.co.uk";
 
   return {
     rules: {

@@ -63,6 +63,12 @@ const nextConfig: NextConfig = {
         has: [{ type: "host", value: "dental.maycor.co.uk" }],
         destination: "/dental-practice-refurbishment-london",
       },
+      // lofts.maycor.co.uk/ silently serves the St Albans loft conversion page.
+      {
+        source: "/",
+        has: [{ type: "host", value: "lofts.maycor.co.uk" }],
+        destination: "/loft-conversion-st-albans",
+      },
     ];
   },
   images: {
