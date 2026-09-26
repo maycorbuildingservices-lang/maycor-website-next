@@ -2,6 +2,7 @@
 
 import { FormEvent, useState } from "react";
 import Image from "next/image";
+import { LoftCalculator } from "./LoftCalculator";
 
 declare global {
   interface Window {
@@ -161,7 +162,7 @@ export function LoftConversionStAlbansPage() {
       latitude: 51.577586,
       longitude: -0.306405,
     },
-    priceRange: "£24,000–£57,000+",
+    priceRange: "£29,000–£125,000+",
     sameAs: [
       "https://www.facebook.com/MaycorBuildingContractors",
       "https://www.linkedin.com/in/victor-o-120686151/",
@@ -183,7 +184,7 @@ export function LoftConversionStAlbansPage() {
         description:
           "Velux, dormer, hip-to-gable, L-shaped and mansard loft conversions: structural design, planning, building regs, staircase, en-suite and finishing.",
         areaServed: ["St Albans", "Harpenden", "Hertfordshire"],
-        priceRange: "£24,000–£57,000+",
+        priceRange: "£29,000–£125,000+",
       },
     },
   };
@@ -267,7 +268,7 @@ export function LoftConversionStAlbansPage() {
           <a className="header-whatsapp" href="https://wa.me/447843746835?text=Hi%2C%20I%27d%20like%20a%20loft%20conversion%20estimate" target="_blank" rel="noreferrer">
             WhatsApp
           </a>
-          <a className="header-call" href="#enquiry">
+          <a className="header-call" href="#estimate">
             Get My Estimate
           </a>
         </div>
@@ -287,7 +288,7 @@ export function LoftConversionStAlbansPage() {
               staircase and building regs sign-off included as standard.
             </p>
             <div className="hero-actions">
-              <a href="#enquiry" className="primary-button">
+              <a href="#estimate" className="primary-button">
                 Get My Loft Estimate →
               </a>
               <a href="tel:07843746835" className="secondary-button">
@@ -312,14 +313,16 @@ export function LoftConversionStAlbansPage() {
             <h2>How much does a loft conversion cost in St Albans?</h2>
             <p className="cost-intro-body">
               In St Albans and Harpenden, loft conversions typically range from around{" "}
-              <strong>£24,000 for a basic Velux/rooflight conversion</strong> to{" "}
-              <strong>£57,000+ for a larger dormer or mansard with en-suite</strong>, averaging
-              around £37,000. Key cost drivers include conversion type, roof structure, headroom,
-              staircase specification, en-suite quality, and whether planning permission is
-              required. Get in touch below for a project-specific estimate.
+              <strong>£29,000 for a basic Velux/rooflight conversion</strong> to{" "}
+              <strong>£125,000+ for a larger dormer or mansard with premium finish</strong>. Key
+              cost drivers include conversion type, roof structure, headroom, staircase
+              specification, en-suite quality, and whether planning permission is required. Use
+              the calculator below for a project-specific estimate.
             </p>
           </div>
         </section>
+
+        <LoftCalculator />
 
         <section className="story-section" style={{ gridTemplateColumns: "1fr", maxWidth: 760 }}>
           <div>
@@ -428,9 +431,9 @@ export function LoftConversionStAlbansPage() {
 
         <section className="estimate-panel calculator-compact" id="enquiry" aria-labelledby="enquiry-heading">
           <div className="estimate-copy">
-            <p className="eyebrow">Get your estimate</p>
+            <p className="eyebrow">Prefer to skip the calculator?</p>
             <h2 id="enquiry-heading">
-              <span className="estimate-highlight">Tell us about your loft, we&apos;ll take it from there.</span>
+              <span className="estimate-highlight">Just leave your details, we&apos;ll take it from there.</span>
             </h2>
             <p>
               Tell us the scope and roughly what you have in mind, and we&apos;ll arrange a free

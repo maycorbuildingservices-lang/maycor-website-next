@@ -1,0 +1,549 @@
+{
+  "meta": {
+    "name": "Maycor Loft Conversion Calculator",
+    "version": "1.0.0",
+    "admin_email": "admin@maycor.co.uk",
+    "reply_to": "contact@maycor.co.uk",
+    "sending_domain": "maycor.co.uk"
+  },
+  "base_bands": {
+    "velux":      { "low": 29000,  "high": 48000  },
+    "dormer":     { "low": 44000,  "high": 73000  },
+    "full_dormer":{ "low": 53000,  "high": 83000  },
+    "hip_gable":  { "low": 55000,  "high": 87000  },
+    "l_shaped":   { "low": 58000,  "high": 92000  },
+    "mansard":    { "low": 75000,  "high": 126000 }
+  },
+  "finish_multipliers": {
+    "standard": 1.0,
+    "mid":      1.10,
+    "premium":  1.15
+  },
+  "risk_section_cap": 5,
+  "gap_cfg": {
+    "velux":       { "fixed": 8000,  "dynPct": 0.18, "cap": 22000 },
+    "dormer":      { "fixed": 12000, "dynPct": 0.17, "cap": 30000 },
+    "full_dormer": { "fixed": 14000, "dynPct": 0.17, "cap": 35000 },
+    "hip_gable":   { "fixed": 14000, "dynPct": 0.16, "cap": 38000 },
+    "l_shaped":    { "fixed": 15000, "dynPct": 0.16, "cap": 40000 },
+    "mansard":     { "fixed": 18000, "dynPct": 0.15, "cap": 52000 }
+  },
+  "sections": [
+    {
+      "id": "loft_type",
+      "title": "Loft conversion type",
+      "mainSection": "Conversion type",
+      "sectionKey": "type",
+      "layout": "tile",
+      "helper": "The conversion type is the biggest cost driver. Choose what suits your roof structure and budget.",
+      "options": [
+        {
+          "id": "loft_type__velux",
+          "band": "velux",
+          "label": "Velux / Rooflight conversion",
+          "desc": "No change to the roofline. Velux or rooflight windows inserted between existing rafters. Lowest cost option. Needs roof pitch of 40°+ and adequate head height (2.2m+ at ridge).",
+          "marker": "££",
+          "risk_points": 0,
+          "adder_low": 0,
+          "adder_high": 0
+        },
+        {
+          "id": "loft_type__dormer",
+          "band": "dormer",
+          "label": "Rear dormer (standard)",
+          "desc": "A flat-roofed box structure projecting from the rear slope. The most common London loft conversion. Creates a vertical front face with windows, dramatically increasing usable headroom.",
+          "marker": "££",
+          "risk_points": 1,
+          "adder_low": 0,
+          "adder_high": 0
+        },
+        {
+          "id": "loft_type__full_dormer",
+          "band": "full_dormer",
+          "label": "Full-width rear dormer",
+          "desc": "Dormer runs the full width of the rear slope from party wall to party wall. Maximum space. Popular in wider London terraces and semis.",
+          "marker": "£££",
+          "risk_points": 1,
+          "adder_low": 0,
+          "adder_high": 0
+        },
+        {
+          "id": "loft_type__hip_gable",
+          "band": "hip_gable",
+          "label": "Hip-to-gable + rear dormer",
+          "desc": "The sloping hip-end of the roof is converted to a vertical gable wall, combined with a rear dormer. Maximises floor area. Most common on 1930s/1950s semis and detached houses.",
+          "marker": "£££",
+          "risk_points": 2,
+          "adder_low": 0,
+          "adder_high": 0
+        },
+        {
+          "id": "loft_type__l_shaped",
+          "band": "l_shaped",
+          "label": "L-shaped dormer (rear + back-addition)",
+          "desc": "A dormer on the main rear slope combined with a dormer over the back-addition / return of a Victorian or Edwardian terraced house. Creates L-shaped floor plan — often two bedrooms + bathroom.",
+          "marker": "£££",
+          "risk_points": 2,
+          "adder_low": 0,
+          "adder_high": 0
+        },
+        {
+          "id": "loft_type__mansard",
+          "band": "mansard",
+          "label": "Mansard conversion",
+          "desc": "The entire rear roof slope is rebuilt at a near-vertical angle (72°) topped by a shallow flat roof. Maximum space gain — often creates a full floor. Almost always requires planning permission. Premium option.",
+          "marker": "££££",
+          "risk_points": 3,
+          "adder_low": 0,
+          "adder_high": 0
+        }
+      ],
+      "defaultOptionId": "loft_type__dormer"
+    },
+    {
+      "id": "roof_structure",
+      "title": "Existing roof structure",
+      "mainSection": "Technical conditions",
+      "sectionKey": "structure",
+      "layout": "row",
+      "helper": "The type of existing roof structure significantly affects how much work is needed to create a habitable space.",
+      "options": [
+        {
+          "id": "roof_structure__cut_rafter",
+          "label": "Traditional cut rafter (Victorian / Edwardian / 1930s)",
+          "desc": "Individual rafters and purlins. Open roof space — easiest to convert. No web members to remove. Standard starting point for loft conversions.",
+          "marker": "£",
+          "risk_points": 0,
+          "adder_low": 0,
+          "adder_high": 0
+        },
+        {
+          "id": "roof_structure__trussed_rafter",
+          "label": "Trussed rafter roof (post-1960s, modern)",
+          "desc": "Factory-made triangular trusses. Very common in 1960s–1990s houses. The W-shaped web members must be entirely removed and replaced with a new structural frame. Adds significant cost.",
+          "marker": "£££",
+          "risk_points": 3,
+          "adder_low": 5000,
+          "adder_high": 11000
+        },
+        {
+          "id": "roof_structure__flat_roof_above",
+          "label": "Flat or low-pitch roof (unusual configuration)",
+          "desc": "Unusual situation — flat or near-flat roof above, or complex multi-pitch configuration. Requires detailed survey before works. Higher design and structural cost.",
+          "marker": "£££",
+          "risk_points": 3,
+          "adder_low": 3500,
+          "adder_high": 9000
+        }
+      ],
+      "defaultOptionId": "roof_structure__cut_rafter"
+    },
+    {
+      "id": "head_height",
+      "title": "Existing head height at ridge",
+      "mainSection": "Technical conditions",
+      "sectionKey": "structure",
+      "layout": "row",
+      "helper": "Building Regulations require a minimum of 2.2m head height over at least 50% of the floor area for a habitable room.",
+      "options": [
+        {
+          "id": "head_height__good",
+          "label": "Good (2.5m+ at ridge)",
+          "desc": "Plenty of headroom. Full habitable space achievable without structural alterations to roof height.",
+          "marker": "£",
+          "risk_points": 0,
+          "adder_low": 0,
+          "adder_high": 0
+        },
+        {
+          "id": "head_height__borderline",
+          "label": "Borderline (2.2–2.5m at ridge)",
+          "desc": "Achievable with good design. May limit usable floor area slightly or require lower floor build-up. Dormer becomes more valuable for headroom.",
+          "marker": "££",
+          "risk_points": 1,
+          "adder_low": 0,
+          "adder_high": 0
+        },
+        {
+          "id": "head_height__limited",
+          "label": "Limited (under 2.2m at ridge)",
+          "desc": "May require ridge raising, floor lowering into ceiling below, or may not be viable without major structural work. Requires structural engineer assessment.",
+          "marker": "£££",
+          "risk_points": 3,
+          "adder_low": 5000,
+          "adder_high": 14000
+        }
+      ],
+      "defaultOptionId": "head_height__good"
+    },
+    {
+      "id": "staircase",
+      "title": "Staircase",
+      "mainSection": "Key elements",
+      "sectionKey": "build",
+      "layout": "tile",
+      "helper": "A new staircase is always required. The type affects cost, space used, and look. Fire regs require FD30 fire doors on all floors.",
+      "options": [
+        {
+          "id": "staircase__space_saving",
+          "label": "Space-saving / alternating tread",
+          "desc": "Steeper stair with alternating foot treads. Where space is very tight. Meets Building Regs for loft access. Most compact option.",
+          "marker": "£",
+          "risk_points": 0,
+          "adder_low": -500,
+          "adder_high": -1200
+        },
+        {
+          "id": "staircase__standard_winder",
+          "label": "Standard winder (quarter-turn, softwood)",
+          "desc": "Standard softwood winder staircase. Space-efficient. Most common choice for loft conversions. Balustrading included.",
+          "marker": "£",
+          "risk_points": 0,
+          "adder_low": 0,
+          "adder_high": 0
+        },
+        {
+          "id": "staircase__hardwood",
+          "label": "Hardwood straight flight",
+          "desc": "Solid oak or ash treads and handrail. Straight flight (requires more landing space). Higher aesthetic quality.",
+          "marker": "££",
+          "risk_points": 0,
+          "adder_low": 1500,
+          "adder_high": 3500
+        },
+        {
+          "id": "staircase__bespoke",
+          "label": "Bespoke / glass / floating steel",
+          "desc": "Architectural staircase — floating treads, glass balustrade, structural steel spine. Feature piece. High fabrication and install time.",
+          "marker": "£££",
+          "risk_points": 1,
+          "adder_low": 5000,
+          "adder_high": 13000
+        }
+      ],
+      "defaultOptionId": "staircase__standard_winder"
+    },
+    {
+      "id": "en_suite",
+      "title": "En-suite bathroom",
+      "mainSection": "Key elements",
+      "sectionKey": "bathroom",
+      "layout": "tile",
+      "helper": "An en-suite is one of the biggest value-adds of a loft conversion. Plumbing must be run up from the floor below.",
+      "options": [
+        {
+          "id": "en_suite__none",
+          "label": "No en-suite",
+          "desc": "Bedroom only. Residents use existing bathroom on floor below. No new plumbing required.",
+          "marker": "£",
+          "risk_points": 0,
+          "adder_low": 0,
+          "adder_high": 0
+        },
+        {
+          "id": "en_suite__basic",
+          "label": "Basic en-suite (shower, WC, basin)",
+          "desc": "Compact but complete. Standard sanitaryware. Walk-in shower enclosure, close-coupled WC, pedestal basin. Tiled wet area.",
+          "marker": "££",
+          "risk_points": 1,
+          "adder_low": 6000,
+          "adder_high": 11000
+        },
+        {
+          "id": "en_suite__mid",
+          "label": "Mid-range en-suite",
+          "desc": "Better quality suite and tiling. Concealed shower valve, wall-hung WC, vanity unit. More tile coverage.",
+          "marker": "££",
+          "risk_points": 1,
+          "adder_low": 9000,
+          "adder_high": 13000
+        },
+        {
+          "id": "en_suite__premium",
+          "label": "High-spec en-suite",
+          "desc": "Walk-in wetroom shower, freestanding / wall-hung fixtures, large format tiles, full room tiling, heated towel rail, premium sanitaryware.",
+          "marker": "£££",
+          "risk_points": 2,
+          "adder_low": 14000,
+          "adder_high": 20000
+        }
+      ],
+      "defaultOptionId": "en_suite__basic"
+    },
+    {
+      "id": "dormer_cladding",
+      "title": "Dormer cladding",
+      "mainSection": "Key elements",
+      "sectionKey": "build",
+      "layout": "tile",
+      "helper": "Applies if you have a dormer, hip-to-gable, L-shaped, or mansard conversion. Affects aesthetics and cost.",
+      "options": [
+        {
+          "id": "dormer_cladding__render",
+          "label": "Render (monocouche / through-colour)",
+          "desc": "Standard and affordable. Smooth or textured render finish. Easy to repaint. Common choice across London.",
+          "marker": "£",
+          "risk_points": 0,
+          "adder_low": 0,
+          "adder_high": 0
+        },
+        {
+          "id": "dormer_cladding__slate",
+          "label": "Slate tile hanging",
+          "desc": "Vertical slate tiles on dormer face. Traditional and durable. Matches many Victorian and Edwardian properties. Lifetime of 50+ years.",
+          "marker": "££",
+          "risk_points": 0,
+          "adder_low": 800,
+          "adder_high": 2200
+        },
+        {
+          "id": "dormer_cladding__zinc",
+          "label": "Zinc standing seam",
+          "desc": "Premium contemporary finish. Standing seam zinc panels. Very popular in London for a clean, modern look. Low maintenance, very long lifespan.",
+          "marker": "£££",
+          "risk_points": 0,
+          "adder_low": 2500,
+          "adder_high": 6000
+        },
+        {
+          "id": "dormer_cladding__timber",
+          "label": "Timber (cedar / larch)",
+          "desc": "Natural timber cladding. Cedar weathers to silver-grey. Warm aesthetic. Requires maintenance or treatment every 5–10 years.",
+          "marker": "££",
+          "risk_points": 0,
+          "adder_low": 1000,
+          "adder_high": 3000
+        }
+      ],
+      "defaultOptionId": "dormer_cladding__render"
+    },
+    {
+      "id": "windows_rooflights",
+      "title": "Windows & rooflights",
+      "mainSection": "Key elements",
+      "sectionKey": "build",
+      "layout": "tile",
+      "helper": "Light is critical in loft conversions. Standard Velux rooflights vs larger feature windows vs a Juliet balcony.",
+      "options": [
+        {
+          "id": "windows_rooflights__velux_only",
+          "label": "Velux rooflights only (2–3 units)",
+          "desc": "Standard Velux or similar pitched-roof windows. Sufficient for Velux conversion. Also used alongside dormer windows.",
+          "marker": "£",
+          "risk_points": 0,
+          "adder_low": 0,
+          "adder_high": 0
+        },
+        {
+          "id": "windows_rooflights__velux_dormer_windows",
+          "label": "Velux + standard dormer windows",
+          "desc": "Rooflights combined with standard-sized windows in dormer face (uPVC or aluminium casement).",
+          "marker": "£",
+          "risk_points": 0,
+          "adder_low": 1000,
+          "adder_high": 2800
+        },
+        {
+          "id": "windows_rooflights__large_windows",
+          "label": "Large aluminium dormer windows",
+          "desc": "Oversized aluminium casement or fixed windows on dormer face. Maximises natural light. Slim frames. More glass area.",
+          "marker": "££",
+          "risk_points": 1,
+          "adder_low": 2500,
+          "adder_high": 5500
+        },
+        {
+          "id": "windows_rooflights__juliet_balcony",
+          "label": "Juliet balcony (glass balustrade)",
+          "desc": "Full-height glass door with structural glass balustrade. No floor area gain but maximises light and views. Popular feature on rear dormers.",
+          "marker": "£££",
+          "risk_points": 1,
+          "adder_low": 3000,
+          "adder_high": 7000
+        }
+      ],
+      "defaultOptionId": "windows_rooflights__velux_dormer_windows"
+    },
+    {
+      "id": "electrics",
+      "title": "Electrics",
+      "mainSection": "Services",
+      "sectionKey": "services",
+      "layout": "row",
+      "helper": "Building Regs require mains-wired, interlinked smoke alarms on all floors including the loft.",
+      "options": [
+        {
+          "id": "electrics__basic",
+          "label": "Basic (standard lighting, sockets, linked smoke alarms)",
+          "desc": "Ceiling pendant, sockets, switches, mains-linked smoke detectors. Meets Building Regs. First and second fix included.",
+          "marker": "£",
+          "risk_points": 0,
+          "adder_low": 0,
+          "adder_high": 0
+        },
+        {
+          "id": "electrics__standard_upgrade",
+          "label": "Standard upgrade (recessed spots, mirror light, shaver point)",
+          "desc": "Recessed LED downlights, bedside sockets, mirror/vanity light, USB charging sockets, shaver point.",
+          "marker": "££",
+          "risk_points": 0,
+          "adder_low": 600,
+          "adder_high": 1800
+        },
+        {
+          "id": "electrics__full_feature",
+          "label": "Full feature electrics (LED niches, dimmers, sensors)",
+          "desc": "Feature LED niches, dimmer circuits, motion sensors, TV point, data point, upgraded consumer unit contribution. Higher design and install time.",
+          "marker": "£££",
+          "risk_points": 1,
+          "adder_low": 1800,
+          "adder_high": 4000
+        }
+      ],
+      "defaultOptionId": "electrics__standard_upgrade"
+    },
+    {
+      "id": "party_wall",
+      "title": "Party wall",
+      "mainSection": "Planning & legal",
+      "sectionKey": "planning",
+      "layout": "row",
+      "helper": "Nearly all London terraced and semi-detached loft conversions trigger Party Wall Act obligations. Notices must be served before work starts.",
+      "options": [
+        {
+          "id": "party_wall__none",
+          "label": "No party wall (detached house)",
+          "desc": "No shared walls. No Party Wall Act obligations.",
+          "marker": "£",
+          "risk_points": 0,
+          "adder_low": 0,
+          "adder_high": 0
+        },
+        {
+          "id": "party_wall__one",
+          "label": "One adjoining owner (semi-detached)",
+          "desc": "Notice to one neighbour. If they dissent, award needed. Surveyor fees: £1,000–£4,000 per side.",
+          "marker": "££",
+          "risk_points": 1,
+          "adder_low": 1200,
+          "adder_high": 3500
+        },
+        {
+          "id": "party_wall__two",
+          "label": "Two adjoining owners (terraced)",
+          "desc": "Notices to both neighbours. Two sets of potential surveyor fees. Very common for London Victorian terraces.",
+          "marker": "£££",
+          "risk_points": 2,
+          "adder_low": 2500,
+          "adder_high": 5500
+        }
+      ],
+      "defaultOptionId": "party_wall__two"
+    },
+    {
+      "id": "planning",
+      "title": "Planning permission",
+      "mainSection": "Planning & legal",
+      "sectionKey": "planning",
+      "layout": "row",
+      "helper": "Most rear dormers are permitted development. Mansards and front dormers almost always need planning. Conservation areas remove PD rights.",
+      "options": [
+        {
+          "id": "planning__permitted_development",
+          "label": "Permitted development (no planning needed)",
+          "desc": "Volume added ≤40m³ (terraced) or ≤50m³ (semi/detached). Rear slope only. Not in conservation area. Building Regs always required regardless.",
+          "marker": "£",
+          "risk_points": 0,
+          "adder_low": 0,
+          "adder_high": 0
+        },
+        {
+          "id": "planning__full_planning",
+          "label": "Planning permission required",
+          "desc": "Conservation area / front dormer / mansard / volume exceeded / Article 4 Direction. Includes application fee (£528), architect's planning drawings, 8-week determination period.",
+          "marker": "£££",
+          "risk_points": 2,
+          "adder_low": 2500,
+          "adder_high": 6000
+        }
+      ],
+      "defaultOptionId": "planning__permitted_development"
+    },
+    {
+      "id": "professional_fees",
+      "title": "Professional fees",
+      "mainSection": "Professional fees",
+      "sectionKey": "fees",
+      "layout": "row",
+      "helper": "Structural engineer is always needed. Architect drawings are needed for Building Regs. Party wall surveyor if applicable.",
+      "options": [
+        {
+          "id": "professional_fees__not_included",
+          "label": "Not included (arrange separately)",
+          "desc": "Handle architect and structural engineer independently. Typical range: £2,500–£8,000 for standard loft.",
+          "marker": "£",
+          "risk_points": 0,
+          "adder_low": 0,
+          "adder_high": 0
+        },
+        {
+          "id": "professional_fees__arch_se",
+          "label": "Architect + structural engineer",
+          "desc": "Building regs drawings and SE calculations. The minimum required package for a loft conversion. SE full package typically £1,500–£4,000.",
+          "marker": "££",
+          "risk_points": 0,
+          "adder_low": 3000,
+          "adder_high": 5500
+        },
+        {
+          "id": "professional_fees__full_service",
+          "label": "Full service (architect + SE + project management)",
+          "desc": "Complete professional package from design through to snagging and sign-off. Includes planning application if required.",
+          "marker": "£££",
+          "risk_points": 0,
+          "adder_low": 6000,
+          "adder_high": 10000
+        }
+      ],
+      "defaultOptionId": "professional_fees__not_included"
+    },
+    {
+      "id": "finish_level",
+      "title": "Finish level",
+      "mainSection": "Finish level",
+      "sectionKey": "finish",
+      "layout": "tile",
+      "helper": "Applied as a multiplier across the whole project. Covers materials, fixtures, fittings, and detailing quality.",
+      "options": [
+        {
+          "id": "finish_level__standard",
+          "label": "Standard",
+          "desc": "Good quality practical finish. Standard materials throughout. Clean, tidy, habitable result. No frills.",
+          "marker": "£",
+          "risk_points": 0,
+          "adder_low": 0,
+          "adder_high": 0
+        },
+        {
+          "id": "finish_level__mid",
+          "label": "Mid-range",
+          "desc": "Better materials, upgraded fixtures, more detailing time. The most popular finish level in London.",
+          "marker": "££",
+          "risk_points": 0,
+          "adder_low": 0,
+          "adder_high": 0
+        },
+        {
+          "id": "finish_level__premium",
+          "label": "Premium",
+          "desc": "High-end materials, designer fixtures, precision detailing, longer labour time. Matching premium London standard.",
+          "marker": "£££",
+          "risk_points": 0,
+          "adder_low": 0,
+          "adder_high": 0
+        }
+      ],
+      "defaultOptionId": "finish_level__standard"
+    }
+  ]
+}
