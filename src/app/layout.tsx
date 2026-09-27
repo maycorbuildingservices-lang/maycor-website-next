@@ -47,9 +47,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* gtag.js (GA4 + Ads) was ~860ms of main-thread blocking on a throttled mobile load, so the
+            library loads once the page is idle. The inline stub below still defines window.gtag
+            right away; calls made before the library arrives queue in dataLayer and are sent when
+            it loads. gclid capture for WhatsApp tracking is our own code and doesn't depend on it. */}
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
         <Script id="gtag-init" strategy="afterInteractive">{`
           window.dataLayer = window.dataLayer || [];

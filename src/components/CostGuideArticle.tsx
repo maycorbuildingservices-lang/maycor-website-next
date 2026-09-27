@@ -147,10 +147,10 @@ export function CostGuideArticle() {
           <p className="eyebrow">Bathroom renovation cost in London</p>
           <h1>How much does a bathroom renovation really cost in London?</h1>
           <p className="article-lede">
-            A London bathroom renovation typically costs between <strong>£3,900 and £21,700</strong>,
-            depending on room size and finish level. Most homeowners land somewhere in the
-            middle of that range — the two ends represent a standard-finish WC refit at one end
-            and a large, premium-finish room with a full reconfiguration at the other.
+            A full London bathroom renovation typically costs between <strong>£6,000 and £20,000+</strong>,
+            depending on room size and finish level. Smaller WC and cloakroom refits start from
+            around £3,900, while a large, premium-finish room with a full reconfiguration sits at
+            the top end. The table below breaks this down by room size.
           </p>
 
           <h2>Cost by room size and finish level</h2>

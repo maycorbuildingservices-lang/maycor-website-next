@@ -3,7 +3,7 @@ import { CostGuideArticle } from "@/components/CostGuideArticle";
 
 const title = "Bathroom Renovation Cost Guide for London";
 const description =
-  "Real bathroom renovation price ranges for London by room size and finish level (£3,900–£21,700), and what actually pushes the cost up or down.";
+  "Full London bathroom renovations typically cost £6,000–£20,000+ (WC refits from £3,900). Real price ranges by room size and finish, and what moves the cost.";
 
 export const metadata: Metadata = {
   title,

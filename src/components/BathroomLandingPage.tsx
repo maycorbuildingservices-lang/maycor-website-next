@@ -1,9 +1,8 @@
-"use client";
-
-import { PointerEvent, TouchEvent, useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { BathroomFaq } from "./BathroomFaq";
+import { BathroomGallery, type GalleryPhoto } from "./BathroomGallery";
 import { EstimateStarter } from "./EstimateStarter";
-import { logWhatsAppClick } from "@/lib/adTracking";
+import { WhatsAppLink } from "./WhatsAppLink";
 
 const images = {
   logo: "https://maycor.co.uk/wp-content/uploads/2025/03/main-logo-all-04-300x93.png",
@@ -92,7 +91,7 @@ const images = {
   alana7: "/images/gallery-alana-7.jpg",
 };
 
-const galleryPhotos = [
+const galleryPhotos: GalleryPhoto[] = [
   // Black-tile ensuite with statement matt-black console vanity (hero: striking black tile + designer basin)
   { src: images.extra100, alt: "Oval brass-framed mirror above a matt black vanity on a dark textured tile wall, glass-screened walk-in shower with rainfall head visible beyond", className: "gallery-wide" },
   { src: images.extra99, alt: "Matt black wall-hung vanity with an oval brass-framed mirror on a dark textured tile feature wall, wall-hung toilet and glass shower screen alongside", className: "" },
@@ -267,7 +266,7 @@ const brandLogos = [
   { name: "Bristan", src: "/images/brands/bristan.png" },
 ];
 
-  const faqs = [
+  const faqs: [string, string][] = [
     [
       "Can you handle the whole bathroom renovation?",
       "Yes. Maycor can coordinate strip-out, plumbing, electrics, waterproofing, tiling, decorating, fittings and waste removal.",
@@ -434,219 +433,6 @@ export function BathroomLandingPage({ locality = defaultLocality }: { locality?:
       ]
     : testimonials;
 
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
-  const lastTouchActivation = useRef(0);
-  const galleryRef = useRef<HTMLDivElement>(null);
-  const galleryControls = useRef<{ prev: () => void; next: () => void } | null>(null);
-
-  function showPrevPhoto() {
-    setLightboxIndex((current) => (current === null ? null : (current - 1 + galleryPhotos.length) % galleryPhotos.length));
-  }
-
-  function showNextPhoto() {
-    setLightboxIndex((current) => (current === null ? null : (current + 1) % galleryPhotos.length));
-  }
-
-  const touchStartX = useRef(0);
-
-  function handleLightboxTouchStart(event: TouchEvent) {
-    touchStartX.current = event.touches[0].clientX;
-  }
-
-  function handleLightboxTouchEnd(event: TouchEvent) {
-    const deltaX = event.changedTouches[0].clientX - touchStartX.current;
-    if (Math.abs(deltaX) < 40) return;
-    if (deltaX > 0) showPrevPhoto();
-    else showNextPhoto();
-  }
-
-  useEffect(() => {
-    if (lightboxIndex === null) return;
-
-    function handleKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") setLightboxIndex(null);
-      if (event.key === "ArrowLeft") showPrevPhoto();
-      if (event.key === "ArrowRight") showNextPhoto();
-    }
-
-    document.body.style.overflow = "hidden";
-    document.body.classList.add("lightbox-open");
-    window.addEventListener("keydown", handleKeyDown);
-
-    return () => {
-      document.body.style.overflow = "";
-      document.body.classList.remove("lightbox-open");
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [lightboxIndex]);
-
-  useEffect(() => {
-    const gallery = galleryRef.current;
-    if (!gallery) return;
-
-    let autoplayTimer: ReturnType<typeof setInterval> | null = null;
-    let resumeTimer: ReturnType<typeof setTimeout> | null = null;
-    let index = 0;
-
-    function stopAutoplay() {
-      if (autoplayTimer) clearInterval(autoplayTimer);
-      autoplayTimer = null;
-    }
-
-    function startAutoplay() {
-      stopAutoplay();
-      autoplayTimer = setInterval(() => {
-        if (!gallery || gallery.scrollWidth <= gallery.clientWidth + 1) return;
-        const figures = Array.from(gallery.querySelectorAll("figure")) as HTMLElement[];
-        index = (index + 1) % figures.length;
-        const figure = figures[index];
-        const galleryRect = gallery.getBoundingClientRect();
-        const figureRect = figure.getBoundingClientRect();
-        const targetLeft =
-          gallery.scrollLeft +
-          (figureRect.left - galleryRect.left) -
-          (gallery.clientWidth - figureRect.width) / 2;
-        gallery.scrollTo({ left: targetLeft, behavior: "smooth" });
-      }, 1300);
-    }
-
-    function closestIndex() {
-      if (!gallery) return 0;
-      const figures = Array.from(gallery.querySelectorAll("figure"));
-      const galleryRect = gallery.getBoundingClientRect();
-      const galleryCenter = galleryRect.left + galleryRect.width / 2;
-      let closest = 0;
-      let closestDist = Infinity;
-      figures.forEach((figure, i) => {
-        const rect = figure.getBoundingClientRect();
-        const dist = Math.abs(rect.left + rect.width / 2 - galleryCenter);
-        if (dist < closestDist) {
-          closestDist = dist;
-          closest = i;
-        }
-      });
-      return closest;
-    }
-
-    function pauseForInteraction() {
-      stopAutoplay();
-      if (resumeTimer) clearTimeout(resumeTimer);
-      resumeTimer = setTimeout(() => {
-        index = closestIndex();
-        startAutoplay();
-      }, 2000);
-    }
-
-    function goToIndex(newIndex: number) {
-      if (!gallery) return;
-      const figures = Array.from(gallery.querySelectorAll("figure")) as HTMLElement[];
-      if (figures.length === 0) return;
-      index = ((newIndex % figures.length) + figures.length) % figures.length;
-      const figure = figures[index];
-      const galleryRect = gallery.getBoundingClientRect();
-      const figureRect = figure.getBoundingClientRect();
-      const targetLeft =
-        gallery.scrollLeft + (figureRect.left - galleryRect.left) - (gallery.clientWidth - figureRect.width) / 2;
-      gallery.scrollTo({ left: targetLeft, behavior: "smooth" });
-    }
-
-    function goRelative(direction: number) {
-      pauseForInteraction();
-      goToIndex(closestIndex() + direction);
-    }
-
-    galleryControls.current = { prev: () => goRelative(-1), next: () => goRelative(1) };
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          startAutoplay();
-        } else {
-          stopAutoplay();
-          if (resumeTimer) clearTimeout(resumeTimer);
-        }
-      },
-      { threshold: 0.1, rootMargin: "100px 0px" }
-    );
-    observer.observe(gallery);
-
-    gallery.addEventListener("pointerdown", pauseForInteraction);
-    gallery.addEventListener("touchstart", pauseForInteraction, { passive: true });
-
-    let scaleFrame: number | null = null;
-    const isMobile = window.matchMedia("(max-width: 767px)").matches;
-
-    function updateScales() {
-      if (!gallery) return;
-      const figures = Array.from(gallery.querySelectorAll("figure")) as HTMLElement[];
-      const galleryRect = gallery.getBoundingClientRect();
-      const galleryCenter = galleryRect.left + galleryRect.width / 2;
-
-      let closest: HTMLElement | null = null;
-      let closestDistance = Infinity;
-
-      figures.forEach((figure) => {
-        const rect = figure.getBoundingClientRect();
-        const figureCenter = rect.left + rect.width / 2;
-        const distance = Math.abs(figureCenter - galleryCenter);
-        const normalized = Math.min(distance / (galleryRect.width / 2), 1);
-        const scale = 1.08 - normalized * 0.16;
-        figure.style.transform = `scale(${scale})`;
-
-        if (distance < closestDistance) {
-          closestDistance = distance;
-          closest = figure;
-        }
-      });
-
-      figures.forEach((figure) => {
-        figure.classList.toggle("gallery-figure-active", figure === closest);
-      });
-    }
-
-    function handleScroll() {
-      if (isMobile) return;
-      if (scaleFrame !== null) return;
-      scaleFrame = requestAnimationFrame(() => {
-        updateScales();
-        scaleFrame = null;
-      });
-    }
-
-    if (!isMobile) {
-      updateScales();
-    }
-    gallery.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("resize", handleScroll);
-
-    return () => {
-      observer.disconnect();
-      stopAutoplay();
-      if (resumeTimer) clearTimeout(resumeTimer);
-      gallery.removeEventListener("pointerdown", pauseForInteraction);
-      gallery.removeEventListener("touchstart", pauseForInteraction);
-      gallery.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleScroll);
-      if (scaleFrame !== null) cancelAnimationFrame(scaleFrame);
-      galleryControls.current = null;
-    };
-  }, []);
-
-  function tapBridge(action: () => void) {
-    return {
-      onPointerUp(event: PointerEvent<HTMLButtonElement>) {
-        if (event.pointerType !== "touch") return;
-        lastTouchActivation.current = Date.now();
-        action();
-      },
-      onClick() {
-        if (Date.now() - lastTouchActivation.current < 700) return;
-        action();
-      },
-    };
-  }
-
   return (
       <>
       <script
@@ -680,15 +466,9 @@ export function BathroomLandingPage({ locality = defaultLocality }: { locality?:
           <a href="#faq">FAQ</a>
         </nav>
         <div className="header-actions">
-          <a
-            className="header-whatsapp"
-            href="https://wa.me/447843746835"
-            target="_blank"
-            rel="noreferrer"
-            onClick={() => logWhatsAppClick("header")}
-          >
+          <WhatsAppLink className="header-whatsapp" location="header">
             WhatsApp
-          </a>
+          </WhatsAppLink>
           <a className="header-call" href="#estimate">
             Continue Estimate
           </a>
@@ -787,52 +567,7 @@ export function BathroomLandingPage({ locality = defaultLocality }: { locality?:
             <p className="eyebrow">Recent finish direction</p>
             <h2>Clean lines, practical detailing, spaces that feel settled.</h2>
           </div>
-          <div className="gallery-grid-wrap">
-            <button
-              type="button"
-              className="gallery-nav gallery-nav-prev"
-              aria-label="Previous photo"
-              onClick={() => galleryControls.current?.prev()}
-            >
-              ‹
-            </button>
-            <div className="gallery-grid" ref={galleryRef}>
-            {galleryPhotos.map((photo, photoIndex) => (
-              <figure
-                key={photo.src}
-                className={photo.className}
-                onClick={() => setLightboxIndex(photoIndex)}
-                onKeyDown={(event) => {
-                  if (event.key === "Enter" || event.key === " ") {
-                    event.preventDefault();
-                    setLightboxIndex(photoIndex);
-                  }
-                }}
-                role="button"
-                tabIndex={0}
-                aria-label={`View photo: ${photo.alt}`}
-              >
-                <Image
-                  src={photo.src}
-                  alt={photo.alt}
-                  fill
-                  sizes="(max-width: 640px) 86vw, 480px"
-                />
-                <span className="gallery-zoom-icon" aria-hidden="true">
-                  <span className="gallery-zoom-label">Click to expand</span>
-                </span>
-              </figure>
-            ))}
-            </div>
-            <button
-              type="button"
-              className="gallery-nav gallery-nav-next"
-              aria-label="Next photo"
-              onClick={() => galleryControls.current?.next()}
-            >
-              ›
-            </button>
-          </div>
+          <BathroomGallery photos={galleryPhotos} />
         </section>
 
         <section className="london-section">
@@ -852,6 +587,27 @@ export function BathroomLandingPage({ locality = defaultLocality }: { locality?:
             <article>
               <h3>Compact rooms that need precision</h3>
               <p>Small bathrooms need careful setting-out so the room feels intentional, not squeezed.</p>
+            </article>
+          </div>
+        </section>
+
+        <section className="london-section" id="showers">
+          <div>
+            <p className="eyebrow">Shower renovations &amp; wet rooms in {locality.name}</p>
+            <h2>Walk-in showers and wet rooms, built to stay watertight.</h2>
+          </div>
+          <div className="london-list">
+            <article>
+              <h3>Walk-in showers</h3>
+              <p>Low-profile trays, frameless glass screens and rainfall heads, set out to suit the room.</p>
+            </article>
+            <article>
+              <h3>Wet rooms and tanking</h3>
+              <p>Full tanking, correct falls to the drain and a tiled finish that stays watertight.</p>
+            </article>
+            <article>
+              <h3>Niches, lighting and valves</h3>
+              <p>Recessed niches, LED strips and concealed thermostatic valves planned before tiling.</p>
             </article>
           </div>
         </section>
@@ -921,27 +677,7 @@ export function BathroomLandingPage({ locality = defaultLocality }: { locality?:
         <div className="section-heading">
           <h2>Quick answers for {locality.name} bathroom projects.</h2>
         </div>
-            <div className="faq-list">
-              {faqs.map(([question, answer], index) => {
-                const isOpen = openFaq === index;
-
-                return (
-                  <button
-                    key={question}
-                    className="faq-card"
-                    type="button"
-                    aria-expanded={isOpen}
-                    {...tapBridge(() => setOpenFaq(isOpen ? null : index))}
-                  >
-                    <span className="faq-header">
-                      <span className="faq-question">{question}</span>
-                      <span className="faq-toggle">{isOpen ? "Close" : "Open"}</span>
-                    </span>
-                    {isOpen ? <p>{answer}</p> : null}
-                  </button>
-                );
-              })}
-            </div>
+            <BathroomFaq faqs={faqs} />
           </section>
 
       </main>
@@ -1047,62 +783,6 @@ export function BathroomLandingPage({ locality = defaultLocality }: { locality?:
         <span>Call us: <a href="tel:+447843746835">07843 746 835</a></span>
       </footer>
 
-      {lightboxIndex !== null ? (
-        <div
-          className="lightbox"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Photo viewer"
-          onClick={() => setLightboxIndex(null)}
-        >
-          <button
-            className="lightbox-close"
-            type="button"
-            aria-label="Close"
-            onClick={(event) => {
-              event.stopPropagation();
-              setLightboxIndex(null);
-            }}
-          >
-            ×
-          </button>
-          <button
-            className="lightbox-nav lightbox-prev"
-            type="button"
-            aria-label="Previous photo"
-            onClick={(event) => {
-              event.stopPropagation();
-              showPrevPhoto();
-            }}
-          >
-            ‹
-          </button>
-          <div
-            className="lightbox-image"
-            onClick={(event) => event.stopPropagation()}
-            onTouchStart={handleLightboxTouchStart}
-            onTouchEnd={handleLightboxTouchEnd}
-          >
-            <Image
-              src={galleryPhotos[lightboxIndex].src}
-              alt={galleryPhotos[lightboxIndex].alt}
-              fill
-              sizes="100vw"
-            />
-          </div>
-          <button
-            className="lightbox-nav lightbox-next"
-            type="button"
-            aria-label="Next photo"
-            onClick={(event) => {
-              event.stopPropagation();
-              showNextPhoto();
-            }}
-          >
-            ›
-          </button>
-        </div>
-      ) : null}
     </>
   );
 }
