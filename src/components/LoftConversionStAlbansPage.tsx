@@ -275,10 +275,15 @@ export function LoftConversionStAlbansPage() {
       </header>
 
       <main id="top">
-        <section
-          className="hero-section"
-          style={{ background: "linear-gradient(135deg, #1e2a3a 0%, #2e3d52 40%, #1a2535 100%)" }}
-        >
+        <section className="hero-section">
+          <Image
+            src="/images/hero-loft-st-albans.jpg"
+            alt="Finished loft conversion bedroom with skylights and built-in eaves storage, by Maycor"
+            fill
+            priority
+            sizes="100vw"
+            className="hero-image"
+          />
           <div className="hero-shade" />
           <div className="hero-content">
             <p className="eyebrow">St Albans &amp; Harpenden loft conversion specialists</p>

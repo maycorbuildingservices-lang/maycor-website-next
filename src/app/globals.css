@@ -2254,6 +2254,20 @@ h3 {
     flex: 1;
     text-align: center;
   }
+
+  /* Loft calculator: three actions (Refine / Get estimate / Compact) must fit one row */
+  .loft-sticky-bar.sticky-bar-expanded .sticky-actions {
+    gap: 6px;
+  }
+
+  .loft-sticky-bar.sticky-bar-expanded .sticky-actions a:not(.sticky-whatsapp),
+  .loft-sticky-bar.sticky-bar-expanded .sticky-actions button {
+    min-width: 0;
+    padding: 9px 6px;
+    font-size: 13px;
+    line-height: 1.2;
+    white-space: normal;
+  }
 }
 
 .dental-gallery-grid {

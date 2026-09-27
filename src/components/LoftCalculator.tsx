@@ -117,6 +117,14 @@ export function LoftCalculator() {
     }, 80);
   };
 
+  const collapseCalculator = () => {
+    setExpanded(false);
+    setShowForm(false);
+    window.requestAnimationFrame(() => {
+      document.getElementById("estimate")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  };
+
   const handleFormChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
@@ -343,7 +351,7 @@ export function LoftCalculator() {
       </div>
 
       {pricing && (
-        <div className="sticky-estimate-bar">
+        <div className={`sticky-estimate-bar loft-sticky-bar${expanded || showForm ? " sticky-bar-expanded" : ""}`}>
           <div>
             <span>Your loft estimate</span>
             <strong>
@@ -364,6 +372,11 @@ export function LoftCalculator() {
             <button onClick={handleShowForm} type="button">
               Get estimate
             </button>
+            {(expanded || showForm) && (
+              <button onClick={collapseCalculator} type="button">
+                Compact calculator
+              </button>
+            )}
           </div>
         </div>
       )}
