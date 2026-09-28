@@ -10,14 +10,14 @@ import { WhatsAppLink } from "@/components/WhatsAppLink";
  * Paid-ads landing page for the "Cost & Prices" ad group (added 2026-09-28, Victor's OK).
  * A test of whether a dedicated page beats /london#estimate on landing-page experience: the
  * H1 mirrors the ad headlines ("Bathroom Renovation Cost", "Bathroom Cost Calculator", "See Your
- * Price in 2 Minutes") and the calculator sits at the top. noindex + not in the sitemap, so it
+ * Price in 3 Minutes") and the calculator sits at the top. noindex + not in the sitemap, so it
  * doesn't compete with /bathroom-renovation-cost-guide-london in organic search. Prices come from
  * the cost guide's own tables so the two can never disagree.
  */
 
-const title = "Bathroom Renovation Cost in London | See Your Price in 2 Minutes";
+const title = "Bathroom Renovation Cost in London | See Your Price in 3 Minutes";
 const description =
-  "Bathroom renovation cost in London: use the calculator for your own price range in about 2 minutes. Full renovations typically £6,000–£20,000+.";
+  "Bathroom renovation cost in London: use the calculator for your own price range in about 3 minutes. Full renovations typically £6,000–£20,000+.";
 
 export const metadata: Metadata = {
   title: { absolute: title },
@@ -66,7 +66,7 @@ export default function BathroomRenovationCostLandingPage() {
         <section className="cost-intro-section">
           <div className="section-heading">
             <p className="eyebrow">Bathroom renovation cost in London</p>
-            <h1>Bathroom renovation cost calculator — see your price in 2 minutes.</h1>
+            <h1>Bathroom renovation cost calculator — see your price in 3 minutes.</h1>
             <p className="cost-intro-body">
               A full London bathroom renovation typically costs <strong>£6,000–£20,000+</strong>. Pick your
               room size and finish below for your own range — labour, materials, sanitaryware and waste
