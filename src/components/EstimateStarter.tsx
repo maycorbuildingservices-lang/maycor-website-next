@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent, PointerEvent, useEffect, useMemo, useRef, useState } from "react";
-import { logWhatsAppClick } from "@/lib/adTracking";
+import { openTrackedWhatsApp } from "@/lib/adTracking";
 
 declare global {
   interface Window {
@@ -608,7 +608,7 @@ export function EstimateStarter() {
             target="_blank"
             rel="noreferrer"
             className="sticky-whatsapp"
-            onClick={() => logWhatsAppClick("sticky-bar")}
+            onClick={(event) => openTrackedWhatsApp(event, "sticky-bar")}
           >
             WhatsApp us
           </a>

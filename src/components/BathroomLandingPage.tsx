@@ -241,7 +241,7 @@ const process = [
 // NICEIC → Cert Portal → Marketing → Logo Downloads
 // Gas Safe → Member area → Registered Business Resources
 // MyBuilder → Profile page → Trust Badge
-const accreditations = [
+export const accreditations = [
   { name: "Federation of Master Builders", src: "/images/accreditations/master-builder.svg" },
   { name: "NICEIC Approved Contractor", src: "/images/accreditations/niceic.svg" },
   { name: "Gas Safe Register", src: "/images/accreditations/gas-safe.svg" },

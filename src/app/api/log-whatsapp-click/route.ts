@@ -5,6 +5,8 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 interface ClickPayload {
   gclid: string | null;
+  /** Reference code sent in the pre-filled WhatsApp message (added 2026-09-28), e.g. "M7K2". */
+  ref?: string | null;
   timestamp: string;
   page: string;
   location: string;
@@ -32,16 +34,18 @@ export async function POST(request: Request) {
   }
 
   const { gclid, timestamp, page, location } = payload;
+  // Only accept a well-formed code — it ends up in an email subject and a JSON log.
+  const ref = typeof payload.ref === "string" && /^[A-Z0-9]{4}$/.test(payload.ref) ? payload.ref : null;
 
   // Fixed, greppable marker line so the sync script's regex never has to touch email HTML.
-  const logLine = `WHATSAPP_CLICK_LOG_V1 ${JSON.stringify({ gclid: gclid || null, timestamp, page, location })}`;
+  const logLine = `WHATSAPP_CLICK_LOG_V1 ${JSON.stringify({ gclid: gclid || null, ref, timestamp, page, location })}`;
 
   try {
     await resend.emails.send({
       from: "Maycor Tracking <leads@mail.maycor.co.uk>",
       to: "maycorbuildingservices@gmail.com",
-      subject: `WhatsApp click${gclid ? " (paid, has gclid)" : " (no gclid — likely organic/direct)"}`,
-      text: `${logLine}\n\nPage: ${page}\nButton: ${location}\nTime: ${timestamp}\ngclid: ${gclid || "(none)"}\n`,
+      subject: `WhatsApp click${ref ? ` ref ${ref}` : ""}${gclid ? " (paid, has gclid)" : " (no gclid — likely organic/direct)"}`,
+      text: `${logLine}\n\nRef: ${ref || "(none)"}\nPage: ${page}\nButton: ${location}\nTime: ${timestamp}\ngclid: ${gclid || "(none)"}\n`,
     });
     return NextResponse.json({ ok: true });
   } catch (err) {

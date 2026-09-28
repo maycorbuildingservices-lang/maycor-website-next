@@ -13,7 +13,8 @@ type PriceRow = {
   premium: string;
 };
 
-const priceTable: PriceRow[] = [
+// Exported so the paid-ads cost landing page shows exactly the same bands as this guide.
+export const priceTable: PriceRow[] = [
   { size: "WC / Cloakroom", sqm: "toilet & basin only", standard: "£3,900 – £5,900", mid: "£4,900 – £7,400", premium: "£5,500 – £8,300" },
   { size: "Very small bathroom", sqm: "2–3 sqm", standard: "£5,400 – £8,200", mid: "£6,800 – £10,300", premium: "£7,600 – £11,500" },
   { size: "Small bathroom", sqm: "3–5 sqm", standard: "£5,800 – £9,100", mid: "£7,300 – £11,400", premium: "£8,100 – £12,700" },
@@ -21,7 +22,7 @@ const priceTable: PriceRow[] = [
   { size: "Large bathroom", sqm: "8+ sqm", standard: "£9,600 – £15,500", mid: "£12,000 – £19,400", premium: "£13,400 – £21,700" },
 ];
 
-const costDrivers = [
+export const costDrivers = [
   {
     title: "Access difficulty",
     detail:
@@ -64,7 +65,7 @@ const costDrivers = [
   },
 ];
 
-const faqs: [string, string][] = [
+export const costFaqs: [string, string][] = [
   [
     "Is the price range the final quote?",
     "No — it's there to keep the first conversation realistic. A fixed quote follows a site visit, once room dimensions and access are confirmed.",
@@ -99,7 +100,7 @@ export function CostGuideArticle() {
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: faqs.map(([question, answer]) => ({
+    mainEntity: costFaqs.map(([question, answer]) => ({
       "@type": "Question",
       name: question,
       acceptedAnswer: { "@type": "Answer", text: answer },
@@ -224,7 +225,7 @@ export function CostGuideArticle() {
 
           <h2>Frequently asked questions</h2>
           <div className="cost-faq-list">
-            {faqs.map(([question, answer]) => (
+            {costFaqs.map(([question, answer]) => (
               <div key={question} className="cost-faq-item">
                 <h3>{question}</h3>
                 <p>{answer}</p>

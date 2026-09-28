@@ -2415,6 +2415,87 @@ h3 {
   font-size: 15px;
 }
 
+/* Paid-ads cost landing page (/london/bathroom-renovation-cost) */
+.cost-lp {
+  padding-top: clamp(96px, 12svh, 130px);
+}
+
+.cost-lp-card {
+  width: min(1180px, calc(100% - 36px));
+  margin: 40px auto 0;
+  padding: clamp(20px, 3vw, 36px);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.94);
+}
+
+.cost-lp-card h2 {
+  margin-top: 0;
+  font-size: clamp(24px, 3vw, 34px);
+}
+
+.cost-lp-card h2 + .cost-table-wrap {
+  margin-top: 12px;
+}
+
+.cost-lp-card .cost-drivers-grid + * {
+  margin-top: 0;
+}
+
+.cost-lp-card p {
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+
+.cost-lp-photos {
+  width: min(1180px, calc(100% - 36px));
+  margin: 40px auto 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.cost-lp-photos figure {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.cost-lp-photos img {
+  object-fit: cover;
+}
+
+.cost-lp-logos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 28px;
+  margin-top: 20px;
+}
+
+@media (max-width: 700px) {
+  .cost-lp-photos {
+    grid-template-columns: 1fr;
+  }
+
+  .cost-lp-photos figure {
+    aspect-ratio: 4 / 3;
+  }
+
+  .cost-lp-card .cost-drivers-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cost-lp-logos {
+    gap: 18px;
+  }
+
+  .cost-lp-logos .accreditation-logo {
+    height: 38px;
+  }
+}
+
 .cost-faq-list {
   display: grid;
   gap: 18px;
