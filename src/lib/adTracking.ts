@@ -100,6 +100,26 @@ export function openTrackedWhatsApp(event: { currentTarget: HTMLAnchorElement },
 }
 
 /**
+ * Coarse device class for the click log (added 2026-10-01): "mobile", "tablet" or "desktop", plus
+ * "-inapp" when the page is open inside an app's built-in browser (Facebook, Instagram, Google
+ * app…), where wa.me links often fail to hand off to WhatsApp. Lets Victor see whether paid
+ * WhatsApp clicks that never became messages came from desktops (wa.me opens an extra
+ * "Continue to chat" page there). No fingerprinting — just the class, never the raw user agent.
+ */
+export function deviceClass(): string {
+  if (typeof navigator === "undefined") return "unknown";
+  const ua = navigator.userAgent || "";
+  const tablet =
+    /iPad|Tablet/i.test(ua) ||
+    (/Android/i.test(ua) && !/Mobile/i.test(ua)) ||
+    // iPadOS Safari reports itself as a Mac; a touchscreen "Mac" is an iPad.
+    (/Macintosh/i.test(ua) && (navigator.maxTouchPoints || 0) > 1);
+  const mobile = !tablet && /Mobi|iPhone|Android/i.test(ua);
+  const inApp = /FBAN|FBAV|Instagram|GSA\/|Line\/|LinkedInApp|Snapchat|TikTok/i.test(ua);
+  return `${tablet ? "tablet" : mobile ? "mobile" : "desktop"}${inApp ? "-inapp" : ""}`;
+}
+
+/**
  * Fire-and-forget log of a WhatsApp button click, tagged with whatever gclid (if any) is on
  * file for this visitor and the ref code sent in the pre-filled message. `location` identifies
  * which button was clicked (e.g. "header", "sticky-bar") so Victor can see which entry point
@@ -113,6 +133,7 @@ export function logWhatsAppClick(location: string, ref: string | null = null): v
     const payload = JSON.stringify({
       gclid,
       ref,
+      device: deviceClass(),
       timestamp: new Date().toISOString(),
       page: window.location.pathname,
       location,
