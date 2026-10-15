@@ -11,7 +11,7 @@ declare global {
 }
 
 const images = {
-  logo: "https://maycor.co.uk/wp-content/uploads/2025/03/main-logo-all-04-300x93.png",
+  logo: "/maycor-logo.png",
 };
 
 const proofPoints: [string, string][] = [

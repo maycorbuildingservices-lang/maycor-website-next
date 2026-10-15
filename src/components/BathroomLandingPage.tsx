@@ -5,7 +5,7 @@ import { EstimateStarter } from "./EstimateStarter";
 import { WhatsAppLink } from "./WhatsAppLink";
 
 const images = {
-  logo: "https://maycor.co.uk/wp-content/uploads/2025/03/main-logo-all-04-300x93.png",
+  logo: "/maycor-logo.png",
   hero: "/images/hero-bathroom-vanity-mirror.jpg",
   story: "/images/story-dark-tile-vanity.jpg",
   wc: "/images/gallery-loo.jpg",

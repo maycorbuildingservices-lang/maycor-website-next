@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   robots: { index: false, follow: true },
 };
 
-const logo = "https://maycor.co.uk/wp-content/uploads/2025/03/main-logo-all-04-300x93.png";
+const logo = "/maycor-logo.png";
 
 const photos = [
   { src: "/images/story-dark-tile-vanity.jpg", alt: "Matt black vanity with a brass-framed mirror on a dark textured tile wall" },

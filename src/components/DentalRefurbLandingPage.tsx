@@ -10,7 +10,7 @@ declare global {
 }
 
 const images = {
-  logo: "https://maycor.co.uk/wp-content/uploads/2025/03/main-logo-all-04-300x93.png",
+  logo: "/maycor-logo.png",
   hero: "https://maycor.co.uk/wp-content/uploads/2025/05/maycor-gallery-20.jpg",
 };
 
