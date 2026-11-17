@@ -25,12 +25,12 @@ const bathroomUrls = [
 ];
 
 const dentalUrls = [
-  { path: "", priority: 1 },
   { path: "htm-01-05-decontamination-room-guide", priority: 0.9 },
   { path: "cqc-regulation-15-checklist", priority: 0.9 },
 ];
 
-const loftUrls = [{ path: "", priority: 1 }];
+// lofts.maycor.co.uk now 301s to maycor.co.uk, so nothing to list.
+const loftUrls: { path: string; priority: number }[] = [];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const host = (await headers()).get("host") || "";

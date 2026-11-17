@@ -11,41 +11,41 @@ declare global {
 
 const images = {
   logo: "/maycor-logo.png",
-  hero: "https://maycor.co.uk/wp-content/uploads/2025/05/maycor-gallery-20.jpg",
+  hero: "/dental/gallery-4.jpg",
 };
 
 // Placeholder gallery — swap for Victor's before/during/completion project photos when supplied.
 const galleryPhotos = [
   {
-    src: "https://maycor.co.uk/wp-content/uploads/2025/05/maycor-gallery-20.jpg",
+    src: "/dental/gallery-4.jpg",
     caption: "Dental surgery fit-out — completed treatment room",
   },
   {
-    src: "https://maycor.co.uk/wp-content/uploads/2025/05/maycor-gallery-19.jpg",
+    src: "/dental/gallery-1.jpg",
     caption: "Dental practice refurbishment — reception and waiting area",
   },
   {
-    src: "https://maycor.co.uk/wp-content/uploads/2025/05/maycor-gallery-31.jpg",
+    src: "/dental/gallery-2.jpg",
     caption: "Dentist refurbishment — surgery room finish",
   },
   {
-    src: "https://maycor.co.uk/wp-content/uploads/2025/05/maycor-gallery-32.jpg",
+    src: "/dental/gallery-3.jpg",
     caption: "Dentist refurbishment — completed clinical space",
   },
   {
-    src: "https://maycor.co.uk/wp-content/uploads/2025/05/maycor-gallery-16.jpg",
+    src: "/dental/gallery-5.jpg",
     caption: "Dental practice fit-out — surgery detail",
   },
   {
-    src: "https://maycor.co.uk/wp-content/uploads/2025/05/maycor-gallery-17.jpg",
+    src: "/dental/gallery-6.jpg",
     caption: "Dental practice fit-out — finished interior",
   },
   {
-    src: "https://maycor.co.uk/wp-content/uploads/2025/05/maycor-gallery-27.jpg",
+    src: "/dental/gallery-7.jpg",
     caption: "Dentist refurbishment — clinical fit-out",
   },
   {
-    src: "https://maycor.co.uk/wp-content/uploads/2025/05/maycor-gallery-28.jpg",
+    src: "/dental/gallery-8.jpg",
     caption: "Dentist refurbishment — practice interior",
   },
 ];

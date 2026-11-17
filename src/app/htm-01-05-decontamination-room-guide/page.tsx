@@ -15,13 +15,13 @@ export const metadata: Metadata = {
     title,
     description,
     url: "https://dental.maycor.co.uk/htm-01-05-decontamination-room-guide/",
-    images: [{ url: "https://maycor.co.uk/wp-content/uploads/2025/05/maycor-gallery-20.jpg", width: 1200, height: 1500, alt: "Dental decontamination room fit-out by Maycor" }],
+    images: [{ url: "https://dental.maycor.co.uk/dental/gallery-4.jpg", width: 1200, height: 1500, alt: "Dental decontamination room fit-out by Maycor" }],
   },
   twitter: {
     card: "summary_large_image",
     title,
     description,
-    images: ["https://maycor.co.uk/wp-content/uploads/2025/05/maycor-gallery-20.jpg"],
+    images: ["https://dental.maycor.co.uk/dental/gallery-4.jpg"],
   },
 };
 

@@ -10,7 +10,7 @@ const images = {
   story: "/images/story-dark-tile-vanity.jpg",
   wc: "/images/gallery-loo.jpg",
   niche: "/images/gallery-shower.jpg",
-  vanity: "https://maycor.co.uk/wp-content/uploads/2025/05/maycor-gallery-7.jpg",
+  vanity: "/images/gallery-vanity.jpg",
   extra4: "/images/gallery-extra-4.jpg",
   extra5: "/images/gallery-extra-5.jpg",
   extra10: "/images/gallery-extra-10.jpg",

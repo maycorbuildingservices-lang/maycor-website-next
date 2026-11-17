@@ -32,13 +32,13 @@ const nextConfig: NextConfig = {
       {
         source: "/dental-practice-refurbishment-london",
         has: [{ type: "host", value: "bathroom-renovations.maycor.co.uk" }],
-        destination: "https://dental.maycor.co.uk/",
+        destination: "https://maycor.co.uk/commercial/dental-medical",
         permanent: true,
       },
       {
         source: "/dental-practice-refurbishment-london/:path*",
         has: [{ type: "host", value: "bathroom-renovations.maycor.co.uk" }],
-        destination: "https://dental.maycor.co.uk/:path*",
+        destination: "https://maycor.co.uk/commercial/dental-medical",
         permanent: true,
       },
       {
@@ -53,21 +53,32 @@ const nextConfig: NextConfig = {
         destination: "https://dental.maycor.co.uk/htm-01-05-decontamination-room-guide/:path*",
         permanent: true,
       },
-    ];
-  },
-  async rewrites() {
-    return [
-      // dental.maycor.co.uk/ silently serves the dental landing page.
+      // dental.maycor.co.uk landing page retired (2026-11): the equivalent page lives on
+      // the main site. The two compliance guides stay on this host for now.
       {
         source: "/",
         has: [{ type: "host", value: "dental.maycor.co.uk" }],
-        destination: "/dental-practice-refurbishment-london",
+        destination: "https://maycor.co.uk/commercial/dental-medical",
+        permanent: true,
       },
-      // lofts.maycor.co.uk/ silently serves the St Albans loft conversion page.
+      {
+        source: "/dental-practice-refurbishment-london",
+        has: [{ type: "host", value: "dental.maycor.co.uk" }],
+        destination: "https://maycor.co.uk/commercial/dental-medical",
+        permanent: true,
+      },
+      // lofts.maycor.co.uk retired (2026-11): query string (utm_*) is forwarded by Next.
       {
         source: "/",
         has: [{ type: "host", value: "lofts.maycor.co.uk" }],
-        destination: "/loft-conversion-st-albans",
+        destination: "https://maycor.co.uk/residential/loft-conversions",
+        permanent: true,
+      },
+      {
+        source: "/loft-conversion-st-albans",
+        has: [{ type: "host", value: "lofts.maycor.co.uk" }],
+        destination: "https://maycor.co.uk/residential/loft-conversions",
+        permanent: true,
       },
     ];
   },

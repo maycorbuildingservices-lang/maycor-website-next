@@ -28,9 +28,9 @@ export const metadata: Metadata = {
     siteName: "Maycor Building Contractors",
     images: [
       {
-        url: "https://maycor.co.uk/wp-content/uploads/2026/01/IMG_1765-scaled.jpg",
-        width: 1200,
-        height: 800,
+        url: "https://bathroom-renovations.maycor.co.uk/images/og-bathroom.jpg",
+        width: 900,
+        height: 1200,
         alt: "Modern London bathroom renovation by Maycor",
       },
     ],
