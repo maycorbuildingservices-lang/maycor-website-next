@@ -44,17 +44,42 @@ const nextConfig: NextConfig = {
       {
         source: "/htm-01-05-decontamination-room-guide",
         has: [{ type: "host", value: "bathroom-renovations.maycor.co.uk" }],
-        destination: "https://dental.maycor.co.uk/htm-01-05-decontamination-room-guide",
+        destination: "https://maycor.co.uk/commercial/dental-medical/htm-01-05-decontamination-room-guide",
         permanent: true,
       },
       {
         source: "/htm-01-05-decontamination-room-guide/:path*",
         has: [{ type: "host", value: "bathroom-renovations.maycor.co.uk" }],
-        destination: "https://dental.maycor.co.uk/htm-01-05-decontamination-room-guide/:path*",
+        destination: "https://maycor.co.uk/commercial/dental-medical/htm-01-05-decontamination-room-guide",
+        permanent: true,
+      },
+      {
+        source: "/cqc-regulation-15-checklist",
+        has: [{ type: "host", value: "bathroom-renovations.maycor.co.uk" }],
+        destination: "https://maycor.co.uk/commercial/dental-medical/cqc-regulation-15-checklist",
+        permanent: true,
+      },
+      {
+        source: "/cqc-regulation-15-checklist/:path*",
+        has: [{ type: "host", value: "bathroom-renovations.maycor.co.uk" }],
+        destination: "https://maycor.co.uk/commercial/dental-medical/cqc-regulation-15-checklist",
+        permanent: true,
+      },
+      // The two compliance guides now live on the main site (2026-11).
+      {
+        source: "/cqc-regulation-15-checklist",
+        has: [{ type: "host", value: "dental.maycor.co.uk" }],
+        destination: "https://maycor.co.uk/commercial/dental-medical/cqc-regulation-15-checklist",
+        permanent: true,
+      },
+      {
+        source: "/htm-01-05-decontamination-room-guide",
+        has: [{ type: "host", value: "dental.maycor.co.uk" }],
+        destination: "https://maycor.co.uk/commercial/dental-medical/htm-01-05-decontamination-room-guide",
         permanent: true,
       },
       // dental.maycor.co.uk landing page retired (2026-11): the equivalent page lives on
-      // the main site. The two compliance guides stay on this host for now.
+      // the main site. The two compliance guides redirect to the main site as well.
       {
         source: "/",
         has: [{ type: "host", value: "dental.maycor.co.uk" }],

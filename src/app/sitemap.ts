@@ -24,10 +24,8 @@ const bathroomUrls = [
   { path: "bathroom-renovation-cost-guide-london", priority: 0.9 },
 ];
 
-const dentalUrls = [
-  { path: "htm-01-05-decontamination-room-guide", priority: 0.9 },
-  { path: "cqc-regulation-15-checklist", priority: 0.9 },
-];
+// dental.maycor.co.uk now 301s everything to maycor.co.uk, so nothing to list.
+const dentalUrls: { path: string; priority: number }[] = [];
 
 // lofts.maycor.co.uk now 301s to maycor.co.uk, so nothing to list.
 const loftUrls: { path: string; priority: number }[] = [];
