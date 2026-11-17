@@ -105,6 +105,61 @@ const nextConfig: NextConfig = {
         destination: "https://maycor.co.uk/residential/loft-conversions",
         permanent: true,
       },
+      // Pages that were reachable on the wrong host (2026-11): send each to its real home.
+      {
+        source: "/london",
+        has: [{ type: "host", value: "dental.maycor.co.uk" }],
+        destination: "https://bathroom-renovations.maycor.co.uk/london",
+        permanent: true,
+      },
+      {
+        source: "/bathroom-renovation-:rest(.*)",
+        has: [{ type: "host", value: "dental.maycor.co.uk" }],
+        destination: "https://bathroom-renovations.maycor.co.uk/bathroom-renovation-:rest(.*)",
+        permanent: true,
+      },
+      {
+        source: "/london",
+        has: [{ type: "host", value: "lofts.maycor.co.uk" }],
+        destination: "https://bathroom-renovations.maycor.co.uk/london",
+        permanent: true,
+      },
+      {
+        source: "/bathroom-renovation-:rest(.*)",
+        has: [{ type: "host", value: "lofts.maycor.co.uk" }],
+        destination: "https://bathroom-renovations.maycor.co.uk/bathroom-renovation-:rest(.*)",
+        permanent: true,
+      },
+      {
+        source: "/loft-conversion-st-albans",
+        has: [{ type: "host", value: "dental.maycor.co.uk" }],
+        destination: "https://maycor.co.uk/residential/loft-conversions",
+        permanent: true,
+      },
+      {
+        source: "/loft-conversion-st-albans",
+        has: [{ type: "host", value: "bathroom-renovations.maycor.co.uk" }],
+        destination: "https://maycor.co.uk/residential/loft-conversions",
+        permanent: true,
+      },
+      {
+        source: "/cqc-regulation-15-checklist",
+        has: [{ type: "host", value: "lofts.maycor.co.uk" }],
+        destination: "https://maycor.co.uk/commercial/dental-medical/cqc-regulation-15-checklist",
+        permanent: true,
+      },
+      {
+        source: "/htm-01-05-decontamination-room-guide",
+        has: [{ type: "host", value: "lofts.maycor.co.uk" }],
+        destination: "https://maycor.co.uk/commercial/dental-medical/htm-01-05-decontamination-room-guide",
+        permanent: true,
+      },
+      {
+        source: "/dental-practice-refurbishment-london",
+        has: [{ type: "host", value: "lofts.maycor.co.uk" }],
+        destination: "https://maycor.co.uk/commercial/dental-medical",
+        permanent: true,
+      },
     ];
   },
   images: {
